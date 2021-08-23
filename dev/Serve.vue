@@ -13,7 +13,8 @@ export default Vue.extend({
 
 <template>
   <div id="app">
-    <ify-table
+    <ify-header />
+    <!-- <ify-table
       :columns="[
         { field: 'name', label: 'Nome' },
         { field: 'email', label: 'E-mail' }
@@ -22,6 +23,6 @@ export default Vue.extend({
         { name: 'Isabel', email: 'isabel@example.com' },
         { name: 'Lorenna', email: 'lorenna@example.com' }
       ]"
-    />
+    /> -->
   </div>
 </template>
