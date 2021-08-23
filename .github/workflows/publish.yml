@@ -1,4 +1,4 @@
-name: Publish TailwindCSS config package
+name: Publicação da biblioteca de componentes
 
 on:
   push:
