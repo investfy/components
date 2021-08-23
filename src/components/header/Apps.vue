@@ -24,8 +24,11 @@
       <fa icon="caret-up" size="lg" class="caret-balloon -top-3.5" />
 
       <div class="p-2 text-center">
-        <a :href="quantUrl" class="app-button">
-          <img src="@/assets/quant-logo.svg" alt="Quant" class="w-full" />
+        <a
+          :href="quantUrl"
+          class="block w-12 h-12 p-1 box-content rounded-xs overflow-hidden hover:bg-gray-200"
+        >
+          <img src="../../assets/quant-logo.svg" alt="Quant" class="w-full" />
         </a>
       </div>
     </div>
@@ -34,7 +37,7 @@
 
 <script>
 export default {
-  name: "AppsButton",
+  name: "Apps",
 
   props: {
     authToken: {
@@ -46,14 +49,14 @@ export default {
   data() {
     return {
       isLoading: false,
-      isOpen: false,
+      isOpen: false
     };
   },
 
   watch: {
     $route() {
       this.isOpen = false;
-    },
+    }
   },
 
   methods: {
@@ -61,7 +64,7 @@ export default {
       if (this.$refs.apps && !this.$refs.apps.contains(e.target)) {
         this.isOpen = false;
       }
-    },
+    }
   },
 
   mounted() {
@@ -74,17 +77,9 @@ export default {
 
   computed: {
     quantUrl() {
-      const token = Buffer.from(this.authToken).toString('base64');
+      const token = Buffer.from(this.authToken).toString("base64");
       return `${process.env.VUE_APP_QUANT_URL}?token=${token}`;
-    },
-  },
+    }
+  }
 };
 </script>
-
-<style lang="postcss" scoped>
-.app-button {
-  @apply block w-12 h-12 p-1 box-content;
-  @apply rounded-xs overflow-hidden;
-  @apply hover:bg-gray-200;
-}
-</style>

@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Dev from "./Serve.vue";
-import "@/assets/main.css";
+import "@/assets/tailwind.css";
 import IfyComponents from "@/entry.esm";
 
 Vue.use(IfyComponents);

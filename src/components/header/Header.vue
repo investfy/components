@@ -6,10 +6,10 @@
           <component
             :is="logoUrl ? 'a' : 'span'"
             :href="logoUrl"
-            class="flex items-center h-14 hover:bg-gray-100"
+            class="flex items-center h-14"
           >
             <img
-              src="@/assets/logo.svg"
+              src="../../assets/logo.svg"
               alt="Investfy"
               class="block w-auto h-6 lg:h-8"
             />
@@ -17,10 +17,8 @@
         </div>
 
         <div class="flex items-center flex-shrink-0 ml-auto">
-          <!-- <favorites-button />
-          <notification-button />
-          <profile-button class="ml-3" /> -->
           <apps auth-token="asdf" />
+          <profile class="ml-3" />
         </div>
       </div>
     </div>
@@ -28,19 +26,15 @@
 </template>
 
 <script>
-// import FavoritesButton from "./FavoritesButton";
-// import NotificationButton from "./NotificationButton";
-// import ProfileButton from "./ProfileButton";
-import Apps from "./Apps";
+import Apps from "./Apps.vue";
+import Profile from "./Profile.vue";
 
 export default {
   name: "IfyHeader",
 
   components: {
-    // FavoritesButton,
-    // NotificationButton,
-    // ProfileButton,
     Apps,
+    Profile
   },
 
   props: {
