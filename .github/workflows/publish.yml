@@ -27,6 +27,7 @@ jobs:
 
       - name: Install and Build
         run: |
+          echo "//npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
           npm install
           npm run build
 
