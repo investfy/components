@@ -73,5 +73,8 @@
   },
   "publishConfig": {
     "access": "restricted"
+  },
+  "dependencies": {
+    "@popperjs/core": "2.9.3"
   }
 }
