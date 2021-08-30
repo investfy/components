@@ -3,41 +3,34 @@
     <div class="mb-8">
       <ify-navbar>
         <template #end>
-          <ify-dropdown>
+          <ify-dropdown position="bottom-left">
             <template #trigger>
-              <button
-                ref="dropdown"
-                type="button"
-                class="outline-none focus:outline-none"
-                @click="toggleDropdown()"
-              >
-                <fa icon="th" />
-              </button>
+              <button><fa icon="th" /></button>
             </template>
 
-            <div class="p-2" style="min-width: 10rem">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Repellat vitae consequuntur, aliquid aut voluptas velit est
-                voluptatibus aspernatur laboriosam accusantium dolore voluptatum
-                aliquam suscipit.
-              </p>
-            </div>
+            <ify-dropdown-item has-link>
+              <a href="#" class="dropdown-item">Action</a>
+            </ify-dropdown-item>
+            <ify-dropdown-item>Another action</ify-dropdown-item>
+            <ify-dropdown-item separator />
+            <ify-dropdown-item>Something else</ify-dropdown-item>
           </ify-dropdown>
         </template>
       </ify-navbar>
     </div>
 
-    <ify-table
-      :columns="[
-        { field: 'name', label: 'Nome' },
-        { field: 'email', label: 'E-mail' },
-      ]"
-      :data="[
-        { name: 'Isabel', email: 'isabel@example.com' },
-        { name: 'Lorenna', email: 'lorenna@example.com' },
-      ]"
-    />
+    <div class="container">
+      <ify-table
+        :columns="[
+          { field: 'name', label: 'Nome' },
+          { field: 'email', label: 'E-mail' },
+        ]"
+        :data="[
+          { name: 'Isabel', email: 'isabel@example.com' },
+          { name: 'Lorenna', email: 'lorenna@example.com' },
+        ]"
+      />
+    </div>
   </div>
 </template>
 
