@@ -1,17 +1,29 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <IfyLogo />
+    <IfyTable
+      :columns="[
+        { field: 'name', label: 'Nome' },
+        { field: 'email', label: 'E-mail' },
+      ]"
+      :data="[
+        { name: 'Isabel', email: 'isabel@example.com' },
+        { name: 'Lorenna', email: 'lorenna@example.com' },
+      ]"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import IfyLogo from "./components/logo/Logo.vue";
+import IfyTable from "./components/table/Table.vue";
 
 export default {
   name: "App",
+
   components: {
-    HelloWorld,
+    IfyLogo,
+    IfyTable,
   },
 };
 </script>
