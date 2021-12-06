@@ -1,6 +1,8 @@
 <template>
-  <div id="app">
-    <IfyLogo />
+  <div id="app" class="container">
+    <div class="text-center">
+      <IfyLogo class="inline-block mb-6" />
+    </div>
     <IfyTable
       :columns="[
         { field: 'name', label: 'Nome' },
