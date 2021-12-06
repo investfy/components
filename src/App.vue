@@ -17,16 +17,8 @@
 </template>
 
 <script>
-import IfyLogo from "./components/logo/Logo.vue";
-import IfyTable from "./components/table/Table.vue";
-
 export default {
   name: "App",
-
-  components: {
-    IfyLogo,
-    IfyTable,
-  },
 };
 </script>
 

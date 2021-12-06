@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/investfy/components.git"
   },
-  "main": "dist/ify-components.ssr.js",
+  "main": "dist/ify-components.common.js",
   "files": [
     "dist/*",
     "src/**/*.vue"
@@ -15,7 +15,7 @@
   "sideEffects": false,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name ify-components ./src/index.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook --no-open -p 6006",
