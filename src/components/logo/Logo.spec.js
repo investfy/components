@@ -4,12 +4,24 @@ import IfyLogo from "./Logo.vue";
 describe("Logo.vue", () => {
   it("deve renderizar uma imagem", () => {
     const wrapper = shallowMount(IfyLogo);
-    expect(wrapper.find("img").length).toEqual(1);
+    const list = wrapper.findAll("img");
+    expect(list.length).toBe(1);
   });
 
-  it("o arquivo da imagem deve possuir a orientação correta", () => {});
+  describe.skip("o arquivo da imagem deve possuir a orientação correta", () => {
+    const orientation = "horizontal";
+    const color = "colored";
 
-  it("o arquivo da imagem deve possuir a paleta de cores correta", () => {});
+    const wrapper = shallowMount(IfyLogo, {
+      propsData: {
+        orientation,
+        color,
+      },
+    });
+
+    const image = wrapper.find("img");
+    expect(image.attributes("src")).toBe(`./logo-${orientation}-${color}.svg`);
+  });
 
   it("o texto alternativo da imagem deve renderizar corretamente", () => {
     const description = "Descrição do logotipo";
@@ -17,6 +29,8 @@ describe("Logo.vue", () => {
       propsData: { description },
     });
 
-    expect(wrapper.find("img").prop("alt")).toEqual(description);
+    expect(wrapper.find("img").attributes("alt")).toEqual(description);
   });
+
+  it("o arquivo da imagem deve possuir a paleta de cores correta", () => {});
 });
