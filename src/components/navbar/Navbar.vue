@@ -10,14 +10,13 @@
         <div class="flex items-center mr-4">
           <slot name="brand">
             <component
-              :is="brandLink ? 'a' : 'span'"
-              :href="brandLink"
+              :is="brandLink ? 'router-link' : 'span'"
+              :to="brandLink ? brandLink : undefined"
               class="flex items-center h-14"
             >
               <img
-                :src="brandImg"
-                alt="Investfy"
                 class="block w-auto h-6 lg:h-8"
+                :src="brandImg"
               />
             </component>
           </slot>
@@ -48,10 +47,10 @@ export default {
   props: {
     brandImg: {
       type: String,
-      default: require("../../assets/logo.svg"),
+      default: "../../assets/logo.svg",
     },
     brandLink: {
-      type: String,
+      type: [String, Object],
       default: null,
     },
     centered: {

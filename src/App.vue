@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="mb-8">
-      <ify-navbar>
+      <ify-navbar :brand-img="brandImg" brand-link="/">
         <template #end>
           <ify-dropdown position="bottom-left">
             <template #trigger>
@@ -37,5 +37,10 @@
 <script>
 export default {
   name: "Serve",
+  computed: {
+    brandImg() {
+      return require("./assets/logo.svg");
+    },
+  },
 };
 </script>

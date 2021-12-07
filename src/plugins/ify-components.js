@@ -1,5 +1,4 @@
 import Vue from "vue";
-import IfyComponents from "@/entry.esm";
-import "../assets/tailwind.css";
+import IfyComponents from "../../dist/ify-components.esm";
 
 Vue.use(IfyComponents);
