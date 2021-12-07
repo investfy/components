@@ -3,7 +3,15 @@ import IfyLogo from "./Logo.vue";
 export default {
   title: "Logo",
   component: IfyLogo,
-  argTypes: {},
+  decorators: [() => `<div class="flex justify-center"><story/></div>`],
+  argTypes: {
+    color: {
+      control: {
+        type: "select",
+        options: ["colored", "white", "mono"],
+      },
+    },
+  },
 };
 
 const Template = (args, { argTypes }) => ({
@@ -14,5 +22,7 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  type: "horizontal",
+  orientation: "horizontal",
+  color: "colored",
+  description: "Logotipo Investfy",
 };
