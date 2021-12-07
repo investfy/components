@@ -12,7 +12,6 @@
     "dist/*",
     "src/**/*.vue"
   ],
-  "sideEffects": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name ify-components ./src/index.js",

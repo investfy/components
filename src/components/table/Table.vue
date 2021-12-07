@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: "Table",
+  name: "IfyTable",
 
   props: {
     data: {
