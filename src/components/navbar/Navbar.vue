@@ -10,8 +10,8 @@
         <div class="flex items-center mr-4">
           <slot name="brand">
             <component
-              :is="brandLink ? 'a' : 'span'"
-              :href="brandLink"
+              :is="brandLink ? 'RouterLink' : 'span'"
+              :to="brandLink ? brandLink : undefined"
               class="flex items-center h-14"
             >
               <IfyLogo class="block w-auto h-6 lg:h-8" />
@@ -49,8 +49,8 @@ export default {
 
   props: {
     brandLink: {
-      type: String,
-      default: null,
+      type: [String, Object],
+      default: "",
     },
     centered: {
       type: Boolean,
