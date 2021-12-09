@@ -11,7 +11,9 @@
           <IfyDropdownItem link="/about">Configurações</IfyDropdownItem>
           <IfyDropdownItem link="/about">Suporte</IfyDropdownItem>
           <IfyDropdownItem>Novo recurso*</IfyDropdownItem>
-          <IfyDropdownItem link="/about">Licença</IfyDropdownItem>
+          <IfyDropdownItem link="https://www.google.com"
+            >Licença</IfyDropdownItem
+          >
           <IfyDropdownItem separator />
           <IfyDropdownItem clickable>Sair</IfyDropdownItem>
         </IfyProfileDropdown>

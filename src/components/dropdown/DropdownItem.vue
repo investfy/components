@@ -2,7 +2,7 @@
   <hr v-if="separator" class="separator" />
   <component
     v-else
-    :is="link ? 'RouterLink' : 'span'"
+    :is="link ? 'IfyLink' : 'span'"
     :to="link"
     :class="{ item: true, clickable: clickable || link }"
     @click="$emit('click')"
