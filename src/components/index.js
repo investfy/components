@@ -8,6 +8,7 @@ import IfyLogo from "./logo/Logo.vue";
 import IfyNavbar from "./navbar/Navbar.vue";
 import IfyProfileDropdown from "./profiledropdown/ProfileDropdown.vue";
 import IfyTable from "./table/Table.vue";
+import IfyTag from "./tag/Tag.vue";
 
 export default {
   IfyAvatar,
@@ -18,4 +19,5 @@ export default {
   IfyNavbar,
   IfyProfileDropdown,
   IfyTable,
+  IfyTag,
 };

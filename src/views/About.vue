@@ -8,6 +8,17 @@
       nobis!
     </p>
     <p>
+      <IfyTag type="default" size="xs">architecto</IfyTag>
+      <IfyTag type="success" size="sm">animi</IfyTag>
+      <IfyTag type="warning" size="md">minus</IfyTag>
+      <IfyTag type="danger" size="lg"
+        ><IfyLink to="http://aperiam.com" target="_blank"
+          >explicabo</IfyLink
+        ></IfyTag
+      >
+      <IfyTag type="info" size="xl">esse</IfyTag>
+    </p>
+    <p>
       Nam magni deserunt enim error sequi totam ipsa nostrum! Hic accusantium
       aspernatur perspiciatis?
       <IfyLink to="http://aperiam.com" target="_blank"
