@@ -1,5 +1,7 @@
 <template>
-  <span class="px-2" :class="[computedType, computedSize]"><slot /></span>
+  <span :class="['tag', type ? `is-${type}` : null, size ? `is-${size}` : null]"
+    ><slot
+  /></span>
 </template>
 
 <script>
@@ -9,54 +11,56 @@ export default {
   props: {
     type: {
       type: String,
-      default: "md",
+      default: null,
       validator(str) {
-        return ["xs", "sm", "md", "lg", "xl"].includes(str);
+        return ["success", "warning", "danger", "info"].includes(str);
       },
     },
     size: {
       type: String,
-      default: "default",
+      default: null,
       validator(str) {
-        return ["default", "success", "warning", "danger", "info"].includes(
-          str
-        );
+        return ["xs", "sm", "lg", "xl"].includes(str);
       },
-    },
-  },
-
-  computed: {
-    computedType() {
-      switch (this.type) {
-        case "success":
-          return "text-green-900 bg-green-200";
-        case "warning":
-          return "text-yellow-800 bg-yellow-200";
-        case "danger":
-          return "text-red-800 bg-red-200";
-        case "info":
-          return "text-indigo-800 bg-indigo-200";
-        case "default":
-        default:
-          return "text-gray-800 bg-gray-200";
-      }
-    },
-
-    computedSize() {
-      switch (this.size) {
-        case "xs":
-          return "text-xs rounded-xs";
-        case "sm":
-          return "text-sm rounded-md";
-        case "lg":
-          return "text-lg rounded-sm";
-        case "xl":
-          return "text-xl rounded-sm";
-        case "md":
-        default:
-          return "rounded-md";
-      }
     },
   },
 };
 </script>
+
+<style lang="postcss" scoped>
+.tags .tag {
+  @apply mb-2 mr-2 last:mr-0;
+}
+.tag {
+  @apply inline-flex items-center justify-center bg-gray-100 rounded-xs h-6 px-3 text-gray-600 text-xs leading-6 whitespace-nowrap;
+}
+
+.tag.is-xs {
+  @apply h-4 leading-4;
+}
+.tag.is-sm {
+  @apply h-5 leading-5;
+}
+.tag.is-lg {
+  @apply h-7 text-sm rounded-md;
+}
+.tag.is-xl {
+  @apply h-8 leading-8 text-lg rounded-md;
+}
+
+.tag.is-primary {
+  @apply text-white bg-brand;
+}
+.tag.is-success {
+  @apply text-white bg-accent;
+}
+.tag.is-warning {
+  @apply text-white bg-yellow-500;
+}
+.tag.is-danger {
+  @apply text-white bg-red-600;
+}
+.tag.is-info {
+  @apply text-white bg-indigo-500;
+}
+</style>
