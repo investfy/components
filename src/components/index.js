@@ -1,6 +1,8 @@
 // Se possível, manter a lista de componentes ordenada alfabeticamente.
 
 import IfyAvatar from "./avatar/Avatar.vue";
+import IfyButton from "./button/Button.vue";
+import IfyButtonsGroup from "./button/ButtonsGroup.vue";
 import IfyDropdown from "./dropdown/Dropdown.vue";
 import IfyDropdownItem from "./dropdown/DropdownItem.vue";
 import IfyLink from "./link/Link.vue";
@@ -12,6 +14,8 @@ import IfyTag from "./tag/Tag.vue";
 
 export default {
   IfyAvatar,
+  IfyButton,
+  IfyButtonsGroup,
   IfyDropdown,
   IfyDropdownItem,
   IfyLink,
