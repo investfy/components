@@ -13,38 +13,37 @@
       />
 
       <div class="grid grid-cols-2 gap-4">
-        <form>
-          <IfyField label="Name">
-            <IfyInput value="Kevin Garvey" />
+        <section>
+          <IfyField label="Name" horizontal>
+            <IfyInput value="John Silver" />
           </IfyField>
 
-          <IfyField label="Email" type="danger" message="This email is invalid">
-            <IfyInput type="email" value="john@" maxlength="30" />
+          <IfyField
+            label="Email"
+            type="danger"
+            message="This email is invalid"
+            horizontal
+          >
+            <IfyInput type="email" v-model="email" maxlength="30" />
           </IfyField>
 
           <IfyField
             label="Username"
             type="success"
             message="This username is available"
+            horizontal
           >
             <IfyInput value="johnsilver" maxlength="30" />
           </IfyField>
 
-          <IfyField
-            label="Password"
-            type="warning"
-            :message="[
-              'Password is too short',
-              'Password must have at least 8 characters',
-            ]"
-          >
-            <IfyInput value="123" type="password" maxlength="30" />
+          <IfyField label="Password" horizontal>
+            <IfyInput type="password" value="iwantmytreasure" password-reveal />
           </IfyField>
 
-          <IfyField label="Subject">
+          <IfyField label="Message" horizontal>
             <IfyInput maxlength="200" type="textarea" />
           </IfyField>
-        </form>
+        </section>
 
         <form>
           <IfyField>
