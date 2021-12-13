@@ -5,6 +5,7 @@ import IfyButton from "./button/Button.vue";
 import IfyButtonsGroup from "./button/ButtonsGroup.vue";
 import IfyDropdown from "./dropdown/Dropdown.vue";
 import IfyDropdownItem from "./dropdown/DropdownItem.vue";
+import IfyIcon from "./icon/Icon.vue";
 import IfyInput from "./input/Input.vue";
 import IfyField from "./field/Field.vue";
 import IfyLink from "./link/Link.vue";
@@ -21,6 +22,7 @@ export default {
   IfyButtonsGroup,
   IfyDropdown,
   IfyDropdownItem,
+  IfyIcon,
   IfyInput,
   IfyField,
   IfyLink,
