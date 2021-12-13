@@ -13,37 +13,106 @@
       />
 
       <div class="grid grid-cols-2 gap-4">
-        <section>
-          <IfyField label="Name" horizontal>
-            <IfyInput value="John Silver" />
+        <form>
+          <IfyField message="What do you want to search?">
+            <IfyInput placeholder="Search..." type="search" icon="search" />
+            <p class="control">
+              <IfyButton type="primary" label="Search" />
+            </p>
           </IfyField>
 
-          <IfyField
-            label="Email"
-            type="danger"
-            message="This email is invalid"
-            horizontal
-          >
-            <IfyInput type="email" v-model="email" maxlength="30" />
+          <IfyField message="What a beautiful email!!">
+            <IfyInput placeholder="This is expanded" expanded />
+            <p class="control">
+              <span class="is-static">@gmail.com</span>
+            </p>
           </IfyField>
 
-          <IfyField
-            label="Username"
-            type="success"
-            message="This username is available"
-            horizontal
-          >
-            <IfyInput value="johnsilver" maxlength="30" />
+          <hr class="my-4" />
+
+          <IfyField>
+            <IfySelect placeholder="Currency">
+              <option>$</option>
+              <option>£</option>
+              <option>€</option>
+            </IfySelect>
+            <IfyInput type="number" placeholder="0,00" />
+            <p class="control">
+              <IfyButton type="success" label="Transfer" />
+            </p>
           </IfyField>
 
-          <IfyField label="Password" horizontal>
-            <IfyInput type="password" value="iwantmytreasure" password-reveal />
+          <IfyField>
+            <p class="control">
+              <IfyButton icon-left="bold" />
+            </p>
+            <p class="control">
+              <IfyButton icon-left="italic" />
+            </p>
+            <p class="control">
+              <IfyButton icon-left="underline" />
+            </p>
+            <p class="control">
+              <IfyButton icon-left="align-left" />
+            </p>
+            <p class="control">
+              <IfyButton icon-left="align-center" />
+            </p>
+            <p class="control">
+              <IfyButton icon-left="align-right" />
+            </p>
+            <IfyInput placeholder="Search..." type="search" icon="search" />
           </IfyField>
 
-          <IfyField label="Message" horizontal>
-            <IfyInput maxlength="200" type="textarea" />
+          <IfyField>
+            <p class="control">
+              <IfyButton label="Button" type="primary" />
+            </p>
+            <p class="control">
+              <IfyDropdown>
+                <template #trigger>
+                  <IfyButton type="primary" icon-left="caret-down" />
+                </template>
+
+                <div class="w-40">
+                  <IfyDropdownItem>Action</IfyDropdownItem>
+                  <IfyDropdownItem>Another action</IfyDropdownItem>
+                  <IfyDropdownItem>Something else</IfyDropdownItem>
+                </div>
+              </IfyDropdown>
+            </p>
           </IfyField>
-        </section>
+
+          <IfyField>
+            <p class="control">
+              <IfyDropdown>
+                <template #trigger>
+                  <IfyButton
+                    label="Filters"
+                    icon-right="caret-down"
+                    icon-size="xs"
+                  />
+                </template>
+
+                <div class="w-40">
+                  <IfyDropdownItem value="open_issues"
+                    >Open Issues and Pull Requests</IfyDropdownItem
+                  >
+                  <IfyDropdownItem value="your_issues"
+                    >Your Issues</IfyDropdownItem
+                  >
+                  <IfyDropdownItem value="pull_requests"
+                    >Your Pull Requests</IfyDropdownItem
+                  >
+                  <IfyDropdownItem value="everything"
+                    >Everything</IfyDropdownItem
+                  >
+                </div>
+              </IfyDropdown>
+            </p>
+            <IfyInput icon="search" type="search" placeholder="Search..." />
+          </IfyField>
+        </form>
 
         <form>
           <IfyField>

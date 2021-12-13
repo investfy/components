@@ -304,12 +304,32 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.field.has-addons .control {
+  &:not(:last-child) {
+    margin-right: -1px;
+  }
+  &:last-child:not(:only-child) .input {
+    @apply rounded-bl-none rounded-tl-none;
+  }
+  &:first-child:not(:only-child) .input {
+    @apply rounded-br-none rounded-tr-none;
+  }
+  &:not(:first-child):not(:last-child) .input {
+    @apply rounded-none;
+  }
+
+  .input:not([disabled]).is-hovered,
+  .input:not([disabled]):hover {
+    @apply z-10;
+  }
+}
+
 .control {
   @apply relative box-border clear-both text-base;
 
   &.has-icons-left .icon,
   &.has-icons-right .icon {
-    @apply absolute top-0 z-10 text-gray-200 w-10 h-10 pointer-events-none;
+    @apply absolute top-0 z-10 text-gray-300 w-10 h-10 pointer-events-none;
   }
 
   .icon.is-primary {

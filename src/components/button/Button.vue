@@ -125,6 +125,23 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.field.has-addons .control {
+  &:first-child:not(:only-child) .button {
+    @apply rounded-br-none rounded-tr-none;
+  }
+  &:last-child:not(:only-child) .button {
+    @apply rounded-bl-none rounded-tl-none;
+  }
+  &:not(:first-child):not(:last-child) .button {
+    @apply rounded-none;
+  }
+
+  .button:not([disabled]).is-hovered,
+  .button:not([disabled]):hover {
+    @apply z-10;
+  }
+}
+
 .buttons .button {
   @apply mb-2;
   &:not(:last-child):not(.is-fullwidth) {
@@ -162,6 +179,10 @@ export default {
   }
   &.is-fullwidth {
     @apply flex w-full;
+  }
+
+  .icon:last-child:not(:first-child) {
+    @apply ml-1 -mr-2;
   }
 
   &.is-xs {
