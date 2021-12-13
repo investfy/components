@@ -1,15 +1,12 @@
 <template>
-  <div ref="dropdown" class="relative inline-block text-left">
+  <div ref="dropdown" class="dropdown">
     <div v-if="$slots.trigger" @click="toggle">
       <slot name="trigger" :active="isActive" />
     </div>
 
     <template v-if="$slots.default">
       <transition name="slide">
-        <div
-          v-show="isActive"
-          class="origin-top-right transition-transform absolute -right-2 mt-1 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
-        >
+        <div v-show="isActive" class="dropdown-menu">
           <slot />
         </div>
       </transition>
@@ -65,7 +62,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
+.dropdown {
+  @apply relative inline-block text-left;
+}
+.dropdown-menu {
+  @apply origin-top-right transition-transform absolute z-20 -right-2 mt-1 bg-white
+    border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none;
+}
 .slide-enter,
 .slide-leave-to {
   transform: scaleY(0);
