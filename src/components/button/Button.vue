@@ -21,10 +21,12 @@
     ]"
     @click="$emit('click')"
   >
+    <IfyIcon v-if="iconLeft" :icon="iconLeft" :size="computedIconSize" />
     <span v-if="label">{{ label }}</span>
     <span v-else-if="$slots.default">
       <slot />
     </span>
+    <IfyIcon v-if="iconRight" :icon="iconRight" :size="computedIconSize" />
   </button>
 </template>
 
@@ -64,6 +66,18 @@ export default {
         return ["xs", "sm", "md", "lg", "xl"].includes(str);
       },
     },
+    iconLeft: {
+      type: String,
+      default: null,
+    },
+    iconRight: {
+      type: String,
+      default: null,
+    },
+    iconSize: {
+      type: String,
+      default: null,
+    },
     label: {
       type: String,
       default: null,
@@ -99,6 +113,12 @@ export default {
     hovered: {
       type: Boolean,
       default: false,
+    },
+  },
+
+  computed: {
+    computedIconSize() {
+      return this.iconSize || this.size;
     },
   },
 };
