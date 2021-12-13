@@ -14,56 +14,65 @@
 
       <div class="grid grid-cols-2 gap-4">
         <form>
-          <IfyField label="Name" horizontal>
-            <IfyInput placeholder="Insira seus dados aqui" />
+          <IfyField label="Name">
+            <IfyInput value="Kevin Garvey" />
           </IfyField>
 
-          <IfyField
-            label="Email"
-            type="is-danger"
-            message="This email is invalid"
-            horizontal
-          >
+          <IfyField label="Email" type="danger" message="This email is invalid">
             <IfyInput type="email" value="john@" maxlength="30" />
           </IfyField>
 
           <IfyField
             label="Username"
-            type="is-success"
+            type="success"
             message="This username is available"
-            horizontal
           >
             <IfyInput value="johnsilver" maxlength="30" />
           </IfyField>
 
-          <IfyField label="Password" horizontal>
-            <IfyInput type="password" value="iwantmytreasure" password-reveal />
+          <IfyField
+            label="Password"
+            type="warning"
+            :message="[
+              'Password is too short',
+              'Password must have at least 8 characters',
+            ]"
+          >
+            <IfyInput value="123" type="password" maxlength="30" />
           </IfyField>
 
-          <IfyField label="Message" horizontal>
+          <IfyField label="Subject">
             <IfyInput maxlength="200" type="textarea" />
           </IfyField>
         </form>
 
         <form>
           <IfyField>
-            <IfyInput placeholder="Extra-Small" size="xs" icon="account" />
+            <IfyInput placeholder="Extra-Small" size="xs" icon="user-circle" />
           </IfyField>
 
           <IfyField>
-            <IfyInput placeholder="Small" size="sm" icon="account" />
+            <IfyInput placeholder="Small" size="sm" icon="user-circle" />
           </IfyField>
 
           <IfyField>
-            <IfyInput placeholder="Medium" icon="account" />
+            <IfyInput
+              placeholder="Email"
+              v-model="email"
+              type="email"
+              icon="envelope"
+              icon-right="times-circle"
+              icon-right-clickable
+              @icon-right-click="clearIconClick"
+            />
           </IfyField>
 
           <IfyField>
-            <IfyInput placeholder="Large" size="lg" icon="account" />
+            <IfyInput placeholder="Large" size="lg" icon="user-circle" />
           </IfyField>
 
           <IfyField>
-            <IfyInput placeholder="Extra-Large" size="xl" icon="account" />
+            <IfyInput placeholder="Extra-Large" size="xl" icon="user-circle" />
           </IfyField>
         </form>
       </div>
@@ -74,5 +83,17 @@
 <script>
 export default {
   name: "Home",
+
+  data() {
+    return {
+      email: "email@example.com",
+    };
+  },
+
+  methods: {
+    clearIconClick() {
+      this.email = "";
+    },
+  },
 };
 </script>

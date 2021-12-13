@@ -1,6 +1,6 @@
 <template>
   <span class="icon" :class="type ? `is-${type}` : null">
-    <Fa :icon="icon" :size="size" :class="customClass" />
+    <Fa :icon="icon" :size="computedSize" :class="customClass" />
   </span>
 </template>
 
@@ -29,6 +29,13 @@ export default {
     customClass: {
       type: String,
       default: null,
+    },
+  },
+
+  computed: {
+    computedSize() {
+      if (this.size === "xl") return "2x";
+      return this.size;
     },
   },
 };
