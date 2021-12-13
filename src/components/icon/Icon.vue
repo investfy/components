@@ -52,10 +52,10 @@ export default {
   @apply text-accent-500;
 }
 .icon.is-warning {
-  @apply text-red-600;
+  @apply text-yellow-500;
 }
 .icon.is-danger {
-  @apply text-yellow-500;
+  @apply text-red-600;
 }
 .icon.is-info {
   @apply text-indigo-500;
