@@ -5,15 +5,7 @@
         <th
           v-for="(column, index) in columns"
           :key="index"
-          class="
-            px-6
-            py-3
-            text-left text-xs
-            font-bold
-            text-gray-600
-            uppercase
-            tracking-wider
-          "
+          class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider"
         >
           {{ column.label }}
         </th>
