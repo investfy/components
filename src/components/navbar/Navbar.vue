@@ -6,8 +6,8 @@
     }"
   >
     <div class="px-1 lg:px-4" :class="{ container: !full }">
-      <div class="flex items-center justify-start h-14">
-        <div class="flex items-center mr-4">
+      <div class="flex items-center h-14">
+        <div :class="['brand-slot', { 'is-centered': centered }]">
           <slot name="brand">
             <component
               :is="brandLink ? 'RouterLink' : 'span'"
@@ -20,15 +20,15 @@
         </div>
 
         <div
-          class="flex items-center"
-          :class="{ 'mx-auto': centered, 'mr-auto': !centered }"
+          v-if="$slots.start"
+          :class="['start-slot', { 'is-centered': centered }]"
         >
           <slot name="start" />
         </div>
 
         <div
-          class="flex items-center"
-          :class="{ 'ml-4': centered, 'ml-auto': !centered }"
+          v-if="$slots.end"
+          :class="['end-slot', { 'is-centered': centered }]"
         >
           <slot name="end" />
         </div>
@@ -71,3 +71,26 @@ export default {
   },
 };
 </script>
+
+<style lang="postcss" scoped>
+.brand-slot {
+  @apply flex items-center flex-shrink-0;
+  &.is-centered {
+    @apply mr-auto md:flex-1;
+  }
+}
+.start-slot {
+  @apply hidden mx-4 flex-grow md:flex;
+
+  &.is-centered {
+    @apply mx-0 flex-shrink md:items-center md:justify-center;
+    flex-grow: 2;
+  }
+}
+.end-slot {
+  @apply flex items-center justify-end flex-shrink-0 ml-auto;
+  &.is-centered {
+    @apply md:flex-1;
+  }
+}
+</style>
