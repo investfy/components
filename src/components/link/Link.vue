@@ -6,17 +6,14 @@
 </template>
 
 <script>
-import Vue from "vue";
-
-const routerLinkProps = { ...Vue.component("RouterLink").options.props };
-delete routerLinkProps.tag;
-delete routerLinkProps.event;
-
 export default {
   name: "IfyLink",
 
   props: {
-    ...routerLinkProps,
+    to: {
+      type: [String, Object],
+      required: true,
+    },
   },
 
   computed: {
