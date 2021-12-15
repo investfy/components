@@ -1,4 +1,4 @@
-import IfyTable from "./Table.vue";
+import IfyTable from "../components/Table.vue";
 
 export default {
   title: "Table",

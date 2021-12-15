@@ -17,12 +17,12 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve dev/serve.js",
     "prebuild": "rimraf ./dist",
-    "build": "cross-env NODE_ENV=production rollup --config rollup.config.js",
-    "build:ssr": "cross-env NODE_ENV=production rollup --config rollup.config.js --format cjs",
-    "build:es": "cross-env NODE_ENV=production rollup --config rollup.config.js --format es",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config rollup.config.js --format iife",
+    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
+    "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
+    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "semantic-release": "semantic-release"
@@ -30,23 +30,16 @@
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/free-brands-svg-icons": "^5.15.4",
-    "@fortawesome/free-regular-svg-icons": "^5.15.4",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "@fortawesome/vue-fontawesome": "^2.0.2",
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "@investfy/tailwind": "^1.0.0",
     "@rollup/plugin-alias": "^3.1.2",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^14.0.0",
-    "@rollup/plugin-image": "^2.1.1",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-replace": "^2.4.2",
     "@storybook/addon-actions": "^6.3.7",
     "@storybook/addon-essentials": "^6.3.7",
     "@storybook/addon-links": "^6.3.7",
-    "@storybook/addon-postcss": "^2.0.0",
     "@storybook/vue": "^6.3.7",
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-service": "^4.5.13",
@@ -55,8 +48,6 @@
     "cross-env": "^7.0.3",
     "minimist": "^1.2.5",
     "postcss": "^7.0.36",
-    "postcss-extend": "^1.0.5",
-    "postcss-nested": "^4.2.3",
     "rimraf": "^3.0.2",
     "rollup": "^2.52.8",
     "rollup-plugin-postcss": "^3.1.8",
@@ -76,8 +67,5 @@
   },
   "publishConfig": {
     "access": "restricted"
-  },
-  "dependencies": {
-    "@popperjs/core": "2.9.3"
   }
 }
