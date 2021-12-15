@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - beta
 
 jobs:
   publish:
@@ -16,7 +15,7 @@ jobs:
 
       - uses: actions/setup-node@v1
         with:
-          node-version: '14'
+          node-version: '16'
 
       - uses: actions/cache@v2
         with:
