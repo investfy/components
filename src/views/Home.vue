@@ -302,6 +302,100 @@
           </div>
         </div>
       </section>
+
+      <section>
+        <h2 class="title">IfySelect</h2>
+        <div>
+          <IfyField label="Simple">
+            <IfySelect placeholder="Select a name">
+              <option value="flint">Flint</option>
+              <option value="silver">Silver</option>
+              <option value="vane">Vane</option>
+              <option value="billy">Billy</option>
+              <option value="jack">Jack</option>
+            </IfySelect>
+          </IfyField>
+
+          <IfyField label="Grouped">
+            <IfySelect placeholder="Select a character" icon="account">
+              <optgroup label="Black Sails">
+                <option value="flint">Flint</option>
+                <option value="silver">Silver</option>
+                <option value="vane">Vane</option>
+                <option value="billy">Billy</option>
+                <option value="jack">Jack</option>
+              </optgroup>
+
+              <optgroup label="Breaking Bad">
+                <option value="heisenberg">Heisenberg</option>
+                <option value="jesse">Jesse</option>
+                <option value="saul">Saul</option>
+                <option value="mike">Mike</option>
+              </optgroup>
+
+              <optgroup label="Game of Thrones">
+                <option value="tyrion-lannister">Tyrion Lannister</option>
+                <option value="jamie-lannister">Jamie Lannister</option>
+                <option value="daenerys-targaryen">Daenerys Targaryen</option>
+                <option value="jon-snow">Jon Snow</option>
+              </optgroup>
+            </IfySelect>
+          </IfyField>
+
+          <IfyField
+            label="Error"
+            type="is-danger"
+            message="Something went wrong with this field"
+          >
+            <IfySelect placeholder="Select a character">
+              <option value="flint">Flint</option>
+              <option value="silver">Silver</option>
+            </IfySelect>
+          </IfyField>
+
+          <IfyField label="Rounded">
+            <IfySelect placeholder="Select a character" rounded>
+              <option value="flint">Flint</option>
+              <option value="silver">Silver</option>
+            </IfySelect>
+          </IfyField>
+
+          <IfyField label="Required">
+            <IfySelect placeholder="Select a character" required>
+              <option value="flint">Flint</option>
+              <option value="silver">Silver</option>
+            </IfySelect>
+          </IfyField>
+
+          <IfyField label="Loading">
+            <IfySelect placeholder="Select a character" loading>
+              <option value="flint">Flint</option>
+              <option value="silver">Silver</option>
+            </IfySelect>
+          </IfyField>
+
+          <IfyField label="Disabled">
+            <IfySelect placeholder="Select a character" disabled>
+              <option value="flint">Flint</option>
+              <option value="silver">Silver</option>
+            </IfySelect>
+          </IfyField>
+
+          <IfyField label="Disabled option">
+            <IfySelect placeholder="Select a character">
+              <option value="flint">Flint</option>
+              <option value="silver" disabled>Silver</option>
+            </IfySelect>
+          </IfyField>
+
+          <IfyField label="Expanded">
+            <IfySelect placeholder="Select a character" expanded>
+              <option value="flint">Flint</option>
+              <option value="silver">Silver</option>
+            </IfySelect>
+          </IfyField>
+        </div>
+      </section>
     </div>
   </div>
 </template>
