@@ -14,7 +14,14 @@
               :to="brandLink ? brandLink : undefined"
               class="flex items-center h-14"
             >
-              <IfyLogo class="block w-auto h-6 lg:h-8" />
+              <IfyLogo
+                orientation="horizontal"
+                class="w-auto h-6 lg:h-8 hidden lg:block"
+              />
+              <IfyLogo
+                orientation="mini"
+                class="w-auto h-6 lg:h-8 block lg:hidden"
+              />
             </component>
           </slot>
         </div>

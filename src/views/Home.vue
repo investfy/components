@@ -144,6 +144,13 @@
           </IfyField>
         </form>
       </div>
+
+      <section>
+        <h2>IfyLogo</h2>
+        <div>
+          <IfyLogo orientation="mini" />
+        </div>
+      </section>
     </div>
   </div>
 </template>

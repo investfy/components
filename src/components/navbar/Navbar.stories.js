@@ -38,10 +38,10 @@ export default {
 const Template = (args, { argTypes }) => ({
   components: { IfyNavbar },
   props: Object.keys(argTypes),
-  template: `<ify-navbar v-bind="$props">
+  template: `<IfyNavbar v-bind="$props">
     <template v-if="${"start" in args}" #start>${args.start}</template>
     <template v-if="${"end" in args}" #end>${args.end}</template>
-  </ify-navbar>`,
+  </IfyNavbar>`,
   setup: () => ({ args: { ...args } }),
 });
 
