@@ -1,37 +1,7 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, facere
-      corporis! Praesentium minus atque suscipit consectetur id! Eum dignissimos
-      quidem earum expedita, nulla, porro quae, excepturi ab delectus rerum
-      nobis!
-    </p>
-    <IfyTagList>
-      <IfyTag size="xs">architecto</IfyTag>
-      <IfyTag type="primary" size="sm">animi</IfyTag>
-      <IfyTag type="success">architecto</IfyTag>
-      <IfyTag type="warning">minus</IfyTag>
-      <IfyTag type="danger" size="lg"
-        ><IfyLink to="http://aperiam.com" target="_blank"
-          >explicabo</IfyLink
-        ></IfyTag
-      >
-      <IfyTag type="info" size="xl">esse</IfyTag>
-    </IfyTagList>
-    <p>
-      Nam magni deserunt enim error sequi totam ipsa nostrum! Hic accusantium
-      aspernatur perspiciatis?
-      <IfyLink to="http://aperiam.com" target="_blank"
-        >Ipsam aperiam enim dolorem</IfyLink
-      >
-      a hic. Quam, voluptate soluta! Lorem, ipsum dolor sit amet consectetur
-      adipisicing elit. Id natus aut unde voluptatum obcaecati veniam repellat
-      soluta, voluptates hic provident in assumenda, maxime sunt laudantium est
-      debitis sit beatae. Molestias!
-    </p>
-
-    <section class="w-1/3 mx-auto mt-4">
+  <section>
+    <h2 class="title">IfyButton</h2>
+    <div class="md:w-1/2 lg:w-1/3 mx-auto mt-4">
       <IfyButtonsGroup>
         <IfyButton type="primary">Primary</IfyButton>
         <IfyButton type="primary" light>Primary Light</IfyButton>
@@ -99,43 +69,12 @@
         <IfyButton size="lg">large</IfyButton>
         <IfyButton size="xl">extra-large</IfyButton>
       </IfyButtonsGroup>
-    </section>
-
-    <section class="space-y-2">
-      <div>
-        <IfyIcon icon="user-circle" size="xs" />
-        <IfyIcon icon="home" size="xs" />
-        <IfyIcon icon="tachometer-alt" size="xs" />
-      </div>
-      <div>
-        <IfyIcon icon="user-circle" size="sm" />
-        <IfyIcon icon="home" size="sm" />
-        <IfyIcon icon="tachometer-alt" size="sm" />
-      </div>
-
-      <div>
-        <IfyIcon icon="user-circle" />
-        <IfyIcon icon="home" />
-        <IfyIcon icon="tachometer-alt" />
-      </div>
-
-      <div>
-        <IfyIcon icon="user-circle" size="lg" />
-        <IfyIcon icon="home" size="lg" />
-        <IfyIcon icon="tachometer-alt" size="lg" />
-      </div>
-
-      <div>
-        <IfyIcon icon="user-circle" size="2x" />
-        <IfyIcon icon="home" size="2x" type="success" />
-        <IfyIcon icon="tachometer-alt" size="2x" type="warning" />
-      </div>
-
-      <div>
-        <IfyIcon icon="user-circle" size="3x" type="danger" />
-        <IfyIcon icon="home" size="3x" type="info" />
-        <IfyIcon icon="tachometer-alt" size="3x" type="primary" />
-      </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
+
+<script>
+export default {
+  name: "Button",
+};
+</script>
