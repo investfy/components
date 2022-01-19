@@ -16,11 +16,13 @@ import IfySelect from "./select/Select.vue";
 import IfyTable from "./table/Table.vue";
 import IfyTag from "./tag/Tag.vue";
 import IfyTagList from "./tag/TagList.vue";
+import IfyDrawer from "./drawer/Drawer.vue";
 
 export default {
   IfyAvatar,
   IfyButton,
   IfyButtonsGroup,
+  IfyDrawer,
   IfyDropdown,
   IfyDropdownItem,
   IfyIcon,

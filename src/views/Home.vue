@@ -191,6 +191,61 @@
           </IfyAppBar>
         </div>
       </section>
+      <section>
+        <h2 class="relative z-20 inline-block text-left" @click="toggleDrawer">
+          IfyDrawer LEFT:
+        </h2>
+        <IfyDrawer :active.sync="showDrawer" side="left">
+          <p class="w-96 relative z-50">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad possimus
+            deserunt commodi, exercitationem ex earum ullam, temporibus ipsa ea
+            aperiam eius? Quo earum consequuntur quisquam expedita reiciendis in
+            alias quas.
+          </p>
+
+          <IfyField message="What do you want to search?">
+            <IfyInput placeholder="Search..." type="search" icon="search" />
+            <p class="control">
+              <IfyButton type="primary" label="Search" />
+            </p>
+          </IfyField>
+        </IfyDrawer>
+
+        <h2 @click="showDrawerRight = !showDrawerRight">IfyDrawer RIGHT:</h2>
+        <IfyDrawer
+          :active.sync="showDrawerRight"
+          side="right"
+          bgcolor="warning"
+        >
+          <template #default>
+            <IfyField>
+              <IfyInput
+                placeholder="Extra-Small"
+                size="xs"
+                icon="user-circle"
+              />
+            </IfyField>
+
+            <IfyField>
+              <IfyInput placeholder="Small" size="sm" icon="user-circle" />
+            </IfyField>
+          </template>
+
+          <template>
+            <IfyField>
+              <IfyInput
+                placeholder="Extra-Small"
+                size="xs"
+                icon="user-circle"
+              />
+            </IfyField>
+
+            <IfyField>
+              <IfyInput placeholder="Small" size="sm" icon="user-circle" />
+            </IfyField>
+          </template>
+        </IfyDrawer>
+      </section>
     </div>
   </div>
 </template>
@@ -203,12 +258,21 @@ export default {
     return {
       email: "email@example.com",
       isDropdownActive: false,
+      showDrawer: false,
+      showDrawerRight: false,
     };
   },
 
   methods: {
     clearIconClick() {
       this.email = "";
+    },
+    toggleDrawer() {
+      this.showDrawer = !this.showDrawer;
+    },
+
+    toggleDrawerRight() {
+      this.showDrawerRight = !this.showDrawerRight;
     },
   },
 };
