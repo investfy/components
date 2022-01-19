@@ -170,7 +170,7 @@
       <section>
         <h2>IfyLogo :</h2>
         <div>
-          <IfyNavbar brand-link="/" centered class="mb-8">
+          <IfyAppBar brand-link="/" centered class="mb-8">
             <template #end>
               <IfyProfileDropdown
                 name="John Doe"
@@ -188,7 +188,7 @@
                 <IfyDropdownItem clickable>Sair</IfyDropdownItem>
               </IfyProfileDropdown>
             </template>
-          </IfyNavbar>
+          </IfyAppBar>
         </div>
       </section>
     </div>

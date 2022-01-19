@@ -1,8 +1,8 @@
-import IfyNavbar from "./Navbar.vue";
+import IfyAppBar from "./AppBar.vue";
 
 export default {
-  title: "Navbar",
-  component: IfyNavbar,
+  title: "AppBar",
+  component: IfyAppBar,
   argTypes: {
     brandImg: {
       table: {
@@ -36,12 +36,12 @@ export default {
 };
 
 const Template = (args, { argTypes }) => ({
-  components: { IfyNavbar },
+  components: { IfyAppBar },
   props: Object.keys(argTypes),
-  template: `<IfyNavbar v-bind="$props">
+  template: `<IfyAppBar v-bind="$props">
     <template v-if="${"start" in args}" #start>${args.start}</template>
     <template v-if="${"end" in args}" #end>${args.end}</template>
-  </IfyNavbar>`,
+  </IfyAppBar>`,
   setup: () => ({ args: { ...args } }),
 });
 

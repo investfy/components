@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <IfyNavbar brand-link="/" class="mb-8">
+    <IfyAppBar brand-link="/" class="mb-8">
       <template #end>
         <IfyProfileDropdown
           name="John Doe"
@@ -18,7 +18,7 @@
           <IfyDropdownItem clickable>Sair</IfyDropdownItem>
         </IfyProfileDropdown>
       </template>
-    </IfyNavbar>
+    </IfyAppBar>
 
     <div class="container">
       <RouterView />

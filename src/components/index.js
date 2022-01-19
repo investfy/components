@@ -10,7 +10,7 @@ import IfyInput from "./input/Input.vue";
 import IfyField from "./field/Field.vue";
 import IfyLink from "./link/Link.vue";
 import IfyLogo from "./logo/Logo.vue";
-import IfyNavbar from "./navbar/Navbar.vue";
+import IfyAppBar from "./appbar/AppBar.vue";
 import IfyProfileDropdown from "./profiledropdown/ProfileDropdown.vue";
 import IfySelect from "./select/Select.vue";
 import IfyTable from "./table/Table.vue";
@@ -28,7 +28,7 @@ export default {
   IfyField,
   IfyLink,
   IfyLogo,
-  IfyNavbar,
+  IfyAppBar,
   IfyProfileDropdown,
   IfySelect,
   IfyTable,

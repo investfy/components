@@ -1,12 +1,12 @@
 import { shallowMount, mount } from "@vue/test-utils";
-import Navbar from "./Navbar.vue";
+import AppBar from "./AppBar.vue";
 
-describe("Navbar.vue", () => {
+describe("AppBar.vue", () => {
   it("deve possuir o link", () => {
     const brandLink =
       "horizontalhttps://vuejs.org/v2/guide/instance.html#Creating-a-Vue-Instance";
 
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         brandLink,
       },
@@ -19,7 +19,7 @@ describe("Navbar.vue", () => {
   it("deve possuir classes mx-auto e ml-4", () => {
     const centered = true;
 
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         centered,
       },
@@ -32,7 +32,7 @@ describe("Navbar.vue", () => {
   it("deve possuir classes mr-auto e ml-auto", () => {
     const centered = false;
 
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         centered,
       },
@@ -45,7 +45,7 @@ describe("Navbar.vue", () => {
   it("deve possuir classe container", () => {
     const full = false;
 
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         full,
       },
@@ -56,7 +56,7 @@ describe("Navbar.vue", () => {
   it("não deve possuir classe container", () => {
     const full = true;
 
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         full,
       },
@@ -67,7 +67,7 @@ describe("Navbar.vue", () => {
   it("deve possuir classe shadow-md", () => {
     const shadow = true;
 
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         shadow,
       },
@@ -77,7 +77,7 @@ describe("Navbar.vue", () => {
 
   it("não deve possuir classe shadow-md", () => {
     const shadow = false;
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         shadow,
       },
@@ -88,7 +88,7 @@ describe("Navbar.vue", () => {
   it("Não deve possuir classe bg-white", () => {
     const transparent = true;
 
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         transparent,
       },
@@ -98,7 +98,7 @@ describe("Navbar.vue", () => {
 
   test("não deve possuir classe bg-white", () => {
     const transparent = false;
-    const wrapper = mount(Navbar, {
+    const wrapper = mount(AppBar, {
       propsData: {
         transparent,
       },

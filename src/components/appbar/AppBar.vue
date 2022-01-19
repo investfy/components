@@ -44,7 +44,7 @@
 import IfyLogo from "../logo/Logo.vue";
 
 export default {
-  name: "IfyNavbar",
+  name: "IfyAppBar",
 
   components: {
     IfyLogo,
