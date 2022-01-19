@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="my-4">
     <div class="space-y-4">
+      <!-- IfyTable -->
       <section>
         <h2 class="title">IfyTable</h2>
         <IfyTable
@@ -15,9 +16,10 @@
         />
       </section>
 
+      <!-- Form -->
       <section>
         <h2 class="title">Form</h2>
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
           <form>
             <IfyField message="What do you want to search?">
               <IfyInput placeholder="Search..." type="search" icon="search" />
@@ -159,6 +161,7 @@
         </div>
       </section>
 
+      <!-- IfyTag -->
       <section>
         <h2 class="title">IfyTag</h2>
         <IfyTagList>
@@ -175,6 +178,7 @@
         </IfyTagList>
       </section>
 
+      <!-- IfyLink -->
       <section>
         <h2 class="title">IfyLink</h2>
         <p>
@@ -190,9 +194,10 @@
         </p>
       </section>
 
+      <!-- IfyButton -->
       <section>
         <h2 class="title">IfyButton</h2>
-        <div class="w-1/3 mx-auto mt-4">
+        <div class="md:w-1/2 lg:w-1/3 mx-auto mt-4">
           <IfyButtonsGroup>
             <IfyButton type="primary">Primary</IfyButton>
             <IfyButton type="primary" light>Primary Light</IfyButton>
@@ -263,6 +268,7 @@
         </div>
       </section>
 
+      <!-- IfyIcon -->
       <section>
         <h2 class="title">IfyIcon</h2>
         <div class="space-y-2">
@@ -303,6 +309,7 @@
         </div>
       </section>
 
+      <!-- IfySelect -->
       <section>
         <h2 class="title">IfySelect</h2>
         <div>
@@ -317,7 +324,7 @@
           </IfyField>
 
           <IfyField label="Grouped">
-            <IfySelect placeholder="Select a character" icon="account">
+            <IfySelect placeholder="Select a character" icon="user-circle">
               <optgroup label="Black Sails">
                 <option value="flint">Flint</option>
                 <option value="silver">Silver</option>
