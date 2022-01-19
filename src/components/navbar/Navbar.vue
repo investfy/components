@@ -15,12 +15,8 @@
               class="flex items-center h-14"
             >
               <IfyLogo
-                orientation="horizontal"
-                class="w-auto h-6 lg:h-8 hidden lg:block"
-              />
-              <IfyLogo
-                orientation="mini"
-                class="w-auto h-6 lg:h-8 block lg:hidden"
+                :orientation="screenWidth"
+                class="w-auto h-6 lg:h-8 block"
               />
             </component>
           </slot>
@@ -74,6 +70,12 @@ export default {
     transparent: {
       type: Boolean,
       default: false,
+    },
+  },
+
+  computed: {
+    screenWidth() {
+      return window.innerWidth >= 1024 ? "horizontal" : "mini";
     },
   },
 };

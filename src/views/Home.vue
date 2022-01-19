@@ -146,9 +146,49 @@
       </div>
 
       <section>
-        <h2>IfyLogo</h2>
+        <h2>IfyNav :</h2>
+        <div style="float: right">
+          <!-- <IfyNav :data="['Item 1', 'Item 2', 'Item 3']" /> -->
+          <IfyDropdown>
+            <template #trigger>Botão</template>
+            <a href=""><span>asdasdsad</span></a>
+            <IfyDropdownItem>Lorem ipsum dolor</IfyDropdownItem>
+            <IfyDropdownItem separator />
+            <IfyDropdownItem>Lorem ipsum dolor</IfyDropdownItem>
+            <IfyDropdownItem>Lorem ipsum dolor</IfyDropdownItem>
+            <IfyDropdownItem>Lorem ipsum dolor</IfyDropdownItem>
+            <p class="w-96 relative z-50">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+              possimus deserunt commodi, exercitationem ex earum ullam,
+              temporibus ipsa ea aperiam eius? Quo earum consequuntur quisquam
+              expedita reiciendis in alias quas.
+            </p>
+          </IfyDropdown>
+        </div>
+      </section>
+
+      <section>
+        <h2>IfyLogo :</h2>
         <div>
-          <IfyLogo orientation="mini" />
+          <IfyNavbar brand-link="/" centered class="mb-8">
+            <template #end>
+              <IfyProfileDropdown
+                name="John Doe"
+                subname="john.doe@example.com"
+                avatar="https://images.pexels.com/users/avatars/2417028/erik-mclean-965.jpeg?auto=compress&fit=crop&h=40&w=40"
+                :active.sync="isDropdownActive"
+              >
+                <IfyDropdownItem link="/about">Configurações</IfyDropdownItem>
+                <IfyDropdownItem link="/about">Suporte</IfyDropdownItem>
+                <IfyDropdownItem>Novo recurso*</IfyDropdownItem>
+                <IfyDropdownItem link="https://www.google.com"
+                  >Licença</IfyDropdownItem
+                >
+                <IfyDropdownItem separator />
+                <IfyDropdownItem clickable>Sair</IfyDropdownItem>
+              </IfyProfileDropdown>
+            </template>
+          </IfyNavbar>
         </div>
       </section>
     </div>
@@ -162,6 +202,7 @@ export default {
   data() {
     return {
       email: "email@example.com",
+      isDropdownActive: false,
     };
   },
 
