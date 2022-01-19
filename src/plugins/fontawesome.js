@@ -13,6 +13,7 @@ import {
   faExclamationTriangle,
   faEye,
   faEyeSlash,
+  faGlobe,
   faHome,
   faInfoCircle,
   faItalic,
@@ -20,6 +21,7 @@ import {
   faTachometerAlt,
   faTimesCircle,
   faUnderline,
+  faUser,
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -35,6 +37,7 @@ library.add([
   faExclamationTriangle,
   faEye,
   faEyeSlash,
+  faGlobe,
   faHome,
   faInfoCircle,
   faItalic,
@@ -42,6 +45,7 @@ library.add([
   faTachometerAlt,
   faTimesCircle,
   faUnderline,
+  faUser,
   faUserCircle,
 ]);
 

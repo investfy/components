@@ -22,6 +22,7 @@
           <IfyDropdownItem separator />
           <IfyDropdownItem link="/field">Field</IfyDropdownItem>
           <IfyDropdownItem link="/input">Input</IfyDropdownItem>
+          <IfyDropdownItem link="/select">Select</IfyDropdownItem>
         </IfyProfileDropdown>
       </template>
     </IfyNavbar>
