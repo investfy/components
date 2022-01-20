@@ -1,31 +1,28 @@
 <template>
-  <div
-    ref="drawer"
-    :class="[
-      'sidenav',
-      'w-screen',
-      'flex',
-      'z-20 ',
-      side === 'right' ? 'flex-row-reverse' : null,
-      isActive && !useFullScreen ? 'expanded' : null,
-      !isActive ? `hiden ${side}-hiden` : null,
-      side ? `${side}-show` : null,
-      useFullScreen ? 'w-full' : null,
-    ]"
-  >
+  <div>
+    <div :class="[isActive ? 'shadowarea' : null]" @click="closeDrawer"></div>
+
     <div
+      ref="drawer"
       :class="[
-        'content',
-        'shadow-2xl',
-        isActive ? 'w-96' : 'null',
-        bgcolor ? `is-${bgcolor}` : null,
+        'sidenav',
+        'w-full',
+        'flex',
+        side === 'right' ? 'flex-row-reverse' : null,
+        !isActive ? `${side}-start` : null,
+        computedSide,
       ]"
     >
-      <slot />
-    </div>
-
-    <div class="shadowarea" @click="toggle">
-      <button v-if="useFullScreen">Fechar</button>
+      <div :class="['content', 'shadow-2xl', bgcolor ? `is-${bgcolor}` : null]">
+        <button
+          class="mb-5 flex justify-start md:hidden"
+          :class="[side === 'left' ? 'justify-start' : 'justify-end']"
+          @click="closeDrawer"
+        >
+          <IfyIcon icon="arrow-left" customClass="text-2xl" />
+        </button>
+        <slot />
+      </div>
     </div>
   </div>
 </template>
@@ -64,10 +61,7 @@ export default {
 
   computed: {
     computedSide() {
-      return this.side + "-show";
-    },
-    useFullScreen() {
-      return window.innerWidth < 768;
+      return this.side + "-0";
     },
   },
 
@@ -77,86 +71,47 @@ export default {
     };
   },
 
-  mounted() {
-    // document.addEventListener("click", this.close);
-  },
-
-  beforeDestroy() {
-    // document.removeEventListener("click", this.close);
-  },
-
   methods: {
-    toggle() {
+    closeDrawer() {
       this.isActive = !this.isActive;
       this.$emit("update:active", this.isActive);
-    },
-    close(e) {
-      if (this.isActive) {
-        debugger;
-        if (this.$refs.drawer) {
-          debugger;
-          if (!this.$refs.drawer.contains(e.target)) {
-            debugger;
-            this.isActive = false;
-            this.$emit("update:active", this.isActive);
-          }
-        }
-      }
     },
   },
 };
 </script>
 
 <style lang="postcss" scoped>
-.left-show {
-  top: 0;
-  left: 0;
-}
-
-.right-show {
-  top: 0;
-  right: 0;
-}
 .sidenav {
-  height: 100vh;
-  position: fixed;
-  z-index: 99;
-  overflow-x: hidden;
-  transform: none;
-  transition: transform  cubic-bezier(0.4, 0, 0.2, 1);
-}
-.hiden {
-  transition: transform  cubic-bezier(0.4, 0, 0.2, 1);
+  @apply bottom-0 top-0;
+  @apply h-full;
+  @apply absolute;
+  @apply overflow-x-hidden overflow-y-hidden;
+  @apply transition duration-100 delay-75 ease-linear;
 }
 
-.left-hiden {
-  transform: translateX(-100%);
+.left-start {
+  @apply transform -translate-x-full;
 }
 
-.right-hiden {
-  transform: translateX(100%);
+.right-start {
+  @apply transform translate-x-full;
 }
 
-.expanded {
-  transition: all;
-}
-
-.hiden,
-.sidenav,
-.left-hiden,
-.right-hiden {
-  @apply duration-700;
-}
 .content {
-  @apply p-3;
-  @apply w-96 h-screen;
-  box-shadow: -10px 0 18px -8px black, 10px 0 18px -8px black;
+  @apply p-7;
+  @apply h-screen;
+  @apply z-20;
+  width: 360px;
+  /* box-shadow: -10px 0 18px -8px black, 10px 0 18px -8px black; */
+  box-shadow: 0 0 10px rgba(0 0 0 / 60%);
 }
 
 .shadowarea {
   @apply bg-gray-500 opacity-25;
-  @apply flex-grow;
-  @apply h-screen;
+  @apply z-10;
+  @apply h-full w-full;
+  @apply absolute;
+  @apply inset-0;
 }
 
 .is-primary {

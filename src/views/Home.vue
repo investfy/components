@@ -1,5 +1,80 @@
 <template>
   <div>
+    <section>
+      <h2 @click="showDrawerRight = !showDrawerRight">IfyDrawer RIGHT:</h2>
+      <IfyDrawer :active.sync="showDrawerRight" side="right" bgcolor="warning">
+        <template #default>
+          <IfyField :key="index" v-for="(i, index) in ['a', 'b', 'c', 'd']">
+            <IfyInput
+              :placeholder="`Extra-Small  ${i}`"
+              size="xs"
+              icon="user-circle"
+            />
+          </IfyField>
+        </template>
+      </IfyDrawer>
+
+      <h2
+        class="relative self-center text-left"
+        @click="showDrawerLeft = !showDrawerLeft"
+      >
+        IfyDrawer LEFT:
+      </h2>
+      <IfyDrawer :active.sync="showDrawerLeft" side="left" bgcolor="success">
+        <p class="w-full">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad possimus
+          deserunt commodi, exercitationem ex earum ullam, temporibus ipsa ea
+          aperiam eius? Quo earum consequuntur quisquam expedita reiciendis in
+          alias quas.
+        </p>
+
+        <IfyField message="What do you want to search?">
+          <IfyInput placeholder="Search..." type="search" icon="search" />
+          <p class="control">
+            <IfyButton type="primary" label="Search" />
+          </p>
+        </IfyField>
+      </IfyDrawer>
+
+      <h2
+        class="relative self-center text-left"
+        @click="showDrawerBoxLeft = !showDrawerBoxLeft"
+      >
+        IfyDrawer LEFT INBOX:
+      </h2>
+      <div
+        class="h-72 w-full md:w-72 border-2 border-red-400 relative overflow-hidden"
+      >
+        <IfyDrawer
+          :active.sync="showDrawerBoxLeft"
+          side="left"
+          bgcolor="warning"
+        >
+          <p v-for="index in 10" :key="index">BLA BLA BLA BLA {{ index }}</p>
+        </IfyDrawer>
+      </div>
+
+      <h2
+        class="relative self-center text-left"
+        @click="showDrawerBoxRight = !showDrawerBoxRight"
+      >
+        IfyDrawer RIGHT INBOX:
+      </h2>
+      <div
+        class="h-72 w-full md:w-72 border-2 border-red-400 relative overflow-hidden"
+      >
+        <IfyDrawer
+          :active.sync="showDrawerBoxRight"
+          side="right"
+          bgcolor="primary"
+        >
+          <p v-for="index in 8" :key="index">BLA BLA BLA BLA {{ index }}</p>
+        </IfyDrawer>
+      </div>
+    </section>
+
+
+
     <div class="space-y-4">
       <IfyTable
         :columns="[
@@ -191,44 +266,6 @@
           </IfyAppBar>
         </div>
       </section>
-
-      <section>
-        <h2 @click="showDrawerRight = !showDrawerRight">IfyDrawer RIGHT:</h2>
-        <IfyDrawer
-          :active.sync="showDrawerRight"
-          side="right"
-          bgcolor="warning"
-        >
-          <template #default>
-            <IfyField :key="index" v-for="(i, index) in ['a', 'b', 'c', 'd']">
-              <IfyInput
-                :placeholder="`Extra-Small  ${i}`"
-                size="xs"
-                icon="user-circle"
-              />
-            </IfyField>
-          </template>
-        </IfyDrawer>
-
-        <h2 class="relative z-20 self-center text-left " @click="toggleDrawer">
-          IfyDrawer LEFT:
-        </h2>
-        <IfyDrawer :active.sync="showDrawer" side="left" bgcolor="success">
-          <p class="w-full">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad possimus
-            deserunt commodi, exercitationem ex earum ullam, temporibus ipsa ea
-            aperiam eius? Quo earum consequuntur quisquam expedita reiciendis in
-            alias quas.
-          </p>
-
-          <IfyField message="What do you want to search?">
-            <IfyInput placeholder="Search..." type="search" icon="search" />
-            <p class="control">
-              <IfyButton type="primary" label="Search" />
-            </p>
-          </IfyField>
-        </IfyDrawer>
-      </section>
     </div>
   </div>
 </template>
@@ -241,21 +278,16 @@ export default {
     return {
       email: "email@example.com",
       isDropdownActive: false,
-      showDrawer: false,
       showDrawerRight: false,
+      showDrawerLeft: false,
+      showDrawerBoxLeft: false,
+      showDrawerBoxRight: false,
     };
   },
 
   methods: {
     clearIconClick() {
       this.email = "";
-    },
-    toggleDrawer() {
-      this.showDrawer = !this.showDrawer;
-    },
-
-    toggleDrawerRight() {
-      this.showDrawerRight = !this.showDrawerRight;
     },
   },
 };

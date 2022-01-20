@@ -1,8 +1,8 @@
-import IfyDrawerr from "./Drawerr.vue";
+import IfyDrawer from "./Drawer.vue";
 
 export default {
-  title: "Drawerr",
-  component: IfyDrawerr,
+  title: "Drawer",
+  component: IfyDrawer,
   decorators: [() => `<div class="flex justify-center h-full"><story/></div>`],
   argTypes: {
     side: {
@@ -26,9 +26,9 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {
-    IfyDrawerr,
+    IfyDrawer,
   },
-  template: `<IfyDrawerr v-bind="$props">
+  template: `<IfyDrawer v-bind="$props">
       <template #trigger>
         <button class="border border-gray-400 px-4 py-2 rounded">Dropdown</button>
       </template>
@@ -39,7 +39,7 @@ const Template = (args, { argTypes }) => ({
         <a separator />
         <a clickable>Button</a>
       </div>
-    </IfyDrawerr>`,
+    </IfyDrawer>`,
 });
 
 export const Default = Template.bind({});

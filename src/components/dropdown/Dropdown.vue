@@ -55,7 +55,6 @@ export default {
       // Previne que o click no próprio trigger dispare o fechamento do dropdown
       if (this.$refs.dropdown && !this.$refs.dropdown.contains(e.target)) {
         this.isActive = false;
-        console.log("Close do dropdown");
         this.$emit("update:active", this.isActive);
       }
     },

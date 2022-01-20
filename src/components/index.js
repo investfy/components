@@ -17,14 +17,12 @@ import IfyTable from "./table/Table.vue";
 import IfyTag from "./tag/Tag.vue";
 import IfyTagList from "./tag/TagList.vue";
 import IfyDrawer from "./drawer/Drawer.vue";
-import IfyDrawerr from "./drawerr/Drawerr.vue";
 
 export default {
   IfyAvatar,
   IfyButton,
   IfyButtonsGroup,
   IfyDrawer,
-  IfyDrawerr,
   IfyDropdown,
   IfyDropdownItem,
   IfyIcon,
