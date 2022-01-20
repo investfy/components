@@ -191,12 +191,30 @@
           </IfyAppBar>
         </div>
       </section>
+
       <section>
-        <h2 class="relative z-20 inline-block text-left" @click="toggleDrawer">
+        <h2 @click="showDrawerRight = !showDrawerRight">IfyDrawer RIGHT:</h2>
+        <IfyDrawer
+          :active.sync="showDrawerRight"
+          side="right"
+          bgcolor="warning"
+        >
+          <template #default>
+            <IfyField :key="index" v-for="(i, index) in ['a', 'b', 'c', 'd']">
+              <IfyInput
+                :placeholder="`Extra-Small  ${i}`"
+                size="xs"
+                icon="user-circle"
+              />
+            </IfyField>
+          </template>
+        </IfyDrawer>
+
+        <h2 class="relative z-20 self-center text-left " @click="toggleDrawer">
           IfyDrawer LEFT:
         </h2>
-        <IfyDrawer :active.sync="showDrawer" side="left">
-          <p class="w-96 relative z-50">
+        <IfyDrawer :active.sync="showDrawer" side="left" bgcolor="success">
+          <p class="w-full">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad possimus
             deserunt commodi, exercitationem ex earum ullam, temporibus ipsa ea
             aperiam eius? Quo earum consequuntur quisquam expedita reiciendis in
@@ -209,41 +227,6 @@
               <IfyButton type="primary" label="Search" />
             </p>
           </IfyField>
-        </IfyDrawer>
-
-        <h2 @click="showDrawerRight = !showDrawerRight">IfyDrawer RIGHT:</h2>
-        <IfyDrawer
-          :active.sync="showDrawerRight"
-          side="right"
-          bgcolor="warning"
-        >
-          <template #default>
-            <IfyField>
-              <IfyInput
-                placeholder="Extra-Small"
-                size="xs"
-                icon="user-circle"
-              />
-            </IfyField>
-
-            <IfyField>
-              <IfyInput placeholder="Small" size="sm" icon="user-circle" />
-            </IfyField>
-          </template>
-
-          <template>
-            <IfyField>
-              <IfyInput
-                placeholder="Extra-Small"
-                size="xs"
-                icon="user-circle"
-              />
-            </IfyField>
-
-            <IfyField>
-              <IfyInput placeholder="Small" size="sm" icon="user-circle" />
-            </IfyField>
-          </template>
         </IfyDrawer>
       </section>
     </div>

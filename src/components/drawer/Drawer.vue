@@ -3,19 +3,30 @@
     ref="drawer"
     :class="[
       'sidenav',
+      'w-screen',
       'flex',
-      'flex-col',
       'z-20 ',
+      side === 'right' ? 'flex-row-reverse' : null,
       isActive && !useFullScreen ? 'expanded' : null,
-      !isActive ? 'hiden' : null,
+      !isActive ? `hiden ${side}-hiden` : null,
       side ? `${side}-show` : null,
       useFullScreen ? 'w-full' : null,
-      bgcolor ? `is-${bgcolor}` : null,
     ]"
   >
-    <button v-if="useFullScreen" @click="toggle">Fechar</button>
-    Conteúdo
-    <slot />
+    <div
+      :class="[
+        'content',
+        'shadow-2xl',
+        isActive ? 'w-96' : 'null',
+        bgcolor ? `is-${bgcolor}` : null,
+      ]"
+    >
+      <slot />
+    </div>
+
+    <div class="shadowarea" @click="toggle">
+      <button v-if="useFullScreen">Fechar</button>
+    </div>
   </div>
 </template>
 
@@ -109,17 +120,43 @@ export default {
 .sidenav {
   height: 100vh;
   position: fixed;
-  z-index: 1;
+  z-index: 99;
   overflow-x: hidden;
-  transition: 0.5s width;
+  transform: none;
+  transition: transform  cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hiden {
-  width: 0px;
-  transition: 0.5s width;
+  transition: transform  cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.left-hiden {
+  transform: translateX(-100%);
+}
+
+.right-hiden {
+  transform: translateX(100%);
+}
+
 .expanded {
-  width: 400px;
-  transition: 0.5s width;
+  transition: all;
+}
+
+.hiden,
+.sidenav,
+.left-hiden,
+.right-hiden {
+  @apply duration-700;
+}
+.content {
+  @apply p-3;
+  @apply w-96 h-screen;
+  box-shadow: -10px 0 18px -8px black, 10px 0 18px -8px black;
+}
+
+.shadowarea {
+  @apply bg-gray-500 opacity-25;
+  @apply flex-grow;
+  @apply h-screen;
 }
 
 .is-primary {
