@@ -2,8 +2,10 @@
   <div>
     <section>
       <h2 @click="showDrawerRight = !showDrawerRight">IfyDrawer RIGHT:</h2>
+
       <IfyDrawer :active.sync="showDrawerRight" side="right" bgcolor="warning">
-        <template #default>
+
+        <template #content>
           <IfyField :key="index" v-for="(i, index) in ['a', 'b', 'c', 'd']">
             <IfyInput
               :placeholder="`Extra-Small  ${i}`"
@@ -21,19 +23,21 @@
         IfyDrawer LEFT:
       </h2>
       <IfyDrawer :active.sync="showDrawerLeft" side="left" bgcolor="success">
-        <p class="w-full">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad possimus
-          deserunt commodi, exercitationem ex earum ullam, temporibus ipsa ea
-          aperiam eius? Quo earum consequuntur quisquam expedita reiciendis in
-          alias quas.
-        </p>
-
-        <IfyField message="What do you want to search?">
-          <IfyInput placeholder="Search..." type="search" icon="search" />
-          <p class="control">
-            <IfyButton type="primary" label="Search" />
+        <template #content>
+          <p class="w-full">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad possimus
+            deserunt commodi, exercitationem ex earum ullam, temporibus ipsa ea
+            aperiam eius? Quo earum consequuntur quisquam expedita reiciendis in
+            alias quas.
           </p>
-        </IfyField>
+
+          <IfyField message="What do you want to search?">
+            <IfyInput placeholder="Search..." type="search" icon="search" />
+            <p class="control">
+              <IfyButton type="primary" label="Search" />
+            </p>
+          </IfyField>
+        </template>
       </IfyDrawer>
 
       <h2
@@ -50,7 +54,7 @@
           side="left"
           bgcolor="warning"
         >
-          <p v-for="index in 10" :key="index">BLA BLA BLA BLA {{ index }}</p>
+          <p slot="content" v-for="index in 10" :key="index">BLA BLA BLA BLA {{ index }}</p>
         </IfyDrawer>
       </div>
 
@@ -61,6 +65,7 @@
         IfyDrawer RIGHT INBOX:
       </h2>
       <div
+        slot="content"
         class="h-72 w-full md:w-72 border-2 border-red-400 relative overflow-hidden"
       >
         <IfyDrawer
@@ -68,12 +73,10 @@
           side="right"
           bgcolor="primary"
         >
-          <p v-for="index in 8" :key="index">BLA BLA BLA BLA {{ index }}</p>
+          <p slot="content" v-for="index in 8" :key="index">BLA BLA BLA BLA {{ index }}</p>
         </IfyDrawer>
       </div>
     </section>
-
-
 
     <div class="space-y-4">
       <IfyTable
@@ -245,7 +248,7 @@
       <section>
         <h2>IfyLogo :</h2>
         <div>
-          <IfyAppBar brand-link="/" centered class="mb-8">
+          <IfyAppBar brand-link="/forum" centered class="mb-8">
             <template #end>
               <IfyProfileDropdown
                 name="John Doe"
@@ -266,6 +269,36 @@
           </IfyAppBar>
         </div>
       </section>
+
+      <section>
+        <h2>APPBAR centered = True :</h2>
+        <div>
+          <IfyAppBar brand-link="/forum" centered class="mb-8">
+            <template #start>
+              <p>START SLOT CENTERED</p>
+            </template>
+            <template #end>
+              <p>END SLOT</p>
+            </template>
+          </IfyAppBar>
+        </div>
+      </section>
+
+
+      <section>
+        <h2>APPBAR centered = FALSE :</h2>
+        <div>
+          <IfyAppBar brand-link="/forum" class="mb-8">
+            <template #start>
+              <p>START SLOT NOT CENTERED</p>
+            </template>
+            <template #end>
+              <p>END SLOT</p>
+            </template>
+          </IfyAppBar>
+        </div>
+      </section>
+
     </div>
   </div>
 </template>

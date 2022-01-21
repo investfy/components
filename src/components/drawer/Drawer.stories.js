@@ -29,22 +29,25 @@ const Template = (args, { argTypes }) => ({
     IfyDrawer,
   },
   template: `<IfyDrawer v-bind="$props">
-      <template #trigger>
-        <button class="border border-gray-400 px-4 py-2 rounded">Dropdown</button>
-      </template>
-      <div class="w-40 py-1">
-        <a href="#">Test href</a>
-        <a href="#">Test href 2</a>
-        <a>Disabled</a>
-        <a separator />
-        <a clickable>Button</a>
-      </div>
+      <template #content>
+      <div class="flex flex-col">
+        <p>Ponha teu conteúdo aqui.</p>
+        <div class="w-full py-1 flex flex-col"  >
+        <a href="https://www.google.com">Test href</a>
+        <a href="https://v2.tailwindcss.com/docs/flex-direction#column">Test href 2</a>
+        <button class="border border-gray-400 px-4 py-2 rounded">Some Button</button>
+        </div>
+        </div>
+        </template>
     </IfyDrawer>`,
 });
 
 export const Default = Template.bind({});
-Default.args = {
+Default.argTypes = {};
+
+export const Slots = Template.bind({});
+Slots.args = {
   bgcolor: "warning",
   side: "left",
-  active: false,
+  active: true,
 };

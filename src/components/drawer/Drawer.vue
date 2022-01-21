@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div :class="[isActive ? 'shadowarea' : null]" @click="closeDrawer"></div>
+    <div
+      :class="[active ? 'shadowarea hidden md:flex' : null]"
+      @click="closeDrawer"
+    ></div>
 
     <div
       ref="drawer"
@@ -9,7 +12,7 @@
         'w-full',
         'flex',
         side === 'right' ? 'flex-row-reverse' : null,
-        !isActive ? `${side}-start` : null,
+        !active ? `${side}-start` : null,
         computedSide,
       ]"
     >
@@ -21,7 +24,7 @@
         >
           <IfyIcon icon="arrow-left" customClass="text-2xl" />
         </button>
-        <slot />
+        <slot name="content" />
       </div>
     </div>
   </div>
@@ -31,11 +34,23 @@
 export default {
   name: "IfyDrawer",
 
+  watch: {
+    active(newVal) {
+      if (newVal) document.documentElement.style.overflow = "hidden";
+      else document.documentElement.style.overflow = "auto";
+    },
+  },
+  methods: {
+    closeDrawer() {
+      this.$emit("update:active", false);
+    },
+  },
   props: {
     active: {
       type: Boolean,
       default: false,
     },
+
     side: {
       type: String,
       default: "left",
@@ -53,28 +68,10 @@ export default {
       },
     },
   },
-  watch: {
-    active(newVal) {
-      this.isActive = newVal;
-    },
-  },
 
   computed: {
     computedSide() {
       return this.side + "-0";
-    },
-  },
-
-  data() {
-    return {
-      isActive: false,
-    };
-  },
-
-  methods: {
-    closeDrawer() {
-      this.isActive = !this.isActive;
-      this.$emit("update:active", this.isActive);
     },
   },
 };
@@ -82,11 +79,9 @@ export default {
 
 <style lang="postcss" scoped>
 .sidenav {
-  @apply bottom-0 top-0;
-  @apply h-full;
-  @apply absolute;
-  @apply overflow-x-hidden overflow-y-hidden;
-  @apply transition duration-100 delay-75 ease-linear;
+  @apply bottom-0 top-0   h-full   absolute   overflow-x-hidden overflow-y-hidden
+  transition duration-100
+  delay-75 ease-linear;
 }
 
 .left-start {
@@ -98,20 +93,23 @@ export default {
 }
 
 .content {
-  @apply p-7;
-  @apply h-screen;
-  @apply z-20;
-  width: 360px;
-  /* box-shadow: -10px 0 18px -8px black, 10px 0 18px -8px black; */
+  @apply p-7    w-full    h-screen
+   z-20;
   box-shadow: 0 0 10px rgba(0 0 0 / 60%);
 }
 
+@media (min-width: 767px) {
+  .content {
+    width: 360px;
+  }
+}
+
 .shadowarea {
-  @apply bg-gray-500 opacity-25;
-  @apply z-10;
-  @apply h-full w-full;
-  @apply absolute;
-  @apply inset-0;
+  @apply bg-gray-500 opacity-25
+   z-10
+   h-full w-full
+   absolute
+   inset-0;
 }
 
 .is-primary {
