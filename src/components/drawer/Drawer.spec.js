@@ -32,8 +32,8 @@ describe("Drawer.vue", () => {
         side,
       },
     });
-
-    expect(wrapper.find(".left-start").exists()).toBe(true);
+    expect(wrapper.find(".left-start").isVisible()).toBe(false);
+    // expect(wrapper.find(".left-start").exists()).toBe(true);
   });
 
   it("drawer da direita deve estar visível", async () => {

@@ -4,7 +4,6 @@
       <h2 @click="showDrawerRight = !showDrawerRight">IfyDrawer RIGHT:</h2>
 
       <IfyDrawer :active.sync="showDrawerRight" side="right" bgcolor="warning">
-
         <template #content>
           <IfyField :key="index" v-for="(i, index) in ['a', 'b', 'c', 'd']">
             <IfyInput
@@ -54,7 +53,9 @@
           side="left"
           bgcolor="warning"
         >
-          <p slot="content" v-for="index in 10" :key="index">BLA BLA BLA BLA {{ index }}</p>
+          <p slot="content" v-for="index in 10" :key="index">
+            BLA BLA BLA BLA {{ index }}
+          </p>
         </IfyDrawer>
       </div>
 
@@ -73,7 +74,9 @@
           side="right"
           bgcolor="primary"
         >
-          <p slot="content" v-for="index in 8" :key="index">BLA BLA BLA BLA {{ index }}</p>
+          <p slot="content" v-for="index in 8" :key="index">
+            BLA BLA BLA BLA {{ index }}
+          </p>
         </IfyDrawer>
       </div>
     </section>
@@ -142,6 +145,7 @@
             <IfyInput placeholder="Search..." type="search" icon="search" />
           </IfyField>
 
+          <h2>IF IfyDropdown</h2>
           <IfyField>
             <p class="control">
               <IfyButton label="Button" type="primary" />
@@ -284,7 +288,6 @@
         </div>
       </section>
 
-
       <section>
         <h2>APPBAR centered = FALSE :</h2>
         <div>
@@ -298,7 +301,6 @@
           </IfyAppBar>
         </div>
       </section>
-
     </div>
   </div>
 </template>

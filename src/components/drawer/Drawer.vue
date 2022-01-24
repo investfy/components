@@ -5,28 +5,32 @@
       @click="closeDrawer"
     ></div>
 
-    <div
-      ref="drawer"
-      :class="[
-        'sidenav',
-        'w-full',
-        'flex',
-        side === 'right' ? 'flex-row-reverse' : null,
-        !active ? `${side}-start` : null,
-        computedSide,
-      ]"
-    >
-      <div :class="['content', 'shadow-2xl', bgcolor ? `is-${bgcolor}` : null]">
-        <button
-          class="mb-5 flex justify-start md:hidden"
-          :class="[side === 'left' ? 'justify-start' : 'justify-end']"
-          @click="closeDrawer"
+    <transition :name="`${side}-appear`">
+      <div
+        v-if="active"
+        :class="[
+          'sidenav',
+          'w-full',
+          'flex',
+          side === 'right' ? 'flex-row-reverse' : null,
+          computedSide,
+        ]"
+      >
+        <div
+          :class="['content', 'shadow-2xl', bgcolor ? `is-${bgcolor}` : null]"
         >
-          <IfyIcon icon="arrow-left" customClass="text-2xl" />
-        </button>
-        <slot name="content" />
+          <div
+            class="mb-5 flex md:hidden"
+            :class="[side === 'right' ? 'justify-end' : 'justify-start' ]"
+          >
+            <button @click="closeDrawer">
+              <IfyIcon :icon="`arrow-${side}`" customClass="text-2xl" />
+            </button>
+          </div>
+          <slot name="content" />
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -78,23 +82,37 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.right-appear-enter-active,
+.right-appear-leave-active,
+.left-appear-enter-active,
+.left-appear-leave-active {
+  transition: transform 300ms;
+}
+
+.right-appear-enter,
+.right-appear-leave-to {
+  transform: translateX(100%);
+}
+
+.right-appear-leave,
+.right-appear-enter-to,
+.left-appear-leave,
+.left-appear-enter-to {
+  transform: translateX(0);
+}
+
+.left-appear-enter,
+.left-appear-leave-to {
+  transform: translateX(-100%);
+}
+
 .sidenav {
   @apply bottom-0 top-0   h-full   absolute   overflow-x-hidden overflow-y-hidden
-  transition duration-100
-  delay-75 ease-linear;
-}
-
-.left-start {
-  @apply transform -translate-x-full;
-}
-
-.right-start {
-  @apply transform translate-x-full;
+  delay-75;
 }
 
 .content {
-  @apply p-7    w-full    h-screen
-   z-20;
+  @apply p-7    w-full    h-screen   z-20;
   box-shadow: 0 0 10px rgba(0 0 0 / 60%);
 }
 
