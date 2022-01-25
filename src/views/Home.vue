@@ -12,7 +12,13 @@
       >
         <template #content>
           <IfyNav title="IfyNav Titulo" :links="navLinkItems">
+            <IfyNavItem>Estes são IfyNavItem's</IfyNavItem>
+            <IfyNavItem>IfyNavItem possuem 3 slots:</IfyNavItem>
+            <IfyNavItem>start, default e end</IfyNavItem>
+            <IfyNavItem>A props centered altera o default</IfyNavItem>
+            <IfyNavItem centered>Estes possui centered</IfyNavItem>
             <IfyNavItem>Separador abaixo</IfyNavItem>
+
             <IfyNavItem separator />
 
             <IfyNavItem centered>
@@ -46,6 +52,30 @@
                 class="mr-2"
               />
               <p slot="default">KOF MI rules not</p>
+            </IfyNavItem>
+
+            <IfyNavItem>
+              <IfyAvatar
+                slot="start"
+                src="https://img2.gratispng.com/20180702/pt/kisspng-the-king-of-fighters-maximum-impact-kof-maximum-5b3a30ddd007c7.9281114115305402538521.jpg"
+                title=""
+                size="sm"
+                class="mr-2"
+              />
+              <p slot="default">KOF MI rules not</p>
+              <div class="rounded h-9 w-9 bg-indigo-500" slot="end"></div>
+            </IfyNavItem>
+
+            <IfyNavItem centered>
+              <IfyAvatar
+                slot="start"
+                src="https://res.cloudinary.com/css-tricks/image/upload/c_scale,f_auto,q_auto,w_300/v1593634177/mailchimp_vcd4pk.png"
+                title=""
+                size="sm"
+                class="mr-2"
+              />
+              <p>Texto centro</p>
+              <div class="rounded h-9 w-9 bg-indigo-100" slot="end"></div>
             </IfyNavItem>
           </IfyNav>
         </template>
@@ -138,8 +168,8 @@
     </section>
 
     <section class="pt-5">
-      <h2>IfyNav :</h2>
-      <div class="bg-blue-800 w-96 rounded-sm p-2">
+      <h2>Apenas IfyNav renderizando links:</h2>
+      <div class="bg-red-800 w-96 rounded-sm">
         <IfyNav :links="navLinkItems" />
       </div>
     </section>

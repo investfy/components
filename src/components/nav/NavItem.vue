@@ -4,17 +4,17 @@
     v-else
     :is="link ? 'span' : 'div'"
     :to="link"
-    :class="{ fitem: true, clickable: clickable || link }"
+    :class="{ item: true, clickable: clickable || link }"
     @click="$emit('click')"
   >
-    <div class="flex w-full py-1">
-      <div v-if="$slots.start">
+    <div class="flex w-full py-1 items-center">
+      <div v-if="$slots.start" class="flex-shrink-0">
         <slot name="start" />
       </div>
 
       <div
-        class="flex justify-between w-full"
-        :class="['start-slot', { 'is-centered': centered }]"
+        class="flex justify-between w-full items-center"
+        :class="['center-slot', { 'is-centered': centered }]"
       >
         <slot />
       </div>
@@ -56,17 +56,14 @@ export default {
   @apply bg-gray-200 border-none block h-px my-2 mx-0;
 }
 .item {
-  @apply block w-full px-4 py-2 text-sm text-left text-gray-700;
-}
-.clickable {
-  @apply text-brand cursor-pointer hover:text-brand-900 hover:bg-gray-100;
+  @apply block w-full px-4 py-2 text-sm text-left;
 }
 
-.start-slot {
-  @apply hidden mx-4 flex-grow md:flex;
+.center-slot {
+  @apply  flex-grow md:flex;
 
   &.is-centered {
-    @apply mx-0 flex-shrink md:items-center md:justify-center;
+    @apply flex-shrink items-center justify-center;
     flex-grow: 2;
   }
 }

@@ -112,7 +112,7 @@ export default {
 }
 
 .content {
-  @apply p-7    w-full    h-screen   z-20;
+  @apply   w-full    h-screen   z-20;
   box-shadow: 0 0 10px rgba(0 0 0 / 60%);
 }
 
