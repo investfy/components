@@ -17,6 +17,8 @@ import IfyTable from "./table/Table.vue";
 import IfyTag from "./tag/Tag.vue";
 import IfyTagList from "./tag/TagList.vue";
 import IfyDrawer from "./drawer/Drawer.vue";
+import IfyNav from "./nav/Nav.vue";
+import IfyNavItem from "./nav/NavItem.vue";
 
 export default {
   IfyAvatar,
@@ -36,4 +38,6 @@ export default {
   IfyTable,
   IfyTag,
   IfyTagList,
+  IfyNav,
+  IfyNavItem,
 };

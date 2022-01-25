@@ -16,7 +16,7 @@ describe("Drawer.vue", () => {
       },
     });
 
-    expect(wrapper.find(".right-start").exists()).toBe(true);
+    expect(wrapper.find(".shadowarea").exists()).toBe(false);
   });
 
   it("drawer deve estar oculto à esquerda", () => {
@@ -32,8 +32,7 @@ describe("Drawer.vue", () => {
         side,
       },
     });
-    expect(wrapper.find(".left-start").isVisible()).toBe(false);
-    // expect(wrapper.find(".left-start").exists()).toBe(true);
+    expect(wrapper.find(".shadowarea").exists()).toBe(false);
   });
 
   it("drawer da direita deve estar visível", async () => {
@@ -50,10 +49,44 @@ describe("Drawer.vue", () => {
       },
     });
 
-    await wrapper.vm.$nextTick();
-
-    console.log(wrapper.find(".shadowarea"));
     expect(wrapper.find(".shadowarea").exists()).toBe(true);
     expect(wrapper.find(`.${side}-0`).exists()).toBe(true);
+  });
+
+  it("drawer da esquerda deve estar visível", async () => {
+    const active = true;
+    const side = "left";
+
+    const wrapper = mount(Drawer, {
+      stubs: {
+        IfyIcon: { template: "<div> STUB ICON DIV </div>" },
+      },
+      propsData: {
+        active,
+        side,
+      },
+    });
+
+    expect(wrapper.find(".shadowarea").exists()).toBe(true);
+    expect(wrapper.find(`.${side}-0`).exists()).toBe(true);
+  });
+
+  it("a cor de fundo deve ser classe danger", async () => {
+    const active = true;
+    const side = "left";
+    const bgcolor = "danger";
+
+    const wrapper = mount(Drawer, {
+      stubs: {
+        IfyIcon: { template: "<div> STUB ICON DIV </div>" },
+      },
+      propsData: {
+        active,
+        side,
+        bgcolor,
+      },
+    });
+
+    expect(wrapper.find(`.is-${bgcolor}`).exists()).toBe(true);
   });
 });

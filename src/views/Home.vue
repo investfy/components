@@ -1,6 +1,58 @@
 <template>
   <div>
     <section>
+      <h2 @click="showDrawerBoxRightWithNav = !showDrawerBoxRightWithNav">
+        IshowDrawerBoxRightWithNav
+      </h2>
+
+      <IfyDrawer
+        :active.sync="showDrawerBoxRightWithNav"
+        side="right"
+        bgcolor="primary"
+      >
+        <template #content>
+          <IfyNav title="IfyNav Titulo" :links="navLinkItems">
+            <IfyNavItem>Separador abaixo</IfyNavItem>
+            <IfyNavItem separator />
+
+            <IfyNavItem centered>
+              <IfyAvatar
+                slot="start"
+                src="https://res.cloudinary.com/css-tricks/image/upload/c_scale,f_auto,q_auto,w_300/v1593634177/mailchimp_vcd4pk.png"
+                title=""
+                size="sm"
+                class="mr-2"
+              />
+              <p>Texto centro</p>
+            </IfyNavItem>
+
+            <IfyNavItem>
+              <IfyAvatar
+                slot="start"
+                src="https://res.cloudinary.com/css-tricks/image/upload/c_scale,f_auto,q_auto,w_300/v1593634177/mailchimp_vcd4pk.png"
+                title=""
+                size="sm"
+                class="mr-2"
+              />
+              <p>not Centro</p>
+            </IfyNavItem>
+
+            <IfyNavItem>
+              <IfyAvatar
+                slot="start"
+                src="https://img2.gratispng.com/20180702/pt/kisspng-the-king-of-fighters-maximum-impact-kof-maximum-5b3a30ddd007c7.9281114115305402538521.jpg"
+                title=""
+                size="sm"
+                class="mr-2"
+              />
+              <p slot="default">KOF MI rules not</p>
+            </IfyNavItem>
+          </IfyNav>
+        </template>
+      </IfyDrawer>
+    </section>
+
+    <section>
       <h2 @click="showDrawerRight = !showDrawerRight">IfyDrawer RIGHT:</h2>
 
       <IfyDrawer :active.sync="showDrawerRight" side="right" bgcolor="warning">
@@ -39,45 +91,56 @@
         </template>
       </IfyDrawer>
 
-      <h2
-        class="relative self-center text-left"
-        @click="showDrawerBoxLeft = !showDrawerBoxLeft"
-      >
-        IfyDrawer LEFT INBOX:
-      </h2>
-      <div
-        class="h-72 w-full md:w-72 border-2 border-red-400 relative overflow-hidden"
-      >
-        <IfyDrawer
-          :active.sync="showDrawerBoxLeft"
-          side="left"
-          bgcolor="warning"
-        >
-          <p slot="content" v-for="index in 10" :key="index">
-            BLA BLA BLA BLA {{ index }}
-          </p>
-        </IfyDrawer>
-      </div>
+      <div class="flex space-x-3">
+        <div>
+          <h2
+            class="relative self-center text-left"
+            @click="showDrawerBoxLeft = !showDrawerBoxLeft"
+          >
+            IfyDrawer LEFT INBOX render slots:
+          </h2>
+          <div
+            class="h-72 w-full md:w-72 border-2 border-red-400 relative overflow-hidden"
+          >
+            <IfyDrawer
+              :active.sync="showDrawerBoxLeft"
+              side="left"
+              bgcolor="warning"
+            >
+              <p slot="content" v-for="index in 10" :key="index">
+                BLA BLA BLA BLA {{ index }}
+              </p>
+            </IfyDrawer>
+          </div>
+        </div>
 
-      <h2
-        class="relative self-center text-left"
-        @click="showDrawerBoxRight = !showDrawerBoxRight"
-      >
-        IfyDrawer RIGHT INBOX:
-      </h2>
-      <div
-        slot="content"
-        class="h-72 w-full md:w-72 border-2 border-red-400 relative overflow-hidden"
-      >
-        <IfyDrawer
-          :active.sync="showDrawerBoxRight"
-          side="right"
-          bgcolor="primary"
-        >
-          <p slot="content" v-for="index in 8" :key="index">
-            BLA BLA BLA BLA {{ index }}
-          </p>
-        </IfyDrawer>
+        <div>
+          <h2
+            class="relative self-center text-left"
+            @click="showDrawerBoxRight = !showDrawerBoxRight"
+          >
+            IfyDrawer RIGHT INBOX Ifynav renreding links:
+          </h2>
+          <div
+            slot="content"
+            class="h-72 w-full md:w-72 border-2 border-red-400 relative overflow-hidden"
+          >
+            <IfyDrawer
+              :active.sync="showDrawerBoxRight"
+              side="right"
+              bgcolor="primary"
+            >
+              <IfyNav slot="content" :links="navLinkItems" />
+            </IfyDrawer>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pt-5">
+      <h2>IfyNav :</h2>
+      <div class="bg-blue-800 w-96 rounded-sm p-2">
+        <IfyNav :links="navLinkItems" />
       </div>
     </section>
 
@@ -230,7 +293,6 @@
       <section>
         <h2>IfyNav :</h2>
         <div style="float: right">
-          <!-- <IfyNav :data="['Item 1', 'Item 2', 'Item 3']" /> -->
           <IfyDropdown>
             <template #trigger>Botão</template>
             <a href=""><span>asdasdsad</span></a>
@@ -289,17 +351,7 @@
       </section>
 
       <section>
-        <h2>APPBAR centered = FALSE :</h2>
-        <div>
-          <IfyAppBar brand-link="/forum" class="mb-8">
-            <template #start>
-              <p>START SLOT NOT CENTERED</p>
-            </template>
-            <template #end>
-              <p>END SLOT</p>
-            </template>
-          </IfyAppBar>
-        </div>
+        <div class="h-96 w-1/3">x</div>
       </section>
     </div>
   </div>
@@ -317,6 +369,29 @@ export default {
       showDrawerLeft: false,
       showDrawerBoxLeft: false,
       showDrawerBoxRight: false,
+      showDrawerBoxRightWithNav: true,
+      navLinkItems: [
+        {
+          address:
+            "https://fontawesome.com/v5.15/how-to-use/on-the-web/styling/sizing-icons",
+          label: "Fontawesome 1",
+        },
+        {
+          address:
+            "https://fontawesome.com/v5.15/how-to-use/on-the-web/styling/sizing-icons",
+          label: "Fontawesome 2",
+        },
+        {
+          address:
+            "https://fontawesome.com/v5.15/how-to-use/on-the-web/styling/sizing-icons",
+          label: "Fontawesome 3",
+        },
+        {
+          address:
+            "https://fontawesome.com/v5.15/how-to-use/on-the-web/styling/sizing-icons",
+          label: "Fontawesome 4",
+        },
+      ],
     };
   },
 
