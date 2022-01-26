@@ -21,7 +21,7 @@
         >
           <div
             class="mb-5 flex md:hidden"
-            :class="[side === 'right' ? 'justify-end' : 'justify-start' ]"
+            :class="[side === 'right' ? 'justify-end' : 'justify-start']"
           >
             <button class="p-4" @click="closeDrawer">
               <IfyIcon :icon="`arrow-${side}`" customClass="text-2xl" />
@@ -40,8 +40,9 @@ export default {
 
   watch: {
     active(newVal) {
-      if (newVal) document.documentElement.style.overflow = "hidden";
-      else document.documentElement.style.overflow = "auto";
+      if (newVal)
+        document.getElementsByTagName("body")[0].style.overflow = "hidden";
+      else document.getElementsByTagName("body")[0].style.overflow = "initial";
     },
   },
   methods: {
@@ -112,7 +113,7 @@ export default {
 }
 
 .content {
-  @apply   w-full    h-screen   z-20;
+  @apply w-full    h-screen   z-20;
   box-shadow: 0 0 10px rgba(0 0 0 / 60%);
 }
 
