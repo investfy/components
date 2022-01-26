@@ -23,7 +23,7 @@
             class="mb-5 flex md:hidden"
             :class="[side === 'right' ? 'justify-end' : 'justify-start' ]"
           >
-            <button @click="closeDrawer">
+            <button class="p-4" @click="closeDrawer">
               <IfyIcon :icon="`arrow-${side}`" customClass="text-2xl" />
             </button>
           </div>

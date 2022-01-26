@@ -4,23 +4,15 @@
       {{ title }}
     </p>
     <template v-if="$slots.default">
-      <div data-clickable>
+      <div data-clickable-slot>
         <slot />
       </div>
     </template>
 
-    <div v-if="links && !$slots.default" class="list-none">
-      <ul data-clickable>
-        <li
-          v-for="(link, index) in links"
-          :key="index"
-          class="flex items-center justify-between clickable"
-        >
-          <IfyLink :to="link.address" target="_blank">
-            {{ link.label }}</IfyLink
-          >
-
-          <IfyIcon icon="angle-down" size="lg" type="info" />
+    <div v-if="items && !$slots.default" class="list-none">
+      <ul>
+        <li v-for="(item, index) in items" :key="index" class="mx-4">
+          {{ item }}
         </li>
       </ul>
     </div>
@@ -35,8 +27,8 @@ export default {
     title: {
       type: String,
     },
-    links: {
-      type: [String, Object],
+    items: {
+      type: [String, Array],
       default: null,
     },
   },
@@ -44,7 +36,7 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-[data-clickable] * {
+[data-clickable-slot] * {
   &:hover {
     background-color: rgba(255, 255, 255, 0.15);
   }

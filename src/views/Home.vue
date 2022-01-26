@@ -1,5 +1,6 @@
 <template>
   <div>
+    <hr />
     <section>
       <h2 @click="showDrawerBoxRightWithNav = !showDrawerBoxRightWithNav">
         IshowDrawerBoxRightWithNav
@@ -11,11 +12,12 @@
         bgcolor="primary"
       >
         <template #content>
-          <IfyNav title="IfyNav Titulo" :links="navLinkItems">
+          <IfyNav title="IfyNav Titulo" :items="navLinkItems">
             <IfyNavItem>Estes são IfyNavItem's</IfyNavItem>
             <IfyNavItem>IfyNavItem possuem 3 slots:</IfyNavItem>
             <IfyNavItem>start, default e end</IfyNavItem>
             <IfyNavItem>A props centered altera o default</IfyNavItem>
+            <IfyNavItem clickable>Este IfyNavItem é clickável</IfyNavItem>
             <IfyNavItem centered>Estes possui centered</IfyNavItem>
             <IfyNavItem>Separador abaixo</IfyNavItem>
 
@@ -43,7 +45,7 @@
               <p>not Centro</p>
             </IfyNavItem>
 
-            <IfyNavItem>
+            <IfyNavItem clickable>
               <IfyAvatar
                 slot="start"
                 src="https://img2.gratispng.com/20180702/pt/kisspng-the-king-of-fighters-maximum-impact-kof-maximum-5b3a30ddd007c7.9281114115305402538521.jpg"
@@ -51,7 +53,7 @@
                 size="sm"
                 class="mr-2"
               />
-              <p slot="default">KOF MI rules not</p>
+              <p slot="default">KOF MI clickable</p>
             </IfyNavItem>
 
             <IfyNavItem>
@@ -74,7 +76,7 @@
                 size="sm"
                 class="mr-2"
               />
-              <p>Texto centro</p>
+              <p>Start, Centro e End Slots</p>
               <div class="rounded h-9 w-9 bg-indigo-100" slot="end"></div>
             </IfyNavItem>
           </IfyNav>
@@ -160,7 +162,7 @@
               side="right"
               bgcolor="primary"
             >
-              <IfyNav slot="content" :links="navLinkItems" />
+              <IfyNav slot="content" :items="navLinkItems" />
             </IfyDrawer>
           </div>
         </div>
@@ -170,7 +172,7 @@
     <section class="pt-5">
       <h2>Apenas IfyNav renderizando links:</h2>
       <div class="bg-red-800 w-96 rounded-sm">
-        <IfyNav :links="navLinkItems" />
+        <IfyNav :items="navLinkItems" />
       </div>
     </section>
 
@@ -379,10 +381,6 @@
           </IfyAppBar>
         </div>
       </section>
-
-      <section>
-        <div class="h-96 w-1/3">x</div>
-      </section>
     </div>
   </div>
 </template>
@@ -401,26 +399,10 @@ export default {
       showDrawerBoxRight: false,
       showDrawerBoxRightWithNav: true,
       navLinkItems: [
-        {
-          address:
-            "https://fontawesome.com/v5.15/how-to-use/on-the-web/styling/sizing-icons",
-          label: "Fontawesome 1",
-        },
-        {
-          address:
-            "https://fontawesome.com/v5.15/how-to-use/on-the-web/styling/sizing-icons",
-          label: "Fontawesome 2",
-        },
-        {
-          address:
-            "https://fontawesome.com/v5.15/how-to-use/on-the-web/styling/sizing-icons",
-          label: "Fontawesome 3",
-        },
-        {
-          address:
-            "https://fontawesome.com/v5.15/how-to-use/on-the-web/styling/sizing-icons",
-          label: "Fontawesome 4",
-        },
+        "Fontawesome 1",
+        "Fontawesome 2",
+        "Fontawesome 3",
+        "Fontawesome 4",
       ],
     };
   },

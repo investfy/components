@@ -1,14 +1,12 @@
 <template>
   <hr v-if="separator" class="separator" />
-  <component
+  <div
     v-else
-    :is="link ? 'span' : 'div'"
-    :to="link"
-    :class="{ item: true, clickable: clickable || link }"
+    :class="{ item: true, clickable: clickable }"
     @click="$emit('click')"
   >
     <div class="flex w-full py-1 items-center">
-      <div v-if="$slots.start" class="flex-shrink-0">
+      <div v-if="$slots.start" class="start-slot">
         <slot name="start" />
       </div>
 
@@ -19,11 +17,11 @@
         <slot />
       </div>
 
-      <div v-if="$slots.end" :class="['end-slot', { 'is-centered': centered }]">
+      <div v-if="$slots.end" class="end-slot">
         <slot name="end" />
       </div>
     </div>
-  </component>
+  </div>
 </template>
 
 <script>
@@ -39,10 +37,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    link: {
-      type: [String, Object],
-      default: null,
-    },
     centered: {
       type: Boolean,
       default: false,
@@ -53,22 +47,34 @@ export default {
 
 <style lang="postcss" scoped>
 .separator {
-  @apply bg-gray-200 border-none block h-px my-2 mx-0;
+  @apply bg-blue-500 border-none block h-px my-2 mx-0;
 }
 .item {
   @apply block w-full px-4 py-2 text-sm text-left;
 }
 
+.clickable {
+  @apply cursor-pointer;
+}
+
 .center-slot {
-  @apply  flex-grow md:flex;
+  @apply flex-grow md:flex;
 
   &.is-centered {
     @apply flex-shrink items-center justify-center;
-    flex-grow: 2;
   }
 }
 .end-slot {
-  @apply flex items-center justify-end flex-shrink-0 ml-auto;
+  @apply flex items-center justify-end flex-shrink-0;
+  @apply ml-2;
+  &.is-centered {
+    @apply md:flex-1;
+  }
+}
+
+.start-slot {
+  @apply flex items-center justify-end flex-shrink-0;
+  @apply ml-2;
   &.is-centered {
     @apply md:flex-1;
   }

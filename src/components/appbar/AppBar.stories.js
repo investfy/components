@@ -45,11 +45,11 @@ const Template = (args, { argTypes }) => ({
   setup: () => ({ args: { ...args } }),
 });
 
-export const Default = Template.bind({});
-Default.argTypes = {};
-
 export const Slots = Template.bind({});
 Slots.args = {
   start: "Start Slot",
   end: "End Slot",
 };
+
+export const Default = Template.bind({});
+Default.argTypes = {};
