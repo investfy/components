@@ -27,7 +27,7 @@
               <IfyIcon :icon="`arrow-${side}`" customClass="text-2xl" />
             </button>
           </div>
-          <slot name="content" />
+          <slot />
         </div>
       </div>
     </transition>

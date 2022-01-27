@@ -1,6 +1,6 @@
 <template>
-  <nav class="text-gray-100">
-    <p class="font-bold ml-4 my-8 uppercase text-xs text-gray-100" v-if="title">
+  <nav>
+    <p v-if="title" class="mb-8 font-bold uppercase text-xs">
       {{ title }}
     </p>
     <template v-if="$slots.default">

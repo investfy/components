@@ -19,6 +19,7 @@ export default {
     },
     active: {
       control: "boolean",
+      defaultValue: false,
     },
   },
 };
@@ -28,17 +29,9 @@ const Template = (args, { argTypes }) => ({
   components: {
     IfyDrawer,
   },
-  template: `<IfyDrawer v-bind="$props">
-      <template #content>
-      <div class="flex flex-col">
-        <p>Ponha teu conteúdo aqui.</p>
-        <div class="w-full py-1 flex flex-col"  >
-        <a href="https://www.google.com">Test href</a>
-        <a href="https://v2.tailwindcss.com/docs/flex-direction#column">Test href 2</a>
-        <button class="border border-gray-400 px-4 py-2 rounded">Some Button</button>
-        </div>
-        </div>
-        </template>
+  template: `
+    <IfyDrawer v-bind="$props">
+      <template v-if="${"content" in args}">${args.content}</template>
     </IfyDrawer>`,
 });
 

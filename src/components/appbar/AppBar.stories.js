@@ -39,6 +39,7 @@ const Template = (args, { argTypes }) => ({
   components: { IfyAppBar },
   props: Object.keys(argTypes),
   template: `<IfyAppBar v-bind="$props">
+    <template v-if="${"brand" in args}" #brand>${args.brand}</template>
     <template v-if="${"start" in args}" #start>${args.start}</template>
     <template v-if="${"end" in args}" #end>${args.end}</template>
   </IfyAppBar>`,
@@ -47,6 +48,7 @@ const Template = (args, { argTypes }) => ({
 
 export const Slots = Template.bind({});
 Slots.args = {
+  brand: "",
   start: "Start Slot",
   end: "End Slot",
 };
