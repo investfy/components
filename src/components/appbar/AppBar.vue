@@ -23,18 +23,12 @@
           </slot>
         </div>
 
-        <div
-          v-if="$slots.start"
-          :class="['start-slot', { 'is-centered': centered }]"
-        >
+        <div :class="['start-slot', { 'is-centered': centered }]">
           <!-- @slot Conteúdo exibido ao lado do logotipo ou centralizado caso a prop 'centered' esteja ativa. -->
           <slot name="start" />
         </div>
 
-        <div
-          v-if="$slots.end"
-          :class="['end-slot', { 'is-centered': centered }]"
-        >
+        <div :class="['end-slot', { 'is-centered': centered }]">
           <slot name="end" />
         </div>
       </div>
@@ -100,7 +94,7 @@ export default {
   @apply hidden mx-4 flex-grow md:flex;
 
   &.is-centered {
-    @apply mx-0 flex-shrink md:items-center md:justify-center;
+    @apply mx-0 flex-shrink md:items-center bg-yellow-200 md:justify-center;
     flex-grow: 2;
   }
 }
