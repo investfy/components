@@ -1,6 +1,5 @@
 <template>
   <section>
-    <h2 class="title">IfyLink</h2>
     <p>
       Nam magni deserunt enim error sequi totam ipsa nostrum! Hic accusantium
       aspernatur perspiciatis?
@@ -16,5 +15,7 @@
 </template>
 
 <script>
-export default { name: "Link" };
+export default {
+  name: "Link",
+};
 </script>
