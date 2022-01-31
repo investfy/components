@@ -1,53 +1,51 @@
 <template>
   <div id="app">
-    <IfyAppBar brand-link="/" class="mb-8">
-      <template #end>
-        <IfyProfileDropdown
-          name="John Doe"
-          subname="john.doe@example.com"
-          avatar="https://images.pexels.com/users/avatars/2417028/erik-mclean-965.jpeg?auto=compress&fit=crop&h=40&w=40"
-          :active.sync="isDropdownActive"
-        >
-          <IfyDropdownItem link="/appbar">AppBar</IfyDropdownItem>
-          <IfyDropdownItem link="/avatar">Avatar</IfyDropdownItem>
-          <IfyDropdownItem link="/drawer">Drawer</IfyDropdownItem>
-          <IfyDropdownItem link="/dropdown">Dropdown</IfyDropdownItem>
-          <IfyDropdownItem link="/icon">Icon</IfyDropdownItem>
-          <IfyDropdownItem link="/link">Link</IfyDropdownItem>
-          <IfyDropdownItem link="/logo">Logo</IfyDropdownItem>
-          <IfyDropdownItem link="/nav">Nav</IfyDropdownItem>
-          <IfyDropdownItem link="/profiledropdown"
-            >ProfileDropdown</IfyDropdownItem
-          >
-          <IfyDropdownItem link="/table">Table</IfyDropdownItem>
-          <IfyDropdownItem link="/tag">Tag</IfyDropdownItem>
-          <IfyDropdownItem separator />
-          <IfyDropdownItem link="/field">Field</IfyDropdownItem>
-          <IfyDropdownItem link="/input">Input</IfyDropdownItem>
-          <IfyDropdownItem link="/select">Select</IfyDropdownItem>
-        </IfyProfileDropdown>
-      </template>
-    </IfyAppBar>
+    <IfyDrawer :active.sync="isDrawerOpen">
+      <IfyNav title="Navegação">
+        <IfyNavItem v-for="route in routes" :key="route.name">
+          <IfyLink :to="route.path" @click.native="isDrawerOpen = false">{{
+            route.name
+          }}</IfyLink>
+        </IfyNavItem>
+      </IfyNav>
+    </IfyDrawer>
 
-    <div class="container px-2 md:px-0">
+    <div class="m-4">
+      <div class="p-4">
+        <button
+          type="button"
+          class="inline-block h-5 leading-5 text-gray-800"
+          @click="isDrawerOpen = true"
+        >
+          <IfyIcon icon="bars" />
+        </button>
+      </div>
       <RouterView />
     </div>
   </div>
 </template>
 
 <script>
+import { routes } from "./router/index";
+
 export default {
   name: "App",
 
   data() {
     return {
-      isDropdownActive: false,
+      isDrawerOpen: false,
     };
   },
 
-  watch: {
-    $route() {
-      this.isDropdownActive = false;
+  computed: {
+    routes() {
+      return routes
+        .filter((r) => Object.prototype.hasOwnProperty.call(r, "component"))
+        .sort((a, b) => {
+          const textA = a.name.toUpperCase();
+          const textB = b.name.toUpperCase();
+          return textA < textB ? -1 : textA > textB ? 1 : 0;
+        });
     },
   },
 };

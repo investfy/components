@@ -94,7 +94,7 @@ export default {
   @apply hidden mx-4 flex-grow md:flex;
 
   &.is-centered {
-    @apply mx-0 flex-shrink md:items-center bg-yellow-200 md:justify-center;
+    @apply mx-0 flex-shrink md:items-center md:justify-center;
     flex-grow: 2;
   }
 }

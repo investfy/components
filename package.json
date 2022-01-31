@@ -57,6 +57,7 @@
     "vue-good-table": "^2.21.11",
     "vue-loader": "^15.9.8",
     "vue-router": "^3.2.0",
+    "vue-simplebar": "^2.3.0",
     "vue-template-compiler": "^2.6.11"
   },
   "peerDependencies": {

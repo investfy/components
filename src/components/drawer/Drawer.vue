@@ -1,149 +1,174 @@
 <template>
-  <div>
-    <div
-      :class="[active ? 'shadowarea hidden md:flex' : null]"
-      @click="closeDrawer"
-    ></div>
-
-    <transition :name="`${side}-appear`">
-      <div
-        v-if="active"
-        :class="[
-          'sidenav',
-          'w-full',
-          'flex',
-          side === 'right' ? 'flex-row-reverse' : null,
-          computedSide,
-        ]"
-      >
-        <div
-          :class="['content', 'shadow-2xl', bgcolor ? `is-${bgcolor}` : null]"
-        >
-          <div
-            class="mb-5 flex md:hidden"
-            :class="[side === 'right' ? 'justify-end' : 'justify-start']"
-          >
-            <button class="p-4" @click="closeDrawer">
-              <IfyIcon :icon="`arrow-${side}`" customClass="text-2xl" />
+  <div
+    :class="[
+      'drawer',
+      type && `is-${type}`,
+      position && `is-${position}`,
+      active && 'is-active',
+    ]"
+  >
+    <div ref="overlay" class="drawer-overlay" @click="close" />
+    <div class="drawer-container">
+      <VueSimplebar class="h-full">
+        <div class="drawer-content">
+          <div class="drawer-close">
+            <button type="button" @click="close">
+              <IfyIcon icon="arrow-left" />
             </button>
           </div>
+
           <slot />
         </div>
-      </div>
-    </transition>
+      </VueSimplebar>
+    </div>
   </div>
 </template>
 
 <script>
+import "@/assets/css/vue-simplebar.css";
+import { VueSimplebar } from "vue-simplebar";
+
 export default {
   name: "IfyDrawer",
 
-  watch: {
-    active(newVal) {
-      if (newVal)
-        document.getElementsByTagName("body")[0].style.overflow = "hidden";
-      else document.getElementsByTagName("body")[0].style.overflow = "initial";
-    },
+  components: {
+    VueSimplebar,
   },
-  methods: {
-    closeDrawer() {
-      this.$emit("update:active", false);
-    },
-  },
+
   props: {
     active: {
       type: Boolean,
       default: false,
     },
-
-    side: {
+    type: {
+      type: String,
+      default: "light",
+      validator(str) {
+        return [
+          "white",
+          "light",
+          "dark",
+          "black",
+          "primary",
+          "success",
+          "warning",
+          "danger",
+          "info",
+        ].includes(str);
+      },
+    },
+    position: {
       type: String,
       default: "left",
       validator(str) {
-        return ["left", "right"].includes(str);
-      },
-    },
-    bgcolor: {
-      type: String,
-      default: "primary",
-      validator(str) {
-        return ["primary", "success", "warning", "danger", "info"].includes(
-          str
-        );
+        return ["top", "right", "bottom", "left"].includes(str);
       },
     },
   },
 
-  computed: {
-    computedSide() {
-      return this.side + "-0";
+  methods: {
+    close() {
+      this.$emit("update:active", false);
     },
   },
 };
 </script>
 
 <style lang="postcss" scoped>
-.right-appear-enter-active,
-.right-appear-leave-active,
-.left-appear-enter-active,
-.left-appear-leave-active {
-  transition: transform 300ms;
-}
+.drawer {
+  @apply relative z-50;
 
-.right-appear-enter,
-.right-appear-leave-to {
-  transform: translateX(100%);
-}
-
-.right-appear-leave,
-.right-appear-enter-to,
-.left-appear-leave,
-.left-appear-enter-to {
-  transform: translateX(0);
-}
-
-.left-appear-enter,
-.left-appear-leave-to {
-  transform: translateX(-100%);
-}
-
-.sidenav {
-  @apply bottom-0 top-0   h-full   absolute   overflow-x-hidden overflow-y-hidden
-  delay-75;
-}
-
-.content {
-  @apply w-full    h-screen   z-20;
-  box-shadow: 0 0 10px rgba(0 0 0 / 60%);
-}
-
-@media (min-width: 767px) {
-  .content {
-    width: 360px;
+  .drawer-overlay {
+    @apply hidden fixed z-10 left-0 right-0 top-0 bottom-0 bg-black bg-opacity-20 transition-all duration-200 ease-out;
   }
-}
+  &.is-active .drawer-overlay {
+    @apply block;
+  }
 
-.shadowarea {
-  @apply bg-gray-500 opacity-25
-   z-10
-   h-full w-full
-   absolute
-   inset-0;
-}
+  .drawer-container {
+    @apply bg-white block fixed z-20 transition-all duration-200 ease-out;
+    box-shadow: 0 8px 10px -5px rgb(0 0 0 / 20%),
+      0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%);
+  }
 
-.is-primary {
-  @apply text-white bg-brand;
-}
-.is-success {
-  @apply text-white bg-accent;
-}
-.is-warning {
-  @apply text-white bg-yellow-500;
-}
-.is-danger {
-  @apply text-white bg-red-600;
-}
-.is-info {
-  @apply text-white bg-indigo-500;
+  &.is-top .drawer-container {
+    @apply top-0 right-0 left-0 w-full h-1/2 md:h-96;
+    transform: translateY(calc(-100% - 40px)); /* 40px referentes à sombra */
+  }
+  &.is-top.is-active .drawer-container {
+    @apply transform translate-y-0;
+  }
+  &.is-right .drawer-container {
+    @apply top-0 right-0 bottom-0 w-full h-full md:w-96;
+    transform: translateX(calc(100% + 40px));
+  }
+  &.is-right.is-active .drawer-container {
+    @apply transform translate-x-0;
+  }
+  &.is-bottom .drawer-container {
+    @apply bottom-0 right-0 left-0 w-full h-1/2 md:h-96;
+    transform: translateY(calc(100% + 40px));
+  }
+  &.is-bottom.is-active .drawer-container {
+    @apply transform translate-y-0;
+  }
+  &.is-left .drawer-container {
+    @apply top-0 left-0 bottom-0 w-full h-full md:w-96;
+    transform: translateX(calc(-100% - 40px));
+  }
+  &.is-left.is-active .drawer-container {
+    @apply transform translate-x-0;
+  }
+
+  &.is-white .drawer-container {
+    @apply bg-white;
+  }
+  &.is-black .drawer-container {
+    @apply bg-black;
+  }
+  &.is-light .drawer-container {
+    @apply bg-gray-200;
+  }
+  &.is-dark .drawer-container {
+    @apply bg-gray-800;
+  }
+  &.is-primary .drawer-container {
+    @apply bg-brand-800;
+  }
+  &.is-success .drawer-container {
+    @apply bg-accent-600;
+  }
+  &.is-warning .drawer-container {
+    @apply bg-yellow-600;
+  }
+  &.is-danger .drawer-container {
+    @apply bg-red-600;
+  }
+  &.is-info .drawer-container {
+    @apply bg-indigo-600;
+  }
+
+  .drawer-close {
+    @apply px-2 pt-2 pb-0 md:hidden;
+
+    button {
+      @apply inline-flex justify-center items-center p-2 w-9 h-9 rounded-full
+        leading-none transition-colors hover:bg-black hover:bg-opacity-10;
+    }
+  }
+  &.is-top .drawer-close,
+  &.is-bottom .drawer-close {
+    @apply hidden;
+  }
+  &.is-dark .drawer-close button {
+    @apply hover:bg-white hover:bg-opacity-10;
+  }
+
+  .drawer-content {
+    @apply text-gray-800;
+  }
+  &.is-dark .drawer-content {
+    @apply text-gray-100;
+  }
 }
 </style>

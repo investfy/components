@@ -3,80 +3,84 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-const routes = [
+export const routes = [
   {
     path: "/",
-    name: "home",
-    component: () => import("../views/Home.vue"),
+    redirect: "/form",
   },
   {
     path: "/appbar",
-    name: "appbar",
+    name: "AppBar",
     component: () => import("../views/AppBar.vue"),
   },
   {
     path: "/avatar",
-    name: "avatar",
+    name: "Avatar",
     component: () => import("../views/Avatar.vue"),
   },
   {
     path: "/dropdown",
-    name: "dropdown",
+    name: "Dropdown",
     component: () => import("../views/Dropdown.vue"),
   },
   {
     path: "/drawer",
-    name: "drawer",
+    name: "Drawer",
     component: () => import("../views/Drawer.vue"),
   },
   {
+    path: "/form",
+    name: "Form",
+    component: () => import("../views/Form.vue"),
+  },
+  {
     path: "/icon",
-    name: "icon",
+    name: "Icon",
     component: () => import("../views/Icon.vue"),
   },
   {
     path: "/link",
-    name: "link",
+    name: "Link",
     component: () => import("../views/Link.vue"),
   },
   {
     path: "/logo",
-    name: "logo",
+    name: "Logo",
     component: () => import("../views/Logo.vue"),
   },
   {
     path: "/nav",
-    name: "nav",
+    name: "Nav",
     component: () => import("../views/Nav.vue"),
   },
   {
     path: "/profiledropdown",
-    name: "profiledropdown",
+    name: "ProfileDropdown",
     component: () => import("../views/ProfileDropdown.vue"),
   },
   {
     path: "/table",
-    name: "table",
+    name: "Table",
     component: () => import("../views/Table.vue"),
   },
   {
     path: "/tag",
-    name: "tag",
+    name: "Tag",
     component: () => import("../views/Tag.vue"),
   },
   {
     path: "/field",
-    name: "field",
+    name: "Field",
     component: () => import("../views/Field.vue"),
   },
   {
     path: "/input",
-    name: "input",
+    name: "Input",
     component: () => import("../views/Input.vue"),
   },
   {
     path: "/select",
-    name: "select",
+    name: "Select",
     component: () => import("../views/Select.vue"),
   },
 ];
