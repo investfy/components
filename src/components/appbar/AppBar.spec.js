@@ -1,51 +1,56 @@
-import { shallowMount, mount } from "@vue/test-utils";
-import Navbar from "./Navbar.vue";
+import { shallowMount, mount, RouterLinkStub } from "@vue/test-utils";
+import AppBar from "./AppBar.vue";
 
-describe("Navbar.vue", () => {
+describe("AppBar.vue", () => {
   it("deve possuir o link", () => {
-    const brandLink =
-      "horizontalhttps://vuejs.org/v2/guide/instance.html#Creating-a-Vue-Instance";
-
-    const wrapper = shallowMount(Navbar, {
+    const brandLink = "/forum";
+    const wrapper = shallowMount(AppBar, {
+      stubs: {
+        RouterLink: RouterLinkStub,
+      },
       propsData: {
         brandLink,
       },
     });
-
-    const image = wrapper.find("a");
-    expect(image.attributes("href")).toBe(brandLink);
+    expect(wrapper.findComponent(RouterLinkStub).props().to).toBe(brandLink);
   });
 
-  it("deve possuir classes mx-auto e ml-4", () => {
+  it("slot #start deve estar centralizado", () => {
     const centered = true;
 
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         centered,
       },
+      slots: {
+        start: '<div class="fake-msg"></div>',
+      },
     });
 
-    expect(wrapper.find(".ml-4").exists()).toBe(true);
-    expect(wrapper.find(".mx-auto").exists()).toBe(true);
+    const startSlot = wrapper.find(".start-slot");
+    expect(startSlot.classes().includes("is-centered")).toBe(true);
   });
 
-  it("deve possuir classes mr-auto e ml-auto", () => {
+  it("o start slot não deve estar centralizado", () => {
     const centered = false;
 
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         centered,
       },
+      slots: {
+        start: '<div class="fake-msg"></div>',
+      },
     });
 
-    expect(wrapper.find(".mr-auto").exists()).toBe(true);
-    expect(wrapper.find(".ml-auto").exists()).toBe(true);
+    const startSlot = wrapper.find(".start-slot");
+    expect(startSlot.classes().includes("is-centered")).toBe(false);
   });
 
   it("deve possuir classe container", () => {
     const full = false;
 
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         full,
       },
@@ -56,7 +61,7 @@ describe("Navbar.vue", () => {
   it("não deve possuir classe container", () => {
     const full = true;
 
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         full,
       },
@@ -67,7 +72,7 @@ describe("Navbar.vue", () => {
   it("deve possuir classe shadow-md", () => {
     const shadow = true;
 
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         shadow,
       },
@@ -77,7 +82,7 @@ describe("Navbar.vue", () => {
 
   it("não deve possuir classe shadow-md", () => {
     const shadow = false;
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         shadow,
       },
@@ -88,7 +93,7 @@ describe("Navbar.vue", () => {
   it("Não deve possuir classe bg-white", () => {
     const transparent = true;
 
-    const wrapper = shallowMount(Navbar, {
+    const wrapper = shallowMount(AppBar, {
       propsData: {
         transparent,
       },
@@ -98,7 +103,7 @@ describe("Navbar.vue", () => {
 
   test("não deve possuir classe bg-white", () => {
     const transparent = false;
-    const wrapper = mount(Navbar, {
+    const wrapper = mount(AppBar, {
       propsData: {
         transparent,
       },
