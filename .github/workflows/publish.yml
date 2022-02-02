@@ -1,13 +1,14 @@
-name: Publicação da biblioteca de componentes
+name: Testes e publicação da biblioteca
 
 on:
   push:
     branches:
       - master
+      - customizacao-header
 
 jobs:
-  publish:
-    name: Release
+  tests:
+    name: Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -24,14 +25,64 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install and Build
+      - name: Install dependencies
         run: |
           echo "//npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
           npm install
-          npm run build
 
-      - name: Release
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Run tests
+        run: npm run test
+
+  # build:
+  #   name: Build
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - uses: actions/checkout@v2
+
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: '16'
+
+  #     - uses: actions/cache@v2
+  #       with:
+  #         path: ~/.npm
+  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-
+
+  #     - name: Install and Build
+  #       run: |
+  #         echo "//npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
+  #         npm install
+  #         npm run build
+
+  # release:
+  #   name: Release
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - uses: actions/checkout@v2
+
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: '16'
+
+  #     - uses: actions/cache@v2
+  #       with:
+  #         path: ~/.npm
+  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-
+
+  #     - name: Install and Build
+  #       run: |
+  #         echo "//npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
+  #         npm install
+  #         npm run build
+
+  #     - name: Release
+  #       run: npx semantic-release
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
