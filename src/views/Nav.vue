@@ -1,215 +1,96 @@
 <template>
   <div>
-    <section class="flex pt-5 flex-wrap ">
-      <div class="mr-2 w-50">
-        <h2>IfyNav List simple In Dark</h2>
-        <div class="bg-blue">
-          <IfyNav isDark :items="navLinkItems" />
-        </div>
+    <IfyField class="mb-4">
+      Fundo escuro: <input type="checkbox" v-model="bgDark" />
+    </IfyField>
+
+    <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+      <div :class="['py-2', bgDark && 'bg-brand']">
+        <IfyNav
+          title="Exemplo com lista simples"
+          :items="['Item 1', 'Item 2', 'Item 3', 'Item 4']"
+          :light="bgDark"
+        />
       </div>
 
-      <div class="mr-2 w-50">
-        <h2>IfyNav List simple In Light</h2>
-        <div>
-          <IfyNav :items="navLinkItems" />
-        </div>
-      </div>
-    </section>
+      <div :class="['py-2', bgDark && 'bg-brand']">
+        <IfyNav title="Exemplo com slot" :light="bgDark">
+          <IfyNavItem>Item 1</IfyNavItem>
+          <IfyNavItem>Item 2</IfyNavItem>
+          <IfyNavItem link="field">Link</IfyNavItem>
+          <IfyNavItem clickable @click="onClick">Clickable</IfyNavItem>
+          <IfyNavItem>Separador abaixo</IfyNavItem>
+          <IfyNavItem separator />
+          <IfyNavItem link="https://google.com">
+            <template #start>
+              <IfyIcon icon="user" />
+            </template>
+            Slot com link
+          </IfyNavItem>
+          <IfyNavItem>
+            <template #start>
+              <IfyAvatar
+                src="https://res.cloudinary.com/css-tricks/image/upload/c_scale,f_auto,q_auto,w_300/v1593634177/mailchimp_vcd4pk.png"
+              />
+            </template>
 
-    <hr class="divide-x-4 my-4" />
-    <section>
-      <div class="flex flex-wrap">
-        <div class="bg-blue w-full md:w-80">
-          <h2>IfyNav bg dark</h2>
-          <IfyNav isDark title="IfyNav Titulo" :items="navLinkItems">
-            <IfyNavItem isDark> A Estes são IfyNavItem's isdark</IfyNavItem>
-            <IfyNavItem isDark>IfyNavItem possuem 3 slots:</IfyNavItem>
-            <IfyNavItem isDark>start, default e end</IfyNavItem>
-            <IfyNavItem isDark> A props centered altera o default</IfyNavItem>
-            <IfyNavItem isDark clickable
-              >Este IfyNavItem é clickável</IfyNavItem
+            <em style="color: #009688"
+              >Texto longo <strong>formatado</strong> consectetur adipisicing
+              elit</em
             >
-            <IfyNavItem isDark centered>Estes possui centered</IfyNavItem>
-            <IfyNavItem isDark>Separador abaixo</IfyNavItem>
 
-            <IfyNavItem separator />
-
-            <IfyNavItem isDark centered>
+            <template #end>
               <IfyAvatar
-                slot="start"
                 src="https://res.cloudinary.com/css-tricks/image/upload/c_scale,f_auto,q_auto,w_300/v1593634177/mailchimp_vcd4pk.png"
-                title=""
-                size="sm"
-                class="mr-2"
               />
-              <div>111111</div>
-              <div class="rounded h-9 w-9 bg-indigo-100" slot="end"></div>
-            </IfyNavItem>
+            </template>
+          </IfyNavItem>
 
-            <IfyNavItem  centered isDark>
-              <IfyAvatar
-                slot="start"
-                src="https://res.cloudinary.com/css-tricks/image/upload/c_scale,f_auto,q_auto,w_300/v1593634177/mailchimp_vcd4pk.png"
-                title=""
-                size="sm"
-                class="mr-2"
-              />
-              <div>not Centro Dark </div>
-             <div class="rounded h-9 w-9 bg-indigo-100" slot="end"></div>
-            </IfyNavItem>
+          <IfyNavItem clickable @click="onClick">
+            <template #start>
+              <IfyIcon icon="envelope" size="xl" />
+            </template>
+            <div style="text-align: center">
+              <IfyIcon icon="envelope" size="xl" />
+            </div>
+            <template #end>
+              <IfyIcon icon="envelope" size="xl" />
+            </template>
+          </IfyNavItem>
 
-            <IfyNavItem isDark clickable>
-              <IfyAvatar
-                slot="start"
-                src="https://img2.gratispng.com/20180702/pt/kisspng-the-king-of-fighters-maximum-impact-kof-maximum-5b3a30ddd007c7.9281114115305402538521.jpg"
-                title=""
-                size="sm"
-                class="mr-2"
-              />
-              <p slot="default">KOF MI clickable</p>
-            </IfyNavItem>
+          <IfyNavItem>
+            <IfyAvatar
+              slot="start"
+              src="https://img2.gratispng.com/20180702/pt/kisspng-the-king-of-fighters-maximum-impact-kof-maximum-5b3a30ddd007c7.9281114115305402538521.jpg"
+            />
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          </IfyNavItem>
 
-            <IfyNavItem isDark>
-              <IfyAvatar
-                slot="start"
-                src="https://img2.gratispng.com/20180702/pt/kisspng-the-king-of-fighters-maximum-impact-kof-maximum-5b3a30ddd007c7.9281114115305402538521.jpg"
-                title=""
-                size="sm"
-                class="mr-2"
-              />
-              <p slot="default">KOF MI rules not</p>
-              <div class="rounded h-9 w-9 bg-indigo-500" slot="end"></div>
-            </IfyNavItem>
-
-            <IfyNavItem isDark centered>
-              <IfyAvatar
-                slot="start"
-                src="https://res.cloudinary.com/css-tricks/image/upload/c_scale,f_auto,q_auto,w_300/v1593634177/mailchimp_vcd4pk.png"
-                title=""
-                size="sm"
-                class="mr-2"
-              />
-              <p>Start, Centro e End Slots</p>
-              <div class="rounded h-9 w-9 bg-indigo-100" slot="end"></div>
-            </IfyNavItem>
-          </IfyNav>
-        </div>
-
-        <div class="ml-6 w-50 border-2 border-gray-600">
-          <h2>IfyNav bg light</h2>
-          <IfyNav title="IfyNav Titulo" :items="navLinkItems">
-            <IfyNavItem> c Estes são IfyNavItem's</IfyNavItem>
-            <IfyNavItem>IfyNavItem possuem 3 slots:</IfyNavItem>
-            <IfyNavItem>start, default e end</IfyNavItem>
-            <IfyNavItem>A props centered altera o default</IfyNavItem>
-            <IfyNavItem clickable>Este IfyNavItem é clickável</IfyNavItem>
-            <IfyNavItem centered>Estes possui centered</IfyNavItem>
-            <IfyNavItem>Separador abaixo</IfyNavItem>
-
-            <IfyNavItem separator />
-
-            <IfyNavItem centered>
-              <IfyAvatar
-                slot="start"
-                src="https://res.cloudinary.com/css-tricks/image/upload/c_scale,f_auto,q_auto,w_300/v1593634177/mailchimp_vcd4pk.png"
-                title=""
-                size="sm"
-                class="mr-2"
-              />
-              <p>Texto centro B</p>
-            </IfyNavItem>
-
-            <IfyNavItem>
-              <IfyAvatar
-                slot="start"
-                src="https://res.cloudinary.com/css-tricks/image/upload/c_scale,f_auto,q_auto,w_300/v1593634177/mailchimp_vcd4pk.png"
-                title=""
-                size="sm"
-                class="mr-2"
-              />
-              <p>not Centro</p>
-              <IfyAvatar
-                slot="end"
-                src="https://res.cloudinary.com/css-tricks/image/upload/c_scale,f_auto,q_auto,w_300/v1593634177/mailchimp_vcd4pk.png"
-                title=""
-                size="sm"
-                class="mr-2"
-              />
-            </IfyNavItem>
-
-            <IfyNavItem clickable>
-              <IfyAvatar
-                slot="start"
-                src="https://img2.gratispng.com/20180702/pt/kisspng-the-king-of-fighters-maximum-impact-kof-maximum-5b3a30ddd007c7.9281114115305402538521.jpg"
-                title=""
-                size="sm"
-                class="mr-2"
-              />
-              <p slot="default">KOF MI clickable</p>
-            </IfyNavItem>
-
-            <IfyNavItem>
-              <IfyAvatar
-                slot="start"
-                src="https://img2.gratispng.com/20180702/pt/kisspng-the-king-of-fighters-maximum-impact-kof-maximum-5b3a30ddd007c7.9281114115305402538521.jpg"
-                title=""
-                size="sm"
-                class="mr-2"
-              />
-              <p slot="default">KOF MI rules not</p>
-              <div class="rounded h-9 w-9 bg-indigo-500" slot="end"></div>
-            </IfyNavItem>
-
-            <IfyNavItem centered>
-              <IfyAvatar
-                slot="start"
-                src="https://res.cloudinary.com/css-tricks/image/upload/c_scale,f_auto,q_auto,w_300/v1593634177/mailchimp_vcd4pk.png"
-                title=""
-                size="sm"
-                class="mr-2"
-              />
-              <p>Start, Centro e End Slots</p>
-              <div class="rounded h-9 w-9 bg-indigo-100" slot="end"></div>
-            </IfyNavItem>
-          </IfyNav>
-        </div>
+          <IfyNavItem link="https://app.investfy.com">
+            <template #start>Lorem</template>
+            ipsum
+            <template #end>dolor sit amet</template>
+          </IfyNavItem>
+        </IfyNav>
       </div>
-    </section>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home",
+  name: "Nav",
 
   data() {
     return {
-      email: "email@example.com",
-      isDropdownActive: false,
-      showDrawerRight: false,
-      showDrawerLeft: false,
-      showDrawerBoxLeft: false,
-      showDrawerBoxRight: false,
-      showDrawerBoxRightWithNav: true,
-      navLinkItems: [
-        "Fontawesome 1 123456789456 45645645",
-        "Fontawesome 2",
-        "Fontawesome 3",
-        "Fontawesome 4",
-      ],
+      bgDark: false,
     };
   },
 
   methods: {
-    clearIconClick() {
-      this.email = "";
+    onClick() {
+      alert("Fui clicado!");
     },
   },
 };
 </script>
-
-<style lang="postcss" scoped>
-.title {
-  @apply pb-2 mb-4 border-b border-gray-200 text-2xl font-bold;
-}
-</style>
