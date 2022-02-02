@@ -1,92 +1,49 @@
-import { mount } from "@vue/test-utils";
-import Drawer from "./Drawer.vue";
+import { shallowMount } from "@vue/test-utils";
+import IfyDrawer from "./Drawer.vue";
 
-describe("Drawer.vue", () => {
-  it("drawer deve estar oculto à direita", () => {
-    const active = false;
-    const side = "right";
+let wrapper;
 
-    const wrapper = mount(Drawer, {
-      stubs: {
-        IfyIcon: { template: "<div> STUB ICON DIV </div>" },
-      },
+describe("IfyDrawer", () => {
+  beforeEach(() => {
+    wrapper = shallowMount(IfyDrawer, {
       propsData: {
-        active,
-        side,
+        active: true,
       },
     });
-
-    expect(wrapper.find(".shadowarea").exists()).toBe(false);
   });
 
-  it("drawer deve estar oculto à esquerda", () => {
-    const active = false;
-    const side = "left";
-
-    const wrapper = mount(Drawer, {
-      stubs: {
-        IfyIcon: { template: "<div> STUB ICON DIV </div>" },
-      },
-      propsData: {
-        active,
-        side,
-      },
-    });
-    expect(wrapper.find(".shadowarea").exists()).toBe(false);
+  it("deve estar visível na tela quando ativado", () => {
+    expect(wrapper.classes()).toContain("is-active");
   });
 
-  it("drawer da direita deve estar visível", async () => {
-    const active = true;
-    const side = "right";
-
-    const wrapper = mount(Drawer, {
-      stubs: {
-        IfyIcon: { template: "<div> STUB ICON DIV </div>" },
-      },
+  it("renderiza o conteúdo do slot padrão", () => {
+    const html = `<div>Lorem ipsum</div>`;
+    const wrapper = shallowMount(IfyDrawer, {
       propsData: {
-        active,
-        side,
+        active: true,
+      },
+      slots: {
+        default: `<div>Lorem ipsum</div>`,
       },
     });
-
-    expect(wrapper.find(".shadowarea").exists()).toBe(true);
-    expect(wrapper.find(`.${side}-0`).exists()).toBe(true);
+    expect(wrapper.html()).toContain(html);
   });
 
-  it("drawer da esquerda deve estar visível", async () => {
-    const active = true;
-    const side = "left";
-
-    const wrapper = mount(Drawer, {
-      stubs: {
-        IfyIcon: { template: "<div> STUB ICON DIV </div>" },
-      },
-      propsData: {
-        active,
-        side,
-      },
-    });
-
-    expect(wrapper.find(".shadowarea").exists()).toBe(true);
-    expect(wrapper.find(`.${side}-0`).exists()).toBe(true);
+  it("renderiza a cor correta quando a prop 'type' é informada", async () => {
+    await wrapper.setProps({ type: "danger" });
+    expect(wrapper.classes()).toContain("is-danger");
   });
 
-  it("a cor de fundo deve ser classe danger", async () => {
-    const active = true;
-    const side = "left";
-    const bgcolor = "danger";
+  it("muda de posição na tela de acordo com a prop especificada", async () => {
+    await wrapper.setProps({ position: "top" });
+    expect(wrapper.classes()).toContain("is-top");
+  });
 
-    const wrapper = mount(Drawer, {
-      stubs: {
-        IfyIcon: { template: "<div> STUB ICON DIV </div>" },
-      },
-      propsData: {
-        active,
-        side,
-        bgcolor,
-      },
-    });
-
-    expect(wrapper.find(`.is-${bgcolor}`).exists()).toBe(true);
+  it("deve ficar invisível quado o botão de fechar for clicado", async () => {
+    const btn = wrapper.find(".drawer-close button");
+    expect(btn.exists()).toBeTruthy();
+    await btn.trigger("click");
+    expect(wrapper.emitted()["update:active"]).toBeTruthy();
+    expect(wrapper.classes()).not.toContain("is-active");
   });
 });

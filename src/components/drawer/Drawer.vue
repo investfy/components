@@ -4,7 +4,7 @@
       'drawer',
       type && `is-${type}`,
       position && `is-${position}`,
-      active && 'is-active',
+      isActive && 'is-active',
     ]"
   >
     <div ref="overlay" class="drawer-overlay" @click="close" />
@@ -26,12 +26,14 @@
 
 <script>
 import "@/assets/css/vue-simplebar.css";
+import IfyIcon from "../icon/Icon.vue";
 import { VueSimplebar } from "vue-simplebar";
 
 export default {
   name: "IfyDrawer",
 
   components: {
+    IfyIcon,
     VueSimplebar,
   },
 
@@ -66,9 +68,25 @@ export default {
     },
   },
 
+  data() {
+    return {
+      isActive: this.active,
+    };
+  },
+
+  watch: {
+    active: {
+      handler(active) {
+        this.isActive = active;
+      },
+      immediate: true,
+    },
+  },
+
   methods: {
     close() {
-      this.$emit("update:active", false);
+      this.isActive = false;
+      this.$emit("update:active", this.isActive);
     },
   },
 };
