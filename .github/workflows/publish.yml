@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - customizacao-header
 
 jobs:
   setup:
@@ -85,7 +84,7 @@ jobs:
         with:
           path: dist
           key: dist-${{ github.run_id }}-${{ github.run_number }}
-      - run: npx semantic-release --dry-run
+      - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
