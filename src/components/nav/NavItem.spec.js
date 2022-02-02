@@ -1,140 +1,44 @@
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import IfyNavItem from "./NavItem.vue";
+import IfyLink from "../link/Link.vue";
 
-describe("NavItem.vue", () => {
-  it("NavItem Deve renderizar um hr separador", () => {
-    const separator = true;
-    const clickable = false;
-    const centered = false;
+let wrapper;
 
-    const wrapper = mount(IfyNavItem, {
-      propsData: {
-        separator,
-        clickable,
-        centered,
-      },
-    });
-
-    expect(wrapper.find("hr").exists()).toBe(separator);
-  });
-
-  it("NavItem Deve não deve renderizar um hr separador", () => {
-    const separator = false;
-    const clickable = false;
-    const centered = false;
-
-    const wrapper = mount(IfyNavItem, {
-      propsData: {
-        separator,
-        clickable,
-        centered,
-      },
-    });
-
-    expect(wrapper.find("hr").exists()).toBe(separator);
-  });
-
-  it("NavItem Deve ser clicável", () => {
-    const separator = false;
-    const clickable = true;
-    const centered = false;
-
-    const wrapper = mount(IfyNavItem, {
-      propsData: {
-        separator,
-        clickable,
-        centered,
-      },
-    });
-
-    expect(wrapper.find(".clickable").exists()).toBe(clickable);
-  });
-
-  it("NavItem Não Deve ser clicável ", () => {
-    const separator = false;
-    const clickable = false;
-    const centered = false;
-
-    const wrapper = mount(IfyNavItem, {
-      propsData: {
-        separator,
-        clickable,
-        centered,
-      },
-    });
-
-    expect(wrapper.find(".clickable").exists()).toBe(false);
-  });
-
-  it("NavItem - o slot default deve estar centrtalizado ", () => {
-    const separator = false;
-    const clickable = false;
-    const centered = true;
-
-    const wrapper = mount(IfyNavItem, {
-      propsData: {
-        separator,
-        clickable,
-        centered,
-      },
-    });
-
-    expect(wrapper.find(".is-centered").exists()).toBe(centered);
-  });
-
-  it("NavItem o slot default não deve estar centrtalizado ", () => {
-    const separator = false;
-    const clickable = false;
-    const centered = null;
-
-    const wrapper = mount(IfyNavItem, {
-      propsData: {
-        separator,
-        clickable,
-        centered,
-      },
-    });
-
-    expect(wrapper.find(".is-centered").exists()).toBe(false);
-  });
-
-  it("NavItem Um slot start foi renderizado ", () => {
-    const separator = false;
-    const clickable = false;
-    const centered = null;
-
-    const wrapper = mount(IfyNavItem, {
-      propsData: {
-        separator,
-        clickable,
-        centered,
-      },
+describe("IfyNavItem", () => {
+  beforeEach(() => {
+    wrapper = shallowMount(IfyNavItem, {
       slots: {
-        start: `<div class="divslotstart"> DIVSLOT </div>`,
+        start: "Start",
+        default: `<span>Default</span>`,
+        end: `<i class="icon" />`,
+      },
+      stubs: {
+        IfyLink,
       },
     });
-
-    expect(wrapper.find(".start-slot").exists()).toBe(true);
-    expect(wrapper.find(".divslotstart").exists()).toBe(true);
   });
 
-  it("NavItem -Um slot end foi renderizado ", () => {
-    const separator = false;
-    const clickable = false;
-    const centered = null;
+  it("deve renderizar um item de lista", () => {
+    expect(wrapper.find("li").exists()).toBeTruthy();
+  });
 
-    const wrapper = mount(IfyNavItem, {
-      propsData: {
-        separator,
-        clickable,
-        centered,
-      },
-      slots: {
-        end: `<div class="divslotend"> DIVSLOT </div>`,
-      },
-    });
+  it("deve possuir 3 slots", () => {
+    expect(wrapper.text()).toBe("Start Default");
+    expect(wrapper.find(".icon").exists()).toBeTruthy();
+  });
 
-    expect(wrapper.find(".end-slot").exists()).toBe(true);
-    expect(wrapper.find(".divslotend").exists()).toBe(true);
+  it("pode ser um separador", async () => {
+    await wrapper.setProps({ separator: true });
+    expect(wrapper.find("hr").exists()).toBeTruthy();
+  });
+
+  it("pode possuir um link", async () => {
+    await wrapper.setProps({ link: "https://google.com" });
+    expect(wrapper.findComponent(IfyLink).exists()).toBeTruthy();
+  });
+
+  it("pode ser clicável", async () => {
+    await wrapper.setProps({ clickable: true });
+    expect(wrapper.find(".nav-clickable").exists()).toBeTruthy();
   });
 });

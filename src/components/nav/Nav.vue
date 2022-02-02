@@ -4,9 +4,14 @@
       title
     }}</component>
 
-    <ul>
+    <ul class="nav-list">
       <template v-if="$slots.default">
-        <slot />
+        <template v-if="this.$slots.default[0].tag !== 'li'">
+          <li class="nav-list-item"><slot /></li>
+        </template>
+        <template v-else>
+          <slot />
+        </template>
       </template>
       <IfyNavItem
         v-else-if="items.length"

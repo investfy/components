@@ -15,8 +15,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name ify-components ./src/index.js",
-    "test": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
+    "test": "npm run lint && npm run test:unit",
+    "test:unit": "jest --runInBand --u",
+    "test:watch": "npm run test:unit -- --watchAll",
     "storybook": "start-storybook --no-open -p 6006",
     "build-storybook": "build-storybook",
     "semantic-release": "semantic-release"
