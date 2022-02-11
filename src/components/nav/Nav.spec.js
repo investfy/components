@@ -49,4 +49,22 @@ describe("IfyNav", () => {
     await wrapper.setProps({ title, titleTag: "h1" });
     expect(wrapper.find("h1").text()).toContain(title);
   });
+
+  it("deve renderizar uma tag LI dentro da área do slot caso o conteúdo do slot não contenha", async () => {
+    let li;
+
+    // Sem tag LI
+    const firstWrapper = shallowMount(IfyNav, {
+      slots: { default: `<span>Default</span>` },
+    });
+    li = firstWrapper.find(".nav-list > li.nav-list-item");
+    expect(li.exists()).toBeTruthy();
+
+    // Com tag LI
+    const secondWrapper = shallowMount(IfyNav, {
+      slots: { default: `<li>Default</li>` },
+    });
+    li = secondWrapper.find(".nav-list > li.nav-list-item > li");
+    expect(li.exists()).not.toBeTruthy();
+  });
 });
