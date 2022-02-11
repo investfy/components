@@ -6,7 +6,12 @@
 
     <ul class="nav-list">
       <template v-if="$slots.default">
-        <template v-if="this.$slots.default[0].tag !== 'li'">
+        <template
+          v-if="
+            $slots.default[0].tag !== 'li' &&
+            !$slots.default[0].tag.includes('IfyNavItem')
+          "
+        >
           <li class="nav-list-item"><slot /></li>
         </template>
         <template v-else>
