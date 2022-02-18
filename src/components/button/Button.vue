@@ -150,9 +150,9 @@ export default {
 }
 
 .button {
-  @apply appearance-none inline-flex items-center justify-center bg-gray-100
-    border border-gray-200 text-gray-700 rounded-xs shadow-none text-base leading-6
-    h-10 py-2 px-4 relative align-top select-none cursor-pointer text-center whitespace-nowrap;
+  @apply appearance-none inline-flex items-center justify-center bg-gray-100 border
+    border-gray-200 text-gray-700 rounded shadow-none text-base leading-6 h-10 py-2 px-4
+    relative align-top select-none cursor-pointer text-center whitespace-nowrap;
 
   &.is-hovered,
   &:hover {
@@ -169,7 +169,8 @@ export default {
     @apply text-transparent pointer-events-none;
   }
   &.is-loading:after {
-    @apply block w-4 h-4 absolute border-2 border-gray-400 border-r-0 border-t-0 rounded-full animate-spin;
+    @apply block w-4 h-4 absolute border-2 border-gray-400 border-r-0 border-t-0 rounded-full
+      animate-spin;
     content: "";
     left: calc(50% - 0.5em);
     top: calc(50% - 0.5em);
@@ -199,20 +200,18 @@ export default {
   }
 
   &.is-light {
-    @apply bg-gray-100 border-transparent text-gray-600
-    focus:shadow-sm hover:bg-gray-200;
+    @apply bg-gray-100 border-transparent text-gray-600 focus:shadow-sm hover:bg-gray-200;
   }
   &.is-dark {
-    @apply bg-gray-700 border-transparent text-white
-    focus:shadow-sm hover:bg-gray-800;
+    @apply bg-gray-700 border-transparent text-white focus:shadow-sm hover:bg-gray-800;
   }
   &.is-text {
-    @apply bg-transparent border-transparent text-gray-600 underline
-    focus:bg-gray-100 focus:text-gray-700 hover:bg-gray-100 hover:text-gray-700;
+    @apply bg-transparent border-transparent text-gray-600 underline focus:bg-gray-100
+      focus:text-gray-700 hover:bg-gray-100 hover:text-gray-700;
   }
   &.is-ghost {
-    @apply bg-none bg-transparent border-transparent text-brand-600 no-underline
-    focus:shadow-sm hover:text-brand hover:underline;
+    @apply bg-none bg-transparent border-transparent text-brand-600 no-underline focus:shadow-sm
+      hover:text-brand hover:underline;
   }
 
   &.is-primary {
