@@ -16,6 +16,7 @@ jobs:
           key: node_modules-${{ hashFiles('package-lock.json') }}
       - if: steps.cache.outputs.cache-hit != 'true'
         run: |
+          ${{ toJSON(steps) }}
           echo "//npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
           npm ci
 
