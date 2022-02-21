@@ -284,8 +284,8 @@ export default {
 }
 
 .is-static {
-  @apply appearance-none flex items-center justify-center align-top h-10 px-4 py-2
-    bg-gray-100 border border-gray-300 rounded-xs text-gray-500 text-center whitespace-nowrap
+  @apply appearance-none flex items-center justify-center align-top h-10 px-4 py-2 bg-gray-100
+    border border-gray-300 rounded text-gray-500 text-center whitespace-nowrap
     pointer-events-none cursor-pointer select-none;
 }
 </style>

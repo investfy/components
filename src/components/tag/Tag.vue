@@ -34,7 +34,8 @@ export default {
   @apply mb-2 mr-2 last:mr-0;
 }
 .tag {
-  @apply inline-flex items-center justify-center bg-gray-100 rounded-xs h-6 px-3 text-gray-600 text-xs leading-6 whitespace-nowrap;
+  @apply inline-flex items-center justify-center bg-gray-100 rounded h-6 px-3 text-gray-600
+    text-xs leading-6 whitespace-nowrap;
 }
 
 .tag.is-xs {
