@@ -10,7 +10,7 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - run: echo '${{ github.pusher.name }} ${{ github.pusher.email }}'
+      - run: echo '${{ github.event.pusher.name }} ${{ github.event.pusher.email }}'
   #     - uses: actions/checkout@v2
   #     - uses: actions/setup-node@v2
   #       with:
