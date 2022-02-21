@@ -46,4 +46,4 @@ jobs:
         with:
           path: node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
-      - run: npm run test:unit
+      - run: npm run test

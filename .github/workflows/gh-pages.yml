@@ -1,4 +1,4 @@
-name: Storybook
+name: Docs
 
 on:
   push:
@@ -22,10 +22,10 @@ jobs:
       - name: Install and Build
         run: |
           npm install
-          npm run build-storybook
+          npm run build:docs
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
-          folder: storybook-static
+          folder: dist
