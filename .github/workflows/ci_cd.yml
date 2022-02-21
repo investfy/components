@@ -15,16 +15,13 @@ jobs:
         with:
           node-version: 16
       - uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-      - run: |
+          path: node_modules
+          key: node_modules-${{ hashFiles('package-lock.json') }}
+      - if: steps.cache.outputs.cache-hit != 'true'
+        run: |
           echo "//npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
-          npm install
+          npm ci
 
   lint:
     needs: setup
