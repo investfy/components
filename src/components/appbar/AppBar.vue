@@ -82,16 +82,16 @@ export default {
   },
 
   created() {
-    if (process.client)
+    if (typeof window !== "undefined")
       window.addEventListener("resize", this.calculateScreenWidth);
   },
 
   mounted() {
-    if (process.client) this.calculateScreenWidth();
+    if (typeof window !== "undefined") this.calculateScreenWidth();
   },
 
   destroyed() {
-    if (process.client)
+    if (typeof window !== "undefined")
       window.removeEventListener("resize", this.calculateScreenWidth);
   },
 
