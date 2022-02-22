@@ -87,7 +87,7 @@ export default {
   },
 
   mounted() {
-    if (typeof window !== "undefined") this.calculateScreenWidth();
+    this.calculateScreenWidth();
   },
 
   destroyed() {
@@ -97,7 +97,11 @@ export default {
 
   methods: {
     calculateScreenWidth() {
-      this.logoOrientation = window.innerWidth >= 1024 ? "horizontal" : "mini";
+      if (typeof window !== "undefined") {
+        this.logoOrientation = window.innerWidth >= 1024 ? "horizontal" : "mini";
+      } else {
+        this.logoOrientation = "mini";
+      }
     },
   },
 };
