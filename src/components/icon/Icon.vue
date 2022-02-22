@@ -25,6 +25,9 @@ export default {
     size: {
       type: String,
       default: null,
+      validator(str) {
+        return ["xs", "sm", "md", "lg", "xl"].includes(str);
+      },
     },
     customClass: {
       type: String,
