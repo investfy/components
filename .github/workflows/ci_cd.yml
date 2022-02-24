@@ -48,9 +48,28 @@ jobs:
           key: node_modules-${{ hashFiles('package-lock.json') }}
       - run: npm run test
 
+  docs:
+    needs: [lint, test]
+    if: success() && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('package-lock.json') }}
+      - run: npm run build:docs
+      - uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages
+          folder: docs
+
   build:
     needs: [lint, test]
-    if: github.ref == 'refs/heads/master'
+    if: success() && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
