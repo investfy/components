@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunk_investfy_components"]=self["webpackChunk_investfy_components"]||[]).push([[195],{4195:function(n,e,t){t.r(e),t.d(e,{default:function(){return f}});var u=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div")},l=[],r={name:"ProfileDropdown"},s=r,o=t(1001),c=(0,o.Z)(s,u,l,!1,null,null,null),f=c.exports}}]);
+//# sourceMappingURL=195.af555427.js.map

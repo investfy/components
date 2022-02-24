@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunk_investfy_components"]=self["webpackChunk_investfy_components"]||[]).push([[505],{4505:function(n,e,t){t.r(e),t.d(e,{default:function(){return i}});var u=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div")},l=[],s={name:"Field"},c=s,r=t(1001),f=(0,r.Z)(c,u,l,!1,null,null,null),i=f.exports}}]);
+//# sourceMappingURL=505.4a5cfb30.js.map
