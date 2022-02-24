@@ -1,32 +1,22 @@
 name: Docs
 
-on:
-  push:
-    branches:
-      - master
+on: push
 
 jobs:
-  build-and-deploy:
-    name: Build and Deploy
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - uses: actions/cache@v2
+      - uses: actions/setup-node@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install and Build
+          node-version: 16
+      - uses: actions/cache@v2
+        id: cache-node-modules
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('package-lock.json') }}
+      - if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: |
           echo "//npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
           npm ci
           npm run build:docs
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: gh-pages
-          folder: dist
