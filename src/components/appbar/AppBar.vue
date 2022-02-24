@@ -98,7 +98,8 @@ export default {
   methods: {
     calculateScreenWidth() {
       if (typeof window !== "undefined") {
-        this.logoOrientation = window.innerWidth >= 1024 ? "horizontal" : "mini";
+        this.logoOrientation =
+          window.innerWidth >= 1024 ? "horizontal" : "mini";
       } else {
         this.logoOrientation = "mini";
       }
