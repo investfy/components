@@ -19,4 +19,8 @@ jobs:
         run: |
           echo "//npm.pkg.github.com/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
           npm ci
-          npm run build:docs
+      - run: npm run build:docs
+      - uses: JamesIves/github-pages-deploy-action@4.2.5
+        with:
+          branch: gh-pages
+          folder: docs
