@@ -18,7 +18,7 @@ export default {
       type: String,
       default: "colored",
       validator(str) {
-        return ["colored", "white", "mono"].includes(str);
+        return ["colored", "inverted", "white", "black"].includes(str);
       },
     },
     description: {

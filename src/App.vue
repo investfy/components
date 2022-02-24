@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <IfyDrawer :active.sync="isDrawerOpen">
-      <IfyNav title="Navegação">
+      <IfyNav title="Navegação" class="py-4">
         <IfyNavItem v-for="route in routes" :key="route.name">
           <IfyLink :to="route.path" @click.native="isDrawerOpen = false">{{
             route.name
