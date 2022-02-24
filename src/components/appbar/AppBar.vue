@@ -16,7 +16,7 @@
               class="flex items-center h-14"
             >
               <IfyLogo
-                :orientation="screenWidth"
+                :orientation="logoOrientation"
                 class="w-auto h-6 lg:h-8 block"
               />
             </component>
@@ -75,9 +75,34 @@ export default {
     },
   },
 
-  computed: {
-    screenWidth() {
-      return window.innerWidth >= 1024 ? "horizontal" : "mini";
+  data() {
+    return {
+      logoOrientation: "mini",
+    };
+  },
+
+  created() {
+    if (typeof window !== "undefined")
+      window.addEventListener("resize", this.calculateScreenWidth);
+  },
+
+  mounted() {
+    this.calculateScreenWidth();
+  },
+
+  destroyed() {
+    if (typeof window !== "undefined")
+      window.removeEventListener("resize", this.calculateScreenWidth);
+  },
+
+  methods: {
+    calculateScreenWidth() {
+      if (typeof window !== "undefined") {
+        this.logoOrientation =
+          window.innerWidth >= 1024 ? "horizontal" : "mini";
+      } else {
+        this.logoOrientation = "mini";
+      }
     },
   },
 };
