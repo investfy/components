@@ -1,22 +1,11 @@
 <template>
   <div
-    :class="[
-      'drawer',
-      type && `is-${type}`,
-      position && `is-${position}`,
-      isActive && 'is-active',
-    ]"
+    :class="['drawer', position && `is-${position}`, isActive && 'is-active']"
   >
     <div ref="overlay" class="drawer-overlay" @click="close" />
-    <div class="drawer-container">
+    <div :class="['drawer-container', customClass]">
       <VueSimplebar class="h-full">
         <div class="drawer-content">
-          <div class="drawer-close">
-            <button type="button" @click="close">
-              <IfyIcon icon="arrow-left" />
-            </button>
-          </div>
-
           <slot />
         </div>
       </VueSimplebar>
@@ -26,14 +15,12 @@
 
 <script>
 import "@/assets/css/vue-simplebar.css";
-import IfyIcon from "../icon/Icon.vue";
 import { VueSimplebar } from "vue-simplebar";
 
 export default {
   name: "IfyDrawer",
 
   components: {
-    IfyIcon,
     VueSimplebar,
   },
 
@@ -42,29 +29,16 @@ export default {
       type: Boolean,
       default: false,
     },
-    type: {
-      type: String,
-      default: "light",
-      validator(str) {
-        return [
-          "white",
-          "light",
-          "dark",
-          "black",
-          "primary",
-          "success",
-          "warning",
-          "danger",
-          "info",
-        ].includes(str);
-      },
-    },
     position: {
       type: String,
       default: "left",
       validator(str) {
         return ["top", "right", "bottom", "left"].includes(str);
       },
+    },
+    customClass: {
+      type: String,
+      default: "",
     },
   },
 
@@ -83,7 +57,20 @@ export default {
     },
   },
 
+  created() {
+    if (typeof document !== "undefined")
+      document.addEventListener("keyup", this.escapeHandler);
+  },
+
+  destroyed() {
+    if (typeof document !== "undefined")
+      document.removeEventListener("keyup", this.escapeHandler);
+  },
+
   methods: {
+    escapeHandler(e) {
+      if (e.keyCode === 27) this.close();
+    },
     close() {
       this.isActive = false;
       this.$emit("update:active", this.isActive);
@@ -136,57 +123,6 @@ export default {
   }
   &.is-left.is-active .drawer-container {
     @apply transform translate-x-0;
-  }
-
-  &.is-white .drawer-container {
-    @apply bg-white;
-  }
-  &.is-black .drawer-container {
-    @apply bg-black;
-  }
-  &.is-light .drawer-container {
-    @apply bg-gray-200;
-  }
-  &.is-dark .drawer-container {
-    @apply bg-gray-800;
-  }
-  &.is-primary .drawer-container {
-    @apply bg-brand-800;
-  }
-  &.is-success .drawer-container {
-    @apply bg-accent-600;
-  }
-  &.is-warning .drawer-container {
-    @apply bg-yellow-600;
-  }
-  &.is-danger .drawer-container {
-    @apply bg-red-600;
-  }
-  &.is-info .drawer-container {
-    @apply bg-indigo-600;
-  }
-
-  .drawer-close {
-    @apply px-2 pt-2 pb-0 md:hidden;
-
-    button {
-      @apply inline-flex justify-center items-center p-2 w-9 h-9 rounded-full
-        leading-none transition-colors hover:bg-black hover:bg-opacity-10;
-    }
-  }
-  &.is-top .drawer-close,
-  &.is-bottom .drawer-close {
-    @apply hidden;
-  }
-  &.is-dark .drawer-close button {
-    @apply hover:bg-white hover:bg-opacity-10;
-  }
-
-  .drawer-content {
-    @apply text-gray-800;
-  }
-  &.is-dark .drawer-content {
-    @apply text-gray-100;
   }
 }
 </style>

@@ -29,21 +29,25 @@ describe("IfyDrawer", () => {
     expect(wrapper.html()).toContain(html);
   });
 
-  it("renderiza a cor correta quando a prop 'type' é informada", async () => {
-    await wrapper.setProps({ type: "danger" });
-    expect(wrapper.classes()).toContain("is-danger");
-  });
-
   it("muda de posição na tela de acordo com a prop especificada", async () => {
     await wrapper.setProps({ position: "top" });
     expect(wrapper.classes()).toContain("is-top");
   });
 
-  it("deve ficar invisível quado o botão de fechar for clicado", async () => {
-    const btn = wrapper.find(".drawer-close button");
-    expect(btn.exists()).toBeTruthy();
-    await btn.trigger("click");
-    expect(wrapper.emitted()["update:active"]).toBeTruthy();
-    expect(wrapper.classes()).not.toContain("is-active");
+  it("deve ficar invisível quado o botão ESC for pressionado", async () => {
+    const localWrapper = shallowMount(IfyDrawer, {
+      attachTo: document.body,
+      propsData: {
+        active: true,
+      },
+    });
+    await localWrapper.trigger("keyup.esc");
+    expect(localWrapper.emitted()["update:active"]).toBeTruthy();
+    expect(localWrapper.classes()).not.toContain("is-active");
+  });
+
+  it("pode ter classes customizadas para o container", async () => {
+    await wrapper.setProps({ customClass: "bg-black" });
+    expect(wrapper.find(".drawer-container.bg-black").exists()).toBeTruthy();
   });
 });
