@@ -150,7 +150,7 @@
 
 <script>
 export default {
-  name: "Home",
+  name: "FormPage",
 
   data() {
     return {

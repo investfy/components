@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: "Navbar",
+  name: "AppBarPage",
 
   data() {
     return {
