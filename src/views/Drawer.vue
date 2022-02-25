@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: "DrawerPage",
+  name: "Drawer",
 
   data() {
     return {

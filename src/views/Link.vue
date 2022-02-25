@@ -16,6 +16,6 @@
 
 <script>
 export default {
-  name: "LinkPage",
+  name: "Link",
 };
 </script>

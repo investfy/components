@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: "LogoPage",
+  name: "Logo",
 
   data() {
     return {
