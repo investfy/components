@@ -57,4 +57,4 @@ library.add([
   faUserCircle,
 ]);
 
-Vue.component("Fa", FontAwesomeIcon);
+Vue.component("FontAwesomeIcon", FontAwesomeIcon);

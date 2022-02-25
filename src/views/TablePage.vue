@@ -8,7 +8,7 @@
 const rows = require("@/data/sample.json");
 
 export default {
-  name: "Table",
+  name: "TablePage",
 
   computed: {
     columns() {

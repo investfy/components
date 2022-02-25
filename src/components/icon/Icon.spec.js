@@ -10,7 +10,7 @@ describe("IfyIcon", () => {
         icon: "camera",
       },
       stubs: {
-        Fa: { template: "<i />" },
+        FontAwesomeIcon: { template: "<i />" },
       },
     });
   });

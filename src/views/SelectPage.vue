@@ -161,6 +161,8 @@
 const data = require("@/data/sample.json");
 
 export default {
+  name: "SelectPage",
+
   data() {
     return {
       data,

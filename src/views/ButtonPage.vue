@@ -1,6 +1,5 @@
 <template>
   <section>
-    <h2 class="title">IfyButton</h2>
     <div class="md:w-1/2 lg:w-1/3 mx-auto mt-4">
       <IfyButtonsGroup>
         <IfyButton type="primary">Primary</IfyButton>
@@ -75,6 +74,6 @@
 
 <script>
 export default {
-  name: "Button",
+  name: "ButtonPage",
 };
 </script>
