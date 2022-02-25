@@ -1,5 +1,6 @@
 <template>
-  <img :src="filename" :alt="description" />
+  <img v-if="image !== false" :src="image" :alt="description" />
+  <div v-else>{{ description }}</div>
 </template>
 
 <script>
@@ -28,8 +29,14 @@ export default {
   },
 
   computed: {
-    filename() {
-      return require(`./logo-${this.orientation}-${this.color}.svg`);
+    imagePath() {
+      if (!this.orientation || !this.color) return false;
+      return `./logo-${this.orientation}-${this.color}.svg`;
+    },
+
+    image() {
+      if (this.imagePath === false) return "";
+      return require(this.imagePath);
     },
   },
 };
