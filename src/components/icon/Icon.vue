@@ -1,6 +1,6 @@
 <template>
   <span class="icon">
-    <Fa :icon="icon" :size="computedSize" :class="customClass" />
+    <FontAwesomeIcon :icon="icon" :size="computedSize" :class="customClass" />
   </span>
 </template>
 
