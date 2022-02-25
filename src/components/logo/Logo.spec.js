@@ -8,9 +8,8 @@ describe("IfyLogo", () => {
     wrapper = shallowMount(IfyLogo);
   });
 
-  it("deve renderizar uma imagem a partir de um path correto", () => {
+  it("deve renderizar uma imagem", () => {
     expect(wrapper.findAll("img").length).toBe(1);
-    expect(wrapper.vm.imagePath).toBe("./logo-horizontal-colored.svg");
   });
 
   it("deve renderizar corretamente o texto alternativo da imagem", async () => {
