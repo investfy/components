@@ -29,14 +29,9 @@ export default {
   },
 
   computed: {
-    imagePath() {
-      if (!this.orientation || !this.color) return false;
-      return `./logo-${this.orientation}-${this.color}.svg`;
-    },
-
     image() {
-      if (this.imagePath === false) return "";
-      return require(this.imagePath);
+      if (!this.orientation || !this.color) return "";
+      return require(`./logo-${this.orientation}-${this.color}.svg`);
     },
   },
 };
