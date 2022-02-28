@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/investfy/components.git"
   },
-  "main": "dist/ify-components.common.js",
+  "main": "dist/ifycomponents.common.js",
   "files": [
     "dist/*",
     "docs/*",
@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name ify-components ./src/index.js",
+    "build": "vue-cli-service build --target lib --name ifycomponents ./src/index.js",
     "build:docs": "vue-cli-service build --dest ./docs",
     "lint": "vue-cli-service lint",
     "test": "jest --collectCoverage",
