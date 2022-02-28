@@ -23546,4 +23546,4 @@ components.install = install;
 module.exports = __webpack_exports__;
 /******/ })()
 ;
-//# sourceMappingURL=ify-components.common.js.map
+//# sourceMappingURL=ifycomponents.common.js.map

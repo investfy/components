@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["ify-components"] = factory();
+		exports["ifycomponents"] = factory();
 	else
-		root["ify-components"] = factory();
+		root["ifycomponents"] = factory();
 })((typeof self !== 'undefined' ? self : this), function() {
 return /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
@@ -23557,4 +23557,4 @@ components.install = install;
 /******/ })()
 ;
 });
-//# sourceMappingURL=ify-components.umd.js.map
+//# sourceMappingURL=ifycomponents.umd.js.map
