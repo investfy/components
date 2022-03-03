@@ -69,11 +69,6 @@ export const routes = [
     component: () => import("../views/NavPage.vue"),
   },
   {
-    path: "/profiledropdown",
-    name: "ProfileDropdown",
-    component: () => import("../views/ProfileDropdownPage.vue"),
-  },
-  {
     path: "/select",
     name: "Select",
     component: () => import("../views/SelectPage.vue"),

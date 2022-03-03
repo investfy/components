@@ -14,7 +14,6 @@ import IfyLink from "./link/Link.vue";
 import IfyLogo from "./logo/Logo.vue";
 import IfyNav from "./nav/Nav.vue";
 import IfyNavItem from "./nav/NavItem.vue";
-import IfyProfileDropdown from "./profiledropdown/ProfileDropdown.vue";
 import IfySelect from "./select/Select.vue";
 import IfyTable from "./table/Table.vue";
 import IfyTag from "./tag/Tag.vue";
@@ -35,7 +34,6 @@ export default {
   IfyLogo,
   IfyNav,
   IfyNavItem,
-  IfyProfileDropdown,
   IfySelect,
   IfyTable,
   IfyTag,
