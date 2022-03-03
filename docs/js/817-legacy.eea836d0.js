@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunk_investfy_components"]=self["webpackChunk_investfy_components"]||[]).push([[817],{2817:function(e,n,t){t.r(n),t.d(n,{default:function(){return i}});var l=function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("IfyField")},u=[],s={name:"FieldPage"},c=s,f=t(1001),r=(0,f.Z)(c,l,u,!1,null,null,null),i=r.exports}}]);
+//# sourceMappingURL=817-legacy.eea836d0.js.map
