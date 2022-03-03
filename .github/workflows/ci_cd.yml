@@ -61,6 +61,10 @@ jobs:
         with:
           path: node_modules
           key: node_modules-${{ hashFiles('package-lock.json') }}
+      - uses: actions/cache@v2
+        with:
+          path: docs
+          key: docs-${{ github.run_id }}-${{ github.run_number }}
       - run: npm run build:docs
       - uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
@@ -105,6 +109,10 @@ jobs:
         with:
           path: dist
           key: dist-${{ github.run_id }}-${{ github.run_number }}
+      - uses: actions/cache@v2
+        with:
+          path: docs
+          key: docs-${{ github.run_id }}-${{ github.run_number }}
       - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_PAT }}
