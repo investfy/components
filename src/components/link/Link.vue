@@ -1,6 +1,19 @@
 <template>
-  <a v-if="isExternal" class="link" :href="to" v-on="$listeners"><slot /></a>
-  <RouterLink v-else class="link" v-bind="$props" v-on="$listeners">
+  <a
+    v-if="isExternal"
+    class="transition-colors"
+    target="_blank"
+    rel="nofollow"
+    :href="to"
+    v-on="$listeners"
+    ><slot
+  /></a>
+  <RouterLink
+    v-else
+    class="transition-colors"
+    v-bind="$props"
+    v-on="$listeners"
+  >
     <slot />
   </RouterLink>
 </template>
@@ -23,9 +36,3 @@ export default {
   },
 };
 </script>
-
-<style lang="postcss" scoped>
-.link {
-  @apply cursor-pointer underline transition-colors text-indigo-500 hover:text-indigo-700 focus:text-indigo-700;
-}
-</style>
