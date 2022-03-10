@@ -6,7 +6,7 @@ module.exports = {
     "@semantic-release/github",
     [
       "@semantic-release/git",
-      { assets: ["dist", "docs", "package.json", "package-lock.json"] },
+      { assets: ["package.json", "package-lock.json"] },
     ],
   ],
 };
