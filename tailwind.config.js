@@ -1,11 +1,9 @@
 module.exports = {
-  purge: ["./src/**/*.js", "./src/**/*.vue"],
-  darkMode: false,
+  purge: ["./src/**/*.{js,vue}"],
   presets: [require("@investfy/tailwind")],
   variants: {
     extend: {
       margin: ["last"],
     },
   },
-  plugins: [],
 };
