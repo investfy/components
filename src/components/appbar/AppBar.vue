@@ -1,34 +1,55 @@
 <template>
   <header
-    :class="{
-      'shadow-md': shadow,
-      'bg-white': !transparent,
-    }"
+    :class="[
+      'ifyappbar',
+      {
+        'ifyappbar--shadow': shadow,
+        'ifyappbar--transparent': transparent,
+      },
+    ]"
   >
-    <div class="px-1 lg:px-4" :class="{ container: !full }">
-      <div class="flex items-center h-14">
-        <div :class="['brand-slot', { 'is-centered': centered }]">
+    <div
+      class="ifyappbar__wrapper"
+      :class="{ 'ifyappbar__wrapper--container': !full }"
+    >
+      <div class="ifyappbar__content">
+        <div
+          :class="[
+            'ifyappbar__brand-slot',
+            { 'ifyappbar__brand-slot--centered': centered },
+          ]"
+        >
           <!-- @slot Contepudo usado para substituir o logotipo.-->
           <slot name="brand">
             <component
               :is="brandLink ? 'RouterLink' : 'span'"
               :to="brandLink ? brandLink : undefined"
-              class="flex items-center h-14"
+              class="ifyappbar__brand-link"
             >
               <IfyLogo
                 :orientation="logoOrientation"
-                class="w-auto h-6 lg:h-8 block"
+                class="ifyappbar__brand-image"
               />
             </component>
           </slot>
         </div>
 
-        <div :class="['start-slot', { 'is-centered': centered }]">
+        <div
+          :class="[
+            'ifyappbar__start-slot',
+            { 'ifyappbar__start-slot--centered': centered },
+          ]"
+        >
           <!-- @slot Conteúdo exibido ao lado do logotipo ou centralizado caso a prop 'centered' esteja ativa. -->
           <slot name="start" />
         </div>
 
-        <div :class="['end-slot', { 'is-centered': centered }]">
+        <div
+          :class="[
+            'ifyappbar__end-slot',
+            { 'ifyappbar__end-slot--centered': centered },
+          ]"
+        >
           <slot name="end" />
         </div>
       </div>
@@ -108,25 +129,55 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
-.brand-slot {
-  @apply flex items-center flex-shrink-0;
-  &.is-centered {
-    @apply mr-auto md:flex-1;
-  }
+<style lang="postcss">
+.ifyappbar {
+  @apply bg-white;
 }
-.start-slot {
-  @apply mx-4 flex-grow flex;
+.ifyappbar--shadow {
+  @apply shadow-md;
+}
+.ifyappbar--transparent {
+  @apply bg-transparent;
+}
 
-  &.is-centered {
-    @apply mx-0 flex-shrink items-center justify-center;
-    flex-grow: 2;
-  }
+.ifyappbar__wrapper {
+  @apply px-1 lg:px-4;
 }
-.end-slot {
+.ifyappbar__wrapper--container {
+  @apply container;
+}
+
+.ifyappbar__content {
+  @apply flex items-center h-14;
+}
+
+.ifyappbar__brand-slot {
+  @apply flex items-center flex-shrink-0;
+}
+.ifyappbar__brand-slot--centered {
+  @apply mr-auto md:flex-1;
+}
+
+.ifyappbar__brand-link {
+  @apply flex items-center h-14;
+}
+
+.ifyappbar__brand-image {
+  @apply w-auto h-6 lg:h-8 block;
+}
+
+.ifyappbar__start-slot {
+  @apply mx-4 flex-grow flex;
+}
+.ifyappbar__start-slot--centered {
+  @apply mx-0 flex-shrink items-center justify-center;
+  flex-grow: 2;
+}
+
+.ifyappbar__end-slot {
   @apply flex items-center justify-end flex-shrink-0 ml-auto;
-  &.is-centered {
-    @apply md:flex-1;
-  }
+}
+.ifyappbar__end-slot--centered {
+  @apply md:flex-1;
 }
 </style>
