@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "simplebar-vue": "^1.6.8",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
@@ -60,7 +61,6 @@
     "svg-url-loader": "^7.1.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "vue-good-table": "^2.21.11",
-    "vue-simplebar": "^2.3.0",
     "vue-template-compiler": "^2.6.14"
   },
   "peerDependencies": {

@@ -1,5 +1,0 @@
-@import "vue-simplebar/dist/vue-simplebar.min.css";
-
-.simplebar-scrollbar::before {
-  @apply bg-gray-400;
-}
