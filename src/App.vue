@@ -25,6 +25,8 @@
       </div>
       <RouterView />
     </div>
+
+    <PortalTarget name="body" />
   </div>
 </template>
 

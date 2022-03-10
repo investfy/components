@@ -16,16 +16,18 @@
 
     <IfyButton @click="isDrawerOpen = true">Abrir Drawer</IfyButton>
 
-    <IfyDrawer :active.sync="isDrawerOpen" :position="drawerPosition">
-      <div class="p-4">
-        <p class="mb-2" v-for="i in 10" :key="i">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-          nam atque ratione ab amet aspernatur, officia laudantium labore nihil
-          impedit dolor nulla libero neque eveniet ex cum error beatae
-          assumenda.
-        </p>
-      </div>
-    </IfyDrawer>
+    <Portal to="body">
+      <IfyDrawer :active.sync="isDrawerOpen" :position="drawerPosition">
+        <div class="p-4">
+          <p class="mb-2" v-for="i in 10" :key="i">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+            nam atque ratione ab amet aspernatur, officia laudantium labore
+            nihil impedit dolor nulla libero neque eveniet ex cum error beatae
+            assumenda.
+          </p>
+        </div>
+      </IfyDrawer>
+    </Portal>
   </div>
 </template>
 

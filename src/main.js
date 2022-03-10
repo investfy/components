@@ -5,6 +5,7 @@ import store from "./store";
 import "./assets/css/tailwind.css";
 import "./plugins/components.js";
 import "./plugins/fontawesome.js";
+import "./plugins/portal-vue.js";
 
 Vue.config.productionTip = false;
 

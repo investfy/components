@@ -53,10 +53,17 @@ export default {
 
   watch: {
     active: {
+      immediate: true,
       handler(active) {
         this.isActive = active;
+
+        if (typeof document !== "undefined") {
+          const elements = document.querySelectorAll("html, body");
+          elements.forEach(
+            (el) => (el.style.overflow = active ? "hidden" : "visible")
+          );
+        }
       },
-      immediate: true,
     },
   },
 
@@ -76,7 +83,7 @@ export default {
     },
     close() {
       this.isActive = false;
-      this.$emit("update:active", this.isActive);
+      this.$emit("update:active", false);
     },
   },
 };
