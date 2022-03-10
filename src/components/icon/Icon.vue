@@ -1,5 +1,5 @@
 <template>
-  <span class="icon">
+  <span class="ifyicon">
     <FontAwesomeIcon :icon="icon" :size="computedSize" :class="customClass" />
   </span>
 </template>
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.icon {
-  @apply select-none inline-flex items-center justify-center;
+.ifyicon {
+  @apply select-none inline-block items-center justify-center;
 }
 </style>

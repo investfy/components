@@ -16,12 +16,12 @@ describe("IfyIcon", () => {
   });
 
   it("deve renderizar um ícone do FontAwesome", () => {
-    expect(wrapper.find(".icon > i[icon]").exists()).toBeTruthy();
+    expect(wrapper.find(".ifyicon > i[icon]").exists()).toBeTruthy();
   });
 
   it("pode ter o tamanho do ícone alterado", async () => {
     await wrapper.setProps({ size: "xl" });
-    expect(wrapper.find(".icon i[size='2x']").exists()).toBeTruthy();
+    expect(wrapper.find(".ifyicon i[size='2x']").exists()).toBeTruthy();
   });
 
   it("pode passar classes customizadas diretamente para o ícone", async () => {
