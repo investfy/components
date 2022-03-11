@@ -132,19 +132,21 @@ export default {
 <style lang="postcss">
 .ifyappbar {
   @apply bg-white;
-}
-.ifyappbar--shadow {
-  @apply shadow-md;
-}
-.ifyappbar--transparent {
-  @apply bg-transparent;
+
+  &--shadow {
+    @apply shadow-md;
+  }
+  &--transparent {
+    @apply bg-transparent;
+  }
 }
 
 .ifyappbar__wrapper {
   @apply px-1 lg:px-4;
-}
-.ifyappbar__wrapper--container {
-  @apply container;
+
+  &--container {
+    @apply container;
+  }
 }
 
 .ifyappbar__content {
@@ -153,9 +155,10 @@ export default {
 
 .ifyappbar__brand-slot {
   @apply flex items-center flex-shrink-0;
-}
-.ifyappbar__brand-slot--centered {
-  @apply mr-auto md:flex-1;
+
+  &--centered {
+    @apply mr-auto md:flex-1;
+  }
 }
 
 .ifyappbar__brand-link {
@@ -168,16 +171,18 @@ export default {
 
 .ifyappbar__start-slot {
   @apply mx-4 flex-grow flex;
-}
-.ifyappbar__start-slot--centered {
-  @apply mx-0 flex-shrink items-center justify-center;
-  flex-grow: 2;
+
+  &--centered {
+    @apply mx-0 flex-shrink items-center justify-center;
+    flex-grow: 2;
+  }
 }
 
 .ifyappbar__end-slot {
   @apply flex items-center justify-end flex-shrink-0 ml-auto;
-}
-.ifyappbar__end-slot--centered {
-  @apply md:flex-1;
+
+  &--centered {
+    @apply md:flex-1;
+  }
 }
 </style>
