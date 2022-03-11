@@ -1,12 +1,21 @@
 <template>
-  <div class="field" :class="rootClasses">
-    <label v-if="hasLabel" :for="labelFor" :class="customClass" class="label">
+  <div
+    :class="['ifyfield', numberInputClasses, expanded && 'ifyfield--expanded']"
+  >
+    <label
+      v-if="hasLabel"
+      :for="labelFor"
+      :class="['ifyfield__label', labelClass]"
+    >
       <slot v-if="$slots.label" name="label" />
       <template v-else>{{ label }}</template>
     </label>
 
-    <div v-if="hasInnerField" class="field-body">
-      <IfyField :addons="false" :class="innerFieldClasses">
+    <div v-if="hasInnerField" :class="['ifyfield__body', bodyClass]">
+      <IfyField
+        :addons="false"
+        :class="[fieldType(), groupMultiline && 'ifyfield--grouped-multiline']"
+      >
         <slot />
       </IfyField>
     </div>
@@ -14,7 +23,10 @@
       <slot />
     </template>
 
-    <p v-if="hasMessage" class="help" :class="`is-${newType}`">
+    <p
+      v-if="hasMessage"
+      :class="['ifyfield__help', newType && `ifyfield__help--${newType}`]"
+    >
       <slot v-if="$slots.message" name="message" />
       <template v-else>
         <template v-for="(mess, i) in formattedMessage">
@@ -76,7 +88,11 @@ export default {
       type: Boolean,
       default: true,
     },
-    customClass: {
+    labelClass: {
+      type: String,
+      default: null,
+    },
+    bodyClass: {
       type: String,
       default: null,
     },
@@ -92,25 +108,27 @@ export default {
   },
 
   computed: {
-    rootClasses() {
-      return [
-        {
-          "is-expanded": this.expanded,
-          "is-floating-in-label":
-            this.hasLabel && this.labelPosition === "inside",
-          "is-floating-label":
-            this.hasLabel && this.labelPosition === "on-border",
-        },
-        this.numberInputClasses,
-      ];
-    },
-    innerFieldClasses() {
-      return [
-        this.fieldType(),
-        {
-          "is-grouped-multiline": this.groupMultiline,
-        },
-      ];
+    numberInputClasses() {
+      if (this.$slots.default) {
+        const numberinput = this.$slots.default.filter(
+          (node) =>
+            node.tag && node.tag.toLowerCase().indexOf("numberinput") >= 0
+        )[0];
+        if (numberinput) {
+          const classes = ["ifyfield--numberinput"];
+          const controlsPosition =
+            numberinput.componentOptions.propsData.controlsPosition;
+          const size = numberinput.componentOptions.propsData.size;
+          if (controlsPosition) {
+            classes.push(`ifyfield--numberinput-${controlsPosition}`);
+          }
+          if (size) {
+            classes.push(`ifyfield--numberinput-${size}`);
+          }
+          return classes;
+        }
+      }
+      return null;
     },
     hasInnerField() {
       return this.grouped || this.groupMultiline || this.hasAddons();
@@ -160,28 +178,6 @@ export default {
         this.$slots.message
       );
     },
-    numberInputClasses() {
-      if (this.$slots.default) {
-        const numberinput = this.$slots.default.filter(
-          (node) =>
-            node.tag && node.tag.toLowerCase().indexOf("numberinput") >= 0
-        )[0];
-        if (numberinput) {
-          const classes = ["has-numberinput"];
-          const controlsPosition =
-            numberinput.componentOptions.propsData.controlsPosition;
-          const size = numberinput.componentOptions.propsData.size;
-          if (controlsPosition) {
-            classes.push(`has-numberinput-${controlsPosition}`);
-          }
-          if (size) {
-            classes.push(`has-numberinput-${size}`);
-          }
-          return classes;
-        }
-      }
-      return null;
-    },
   },
 
   watch: {
@@ -222,8 +218,8 @@ export default {
      * Is a method to be called when component re-render.
      */
     fieldType() {
-      if (this.grouped) return "is-grouped";
-      if (this.hasAddons()) return "has-addons";
+      if (this.grouped) return "ifyfield--grouped";
+      if (this.hasAddons()) return "ifyfield--addons";
     },
     hasAddons() {
       let renderedNode = 0;
@@ -233,57 +229,81 @@ export default {
           0
         );
       }
+
       return renderedNode > 1 && this.addons;
     },
   },
 };
 </script>
 
-<style lang="postcss" scoped>
-.control {
-  @apply relative box-border clear-both text-base;
-}
-
-.field {
+<style lang="postcss">
+.ifyfield {
   @apply mb-3 last:mb-0;
 
-  &.has-addons {
+  &--addons {
     @apply flex justify-start;
 
-    .control:not(:last-child) {
-      margin-right: -1px;
-    }
+    .ifycontrol {
+      &:not(:last-child) {
+        margin-right: -1px;
+      }
 
-    .control.is-expanded {
-      @apply flex-grow flex-shrink;
+      &--expanded {
+        @apply flex-grow flex-shrink;
+      }
+
+      &:first-child:not(:only-child) .ifybutton,
+      &:first-child:not(:only-child) .ifyinput__input {
+        @apply rounded-br-none rounded-tr-none;
+      }
+      &:last-child:not(:only-child) .ifybutton,
+      &:last-child:not(:only-child) .ifyinput__input {
+        @apply rounded-bl-none rounded-tl-none;
+      }
+      &:not(:first-child):not(:last-child) .ifybutton,
+      &:not(:first-child):not(:last-child) .ifyinput__input {
+        @apply rounded-none;
+      }
+
+      .ifybutton:not([disabled]).ifybutton--hovered,
+      .ifyinput__input:not([disabled]).ifyinput__input--hovered,
+      .ifybutton:not([disabled]):hover,
+      .ifyinput__input:not([disabled]):hover {
+        @apply z-10;
+      }
     }
   }
 }
 
-.label {
+.ifycontrol {
+  @apply relative box-border clear-both;
+}
+
+.ifyfield__label {
   @apply block text-gray-700 text-base font-bold mb-2 last:mb-0;
 }
 
-.help {
+.ifyfield__help {
   @apply block text-xs mt-1;
-}
-.help.is-primary {
-  @apply text-brand;
-}
-.help.is-success {
-  @apply text-accent-500;
-}
-.help.is-warning {
-  @apply text-yellow-500;
-}
-.help.is-danger {
-  @apply text-red-600;
-}
-.help.is-info {
-  @apply text-indigo-500;
+
+  &--primary {
+    @apply text-brand;
+  }
+  &--success {
+    @apply text-accent-500;
+  }
+  &--warning {
+    @apply text-yellow-500;
+  }
+  &--danger {
+    @apply text-red-600;
+  }
+  &--info {
+    @apply text-indigo-500;
+  }
 }
 
-.is-static {
+.ifyfield__static {
   @apply appearance-none flex items-center justify-center align-top h-10 px-4 py-2 bg-gray-100
     border border-gray-300 rounded text-gray-500 text-center whitespace-nowrap
     pointer-events-none cursor-pointer select-none;

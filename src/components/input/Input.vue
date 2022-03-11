@@ -291,23 +291,6 @@ export default {
 </script>
 
 <style lang="postcss">
-.ifyfield--addons .ifycontrol {
-  &:last-child:not(:only-child) .ifyinput__input {
-    @apply rounded-bl-none rounded-tl-none;
-  }
-  &:first-child:not(:only-child) .ifyinput__input {
-    @apply rounded-br-none rounded-tr-none;
-  }
-  &:not(:first-child):not(:last-child) .ifyinput__input {
-    @apply rounded-none;
-  }
-
-  .ifyinput__input:not([disabled]).ifyinput__input--hovered,
-  .ifyinput__input:not([disabled]):hover {
-    @apply z-10;
-  }
-}
-
 .ifyinput {
   @apply text-base;
 

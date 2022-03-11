@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 export const routes = [
   {
     path: "/",
-    redirect: "/form",
+    redirect: "/appbar",
   },
   {
     path: "/appbar",
@@ -37,11 +37,6 @@ export const routes = [
     path: "/field",
     name: "Field",
     component: () => import("../views/FieldPage.vue"),
-  },
-  {
-    path: "/form",
-    name: "Form",
-    component: () => import("../views/FormPage.vue"),
   },
   {
     path: "/icon",
