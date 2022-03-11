@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunk_investfy_components"]=self["webpackChunk_investfy_components"]||[]).push([[613],{613:function(n,e,t){t.r(e),t.d(e,{default:function(){return f}});var u=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("IfyDropdown")},o=[],r={name:"DropdownPage"},s=r,l=t(1001),c=(0,l.Z)(s,u,o,!1,null,null,null),f=c.exports}}]);
-//# sourceMappingURL=613-legacy.21953e76.js.map

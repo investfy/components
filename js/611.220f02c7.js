@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunk_investfy_components"]=self["webpackChunk_investfy_components"]||[]).push([[611],{611:function(n,e,t){t.r(e),t.d(e,{default:function(){return f}});var u=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("IfyAvatar")},a=[],r={name:"AvatarPage"},s=r,l=t(1001),c=(0,l.Z)(s,u,a,!1,null,null,null),f=c.exports}}]);
-//# sourceMappingURL=611.220f02c7.js.map

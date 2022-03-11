@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunk_investfy_components"]=self["webpackChunk_investfy_components"]||[]).push([[430],{1430:function(t,n,e){e.r(n),e.d(n,{default:function(){return l}});var r=function(){var t=this,n=t.$createElement,e=t._self._c||n;return e("IfyAppBar",{staticClass:"mb-8",attrs:{"brand-link":"/"}})},s=[],a={name:"AppBarPage",data(){return{isDropdownActive:!1}},watch:{$route(){this.isDropdownActive=!1}}},u=a,c=e(1001),i=(0,c.Z)(u,r,s,!1,null,null,null),l=i.exports}}]);
+//# sourceMappingURL=430.7c94be13.js.map
