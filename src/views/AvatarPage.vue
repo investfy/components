@@ -1,5 +1,5 @@
 <template>
-  <IfyAvatar />
+  <IfyAvatar src="https://picsum.photos/400" />
 </template>
 
 <script>
