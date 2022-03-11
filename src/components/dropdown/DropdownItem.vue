@@ -1,10 +1,13 @@
 <template>
-  <hr v-if="separator" class="separator" />
+  <hr v-if="separator" class="ifydropdown__menu__separator" />
   <component
     v-else
     :is="link ? 'IfyLink' : 'span'"
     :to="link"
-    :class="{ item: true, clickable: clickable || link }"
+    :class="[
+      'ifydropdown__menu__item',
+      (clickable || link) && 'ifydropdown__menu--clickable',
+    ]"
     @click="$emit('click')"
   >
     <slot />
@@ -32,14 +35,14 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
-.separator {
+<style lang="postcss">
+.ifydropdown__menu__separator {
   @apply bg-gray-200 border-none block h-px my-2 mx-0;
 }
-.item {
+.ifydropdown__menu__item {
   @apply block w-full px-4 py-2 text-sm text-left text-gray-700;
 }
-.clickable {
+.ifydropdown__menu--clickable {
   @apply text-brand cursor-pointer hover:text-brand-900 hover:bg-gray-100;
 }
 </style>
