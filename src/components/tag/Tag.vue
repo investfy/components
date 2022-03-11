@@ -1,5 +1,6 @@
 <template>
-  <span :class="['tag', type ? `is-${type}` : null, size ? `is-${size}` : null]"
+  <span
+    :class="['ifytag', type && `ifytag--${type}`, size && `ifytag--${size}`]"
     ><slot
   /></span>
 </template>
@@ -29,41 +30,42 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
-.tags .tag {
+<style lang="postcss">
+.ifytags .ifytag {
   @apply mb-2 mr-2 last:mr-0;
 }
-.tag {
+
+.ifytag {
   @apply inline-flex items-center justify-center bg-gray-100 rounded h-6 px-3 text-gray-600
     text-xs leading-6 whitespace-nowrap;
 }
 
-.tag.is-xs {
+.ifytag--xs {
   @apply h-4 leading-4;
 }
-.tag.is-sm {
+.ifytag--sm {
   @apply h-5 leading-5;
 }
-.tag.is-lg {
+.ifytag--lg {
   @apply h-7 text-sm rounded-md;
 }
-.tag.is-xl {
+.ifytag--xl {
   @apply h-8 leading-8 text-lg rounded-md;
 }
 
-.tag.is-primary {
+.ifytag--primary {
   @apply text-white bg-brand;
 }
-.tag.is-success {
+.ifytag--success {
   @apply text-white bg-accent;
 }
-.tag.is-warning {
+.ifytag--warning {
   @apply text-white bg-yellow-500;
 }
-.tag.is-danger {
+.ifytag--danger {
   @apply text-white bg-red-600;
 }
-.tag.is-info {
+.ifytag--info {
   @apply text-white bg-indigo-500;
 }
 </style>

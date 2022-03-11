@@ -1,5 +1,5 @@
 <template>
-  <div class="tags"><slot /></div>
+  <div class="ifytags"><slot /></div>
 </template>
 
 <script>
@@ -8,8 +8,8 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
-.tags {
-  @apply flex items-center justify-start flex-wrap last:-mb-2;
+<style lang="postcss">
+.ifytags {
+  @apply inline-flex items-center justify-start flex-wrap last:-mb-2;
 }
 </style>
