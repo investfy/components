@@ -3,6 +3,9 @@ export default {
     size: {
       type: String,
       default: null,
+      validator(str) {
+        return ["sm", "md", "lg", "xl"].includes(str);
+      },
     },
     expanded: {
       type: Boolean,

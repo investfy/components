@@ -1,10 +1,26 @@
 <template>
-  <div class="control" :class="rootClasses">
+  <div
+    :class="[
+      'ifyinput',
+      'ifycontrol',
+      size && `ifyinput--${size}`,
+      expanded && 'is-expanded',
+      loading && 'ifyinput--loading',
+      !hasMessage && 'ifyinput--clearfix',
+      icon && 'ifyinput--icons-left',
+      hasIconRight && 'ifyinput--icons-right',
+    ]"
+  >
     <input
       v-if="type !== 'textarea'"
       ref="input"
-      class="input"
-      :class="[inputClasses, customClass]"
+      :class="[
+        'ifyinput__input',
+        statusType && `ifyinput__input--${statusType}`,
+        size && `ifyinput__input--${size}`,
+        rounded && 'ifyinput__input--rounded',
+        customClass,
+      ]"
       :type="newType"
       :autocomplete="newAutocomplete"
       :maxlength="maxlength"
@@ -19,8 +35,13 @@
     <textarea
       v-else
       ref="textarea"
-      class="textarea"
-      :class="[inputClasses, customClass]"
+      :class="[
+        'ifyinput__textarea',
+        statusType && `ifyinput__textarea--${statusType}`,
+        size && `ifyinput__textarea--${size}`,
+        rounded && 'ifyinput__textarea--rounded',
+        customClass,
+      ]"
       :maxlength="maxlength"
       :value="computedValue"
       v-bind="$attrs"
@@ -32,8 +53,7 @@
 
     <IfyIcon
       v-if="icon"
-      class="is-left"
-      :class="{ 'is-clickable': iconClickable }"
+      :class="['ifyicon--left', { 'ifyicon--clickable': iconClickable }]"
       :icon="icon"
       :size="computedIconSize"
       @click.native="iconClick('icon-click', $event)"
@@ -41,19 +61,23 @@
 
     <IfyIcon
       v-if="!loading && hasIconRight"
-      class="is-right"
-      :class="{ 'is-clickable': passwordReveal || iconRightClickable }"
+      :class="[
+        'ifyicon--right',
+        `ifyicon--${rightIconType}`,
+        { 'ifyicon--clickable': passwordReveal || iconRightClickable },
+      ]"
       :icon="rightIcon"
       :size="computedIconSize"
-      :type="rightIconType"
       both
       @click.native="rightIconClick"
     />
 
     <small
       v-if="maxlength && hasCounter && type !== 'number'"
-      class="help counter"
-      :class="{ 'is-invisible': !isFocused }"
+      :class="[
+        'ifyinput__counter',
+        !isFocused && 'ifyinput__counter--invisible',
+      ]"
     >
       {{ valueLength }} / {{ maxlength }}
     </small>
@@ -134,26 +158,6 @@ export default {
       },
     },
 
-    rootClasses() {
-      return [
-        this.size ? `is-${this.size}` : null,
-        this.iconPosition,
-        {
-          "is-expanded": this.expanded,
-          "is-loading": this.loading,
-          "is-clearfix": !this.hasMessage,
-        },
-      ];
-    },
-
-    inputClasses() {
-      return [
-        this.statusType ? `is-${this.statusType}` : null,
-        this.size ? `is-${this.size}` : null,
-        { "is-rounded": this.rounded },
-      ];
-    },
-
     hasIconRight() {
       return (
         this.passwordReveal ||
@@ -181,23 +185,6 @@ export default {
       }
 
       return this.statusType;
-    },
-
-    /**
-     * Posição do ícone.
-     */
-    iconPosition() {
-      let iconClasses = "";
-
-      if (this.icon) {
-        iconClasses += "has-icons-left ";
-      }
-
-      if (this.hasIconRight) {
-        iconClasses += "has-icons-right";
-      }
-
-      return iconClasses;
     },
 
     /**
@@ -303,141 +290,155 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
-.field.has-addons .control {
-  &:not(:last-child) {
-    margin-right: -1px;
-  }
-  &:last-child:not(:only-child) .input {
+<style lang="postcss">
+.ifyfield--addons .ifycontrol {
+  &:last-child:not(:only-child) .ifyinput__input {
     @apply rounded-bl-none rounded-tl-none;
   }
-  &:first-child:not(:only-child) .input {
+  &:first-child:not(:only-child) .ifyinput__input {
     @apply rounded-br-none rounded-tr-none;
   }
-  &:not(:first-child):not(:last-child) .input {
+  &:not(:first-child):not(:last-child) .ifyinput__input {
     @apply rounded-none;
   }
 
-  .input:not([disabled]).is-hovered,
-  .input:not([disabled]):hover {
+  .ifyinput__input:not([disabled]).ifyinput__input--hovered,
+  .ifyinput__input:not([disabled]):hover {
     @apply z-10;
   }
 }
 
-.control {
-  @apply relative box-border clear-both text-base;
+.ifyinput {
+  @apply text-base;
 
-  &.has-icons-left .icon,
-  &.has-icons-right .icon {
-    @apply absolute top-0 z-10 text-gray-300 w-10 h-10 pointer-events-none;
-  }
-
-  .icon.is-primary {
-    @apply text-brand;
-  }
-  .icon.is-success {
-    @apply text-accent-500;
-  }
-  .icon.is-warning {
-    @apply text-yellow-500;
-  }
-  .icon.is-danger {
-    @apply text-red-600;
-  }
-  .icon.is-info {
-    @apply text-indigo-500;
+  &--clearfix:after {
+    @apply table clear-both;
+    content: " ";
   }
 
-  &.has-icons-right .input {
+  &--icons-left .ifyicon,
+  &--icons-right .ifyicon {
+    @apply absolute top-0 z-10 inline-flex items-center justify-center text-gray-300 w-10 h-full
+    pointer-events-none;
+  }
+  &--icons-right .ifyinput__input {
     @apply pr-10;
   }
-  &.has-icons-left .input {
+  &--icons-left .ifyinput__input {
     @apply pl-10;
   }
-  &.has-icons-left .icon.is-left {
+  &--icons-left .ifyicon.ifyicon--left {
     @apply left-0;
   }
-  &.has-icons-right .icon.is-right {
+  &--icons-right .ifyicon.ifyicon--right {
     @apply right-0;
   }
 
-  &.has-icons-left.is-xs .icon,
-  &.has-icons-right.is-xs .icon {
-    @apply h-7;
+  .ifyicon.ifyicon--primary {
+    @apply text-brand;
   }
-  &.has-icons-left.is-sm .icon,
-  &.has-icons-right.is-sm .icon {
-    @apply h-8;
+  .ifyicon.ifyicon--success {
+    @apply text-accent-500;
   }
-  &.has-icons-left.is-lg .icon,
-  &.has-icons-right.is-lg .icon {
-    @apply h-12;
+  .ifyicon.ifyicon--warning {
+    @apply text-yellow-500;
   }
-  &.has-icons-left.is-xl .icon,
-  &.has-icons-right.is-xl .icon {
-    @apply h-14;
+  .ifyicon.ifyicon--danger {
+    @apply text-red-600;
+  }
+  .ifyicon.ifyicon--info {
+    @apply text-indigo-500;
   }
 
-  .icon.is-clickable {
+  .ifyicon.ifyicon--clickable {
     @apply cursor-pointer;
     pointer-events: all;
   }
+}
 
-  .help.counter {
-    @apply float-right ml-2;
+.ifyinput__counter {
+  @apply float-right ml-2;
+
+  &--invisible {
+    @apply invisible;
   }
 }
 
-.input,
-.textarea {
+.ifyinput__input,
+.ifyinput__textarea {
   @apply appearance-none relative bg-white inline-flex items-center justify-start max-w-full w-full
     h-10 px-3 py-2 border border-gray-300 rounded shadow-sm align-top text-base text-gray-700
-    hover:border-brand-300 focus:outline-none focus:border-brand-300 focus:ring-2
-    focus:ring-brand focus:ring-opacity-30;
+    hover:border-indigo-500 focus:outline-none focus:border-indigo-500 focus:ring-2
+    focus:ring-indigo-500 focus:ring-opacity-30;
 
-  &.is-xs {
+  &[disabled] {
+    @apply cursor-not-allowed bg-gray-100 border-gray-100 shadow-none text-gray-400;
+  }
+
+  &--xs {
     @apply text-xs h-7 py-0;
   }
-  &.is-sm {
+  &--sm {
     @apply text-sm h-8 py-1;
   }
-  &.is-lg {
+  &--lg {
     @apply text-lg h-12;
   }
-  &.is-xl {
+  &--xl {
     @apply text-xl h-14;
   }
 
-  &.is-primary {
-    @apply border-brand-600 focus:ring-brand-600 focus:ring-opacity-30;
+  &--primary {
+    @apply border-indigo-500 focus:ring-indigo-500 focus:ring-opacity-30;
   }
-  &.is-success {
+  &--success {
     @apply border-accent-600 focus:ring-accent-600 focus:ring-opacity-30;
   }
-  &.is-warning {
+  &--warning {
     @apply border-yellow-500 focus:ring-yellow-500 focus:ring-opacity-30;
   }
-  &.is-danger {
+  &--danger {
     @apply border-red-600 focus:ring-red-600 focus:ring-opacity-30;
   }
-  &.is-info {
+  &--info {
     @apply border-indigo-500 focus:ring-indigo-500 focus:ring-opacity-30;
+  }
+
+  &--rounded {
+    @apply rounded-full px-4;
   }
 }
 
-.textarea {
+.ifyinput__textarea {
   @apply block min-w-full max-w-full py-3 resize-y;
 
   &:not([rows]) {
     @apply h-32 max-h-96;
   }
+  &[rows="1"] {
+    @apply overflow-hidden resize-none py-2;
+  }
 }
 
-.is-clearfix:after {
-  @apply table clear-both;
-  content: " ";
-}
-.is-invisible {
-  @apply invisible;
+.ifyinput--loading {
+  &:after {
+    @apply block w-4 h-4 absolute z-10 right-3 border-2 border-gray-300 border-r-0 border-t-0
+      rounded-full animate-spin;
+    content: "";
+    top: calc(50% - 0.5rem);
+  }
+
+  &.ifyinput--sm:after {
+    @apply w-3 h-3;
+    top: calc(50% - 0.375rem);
+  }
+  &.ifyinput--lg:after {
+    @apply w-5 h-5;
+    top: calc(50% - 0.625rem);
+  }
+  &.ifyinput--xl:after {
+    @apply w-6 h-6;
+    top: calc(50% - 0.75rem);
+  }
 }
 </style>
