@@ -35,7 +35,7 @@ describe("IfyNav", () => {
 
   it("pode variar a cor do conteúdo", async () => {
     await wrapper.setProps({ light: true });
-    expect(wrapper.find(".nav-light").exists()).toBeTruthy();
+    expect(wrapper.find(".ifynav--light").exists()).toBeTruthy();
   });
 
   it("pode possuir um título", async () => {
@@ -57,14 +57,14 @@ describe("IfyNav", () => {
     const firstWrapper = shallowMount(IfyNav, {
       slots: { default: `<span>Default</span>` },
     });
-    li = firstWrapper.find(".nav-list > li.nav-list-item");
+    li = firstWrapper.find(".ifynav__list > li.ifynav__list-item");
     expect(li.exists()).toBeTruthy();
 
     // Com tag LI
     const secondWrapper = shallowMount(IfyNav, {
       slots: { default: `<li>Default</li>` },
     });
-    li = secondWrapper.find(".nav-list > li.nav-list-item > li");
+    li = secondWrapper.find(".ifynav__list > li.ifynav__list-item > li");
     expect(li.exists()).not.toBeTruthy();
   });
 });

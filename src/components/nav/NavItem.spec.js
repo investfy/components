@@ -39,6 +39,6 @@ describe("IfyNavItem", () => {
 
   it("pode ser clicável", async () => {
     await wrapper.setProps({ clickable: true });
-    expect(wrapper.find(".nav-clickable").exists()).toBeTruthy();
+    expect(wrapper.find(".ifynav__item--clickable").exists()).toBeTruthy();
   });
 });
