@@ -1,10 +1,10 @@
 <template>
-  <nav :class="{ nav: true, 'nav-light': light }">
-    <component v-if="title" :is="titleTag" class="nav-title">{{
+  <nav :class="['ifynav', light && 'ifynav--light']">
+    <component v-if="title" :is="titleTag" class="ifynav__title">{{
       title
     }}</component>
 
-    <ul class="nav-list">
+    <ul class="ifynav__list">
       <template v-if="$slots.default">
         <template
           v-if="
@@ -12,7 +12,7 @@
             !$slots.default[0].tag.includes('IfyNavItem')
           "
         >
-          <li class="nav-list-item"><slot /></li>
+          <li class="ifynav__list-item"><slot /></li>
         </template>
         <template v-else>
           <slot />
@@ -60,12 +60,12 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
-.nav .nav-title {
+<style lang="postcss">
+.ifynav__title {
   @apply block px-4 py-0 mb-2 text-xs uppercase font-bold leading-5 text-gray-700;
 }
 
-.nav.nav-light .nav-title {
+.ifynav--light .ifynav__title {
   @apply text-brand-200;
 }
 </style>
