@@ -1,19 +1,14 @@
 <template>
   <a
     v-if="isExternal"
-    class="transition-colors"
+    class="ifylink"
     target="_blank"
     rel="nofollow"
     :href="to"
     v-on="$listeners"
     ><slot
   /></a>
-  <RouterLink
-    v-else
-    class="transition-colors"
-    v-bind="$props"
-    v-on="$listeners"
-  >
+  <RouterLink v-else class="ifylink" v-bind="$props" v-on="$listeners">
     <slot />
   </RouterLink>
 </template>
@@ -36,3 +31,9 @@ export default {
   },
 };
 </script>
+
+<style lang="postcss">
+.ifylink {
+  @apply transition-colors;
+}
+</style>
