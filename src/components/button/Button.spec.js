@@ -7,8 +7,13 @@ describe("IfyButton", () => {
   beforeEach(() => {
     wrapper = shallowMount(IfyButton, {
       stubs: ["IfyIcon"],
-      slots: { default: `<span>Default</span>` },
+      slots: { default: `<div slotdefault >Default</div>` },
     });
+  });
+
+  it.only("O componente renderiza o slot default", () => {
+    const icons = wrapper.findAll("[slotdefault]");
+    expect(icons.exists()).toBeTruthy();
   });
 
   it("Se nenhuma prop que condiciona classe tem valor atribuido deve ter apenas a classe ifybutton", () => {
