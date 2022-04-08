@@ -17,7 +17,6 @@
       focused && 'ifybutton--focused',
       hovered && 'ifybutton--hovered',
     ]"
-    @click="$emit('click')"
   >
     <IfyIcon v-if="iconLeft" :icon="iconLeft" :size="computedIconSize" />
     <span v-if="label">{{ label }}</span>
