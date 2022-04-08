@@ -11,7 +11,7 @@ describe("IfyButton", () => {
     });
   });
 
-  it.only("O componente renderiza o slot default", () => {
+  it("O componente renderiza o slot default", () => {
     const icons = wrapper.findAll("[slotdefault]");
     expect(icons.exists()).toBeTruthy();
   });
