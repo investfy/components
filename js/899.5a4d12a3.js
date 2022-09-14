@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunk_investfy_components"]=self["webpackChunk_investfy_components"]||[]).push([[899],{5899:function(t,n,s){s.r(n),s.d(n,{default:function(){return o}});var e=function(){var t=this,n=t._self._c;return n("IfyAvatar",{attrs:{src:"https://picsum.photos/400",status:"online"}})},u=[],a={name:"AvatarPage"},r=a,c=s(1001),l=(0,c.Z)(r,e,u,!1,null,null,null),o=l.exports}}]);
+//# sourceMappingURL=899.5a4d12a3.js.map
