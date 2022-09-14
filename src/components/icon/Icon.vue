@@ -1,6 +1,11 @@
 <template>
   <span class="ifyicon">
-    <FontAwesomeIcon :icon="icon" :size="computedSize" :class="customClass" />
+    <FontAwesomeIcon
+      :icon="icon"
+      :size="computedSize"
+      :class="customClass"
+      v-bind="this.$attrs"
+    />
   </span>
 </template>
 

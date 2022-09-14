@@ -1,9 +1,15 @@
 <template>
-  <div class="space-y-4">
-    <span v-for="size in sizes" :key="size">
-      <IfyIcon icon="camera" :type="type" :size="size" />
-      &nbsp;
-    </span>
+  <div>
+    <div class="space-y-4">
+      <span v-for="size in sizes" :key="size">
+        <IfyIcon icon="camera" :size="size" />
+        &nbsp;
+      </span>
+    </div>
+
+    <div>
+      <IfyIcon icon="circle-notch" size="2xl" spin />
+    </div>
   </div>
 </template>
 
